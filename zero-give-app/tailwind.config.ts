@@ -6,13 +6,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: '#05070a',
-        panel: '#0a0d12',
-        surface: '#10141c',
+        ink: '#08090b',
+        panel: '#0c0e12',
+        surface: '#0f1115',
         edge: '#1a1f2b',
-        accent: '#1FA8FF',
-        'accent-dim': '#0c6dbf',
-        glow: '#7cd3ff',
+        accent: '#5BA3F5',
+        'accent-dim': '#3a78c4',
+        glow: '#8fc1ff',
+        silver: '#d4d8de',
         off: '#9aa3b2',
         border: 'hsl(220 14% 18%)',
         card: 'hsl(220 24% 6%)',
