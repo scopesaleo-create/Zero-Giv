@@ -67,19 +67,19 @@ body {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-size: 11px;
-  color: rgba(237, 232, 223, 0.55);
+  color: rgba(237, 232, 223, 0.85);
 }
 .eyebrow::before {
   content: '';
   width: 28px;
   height: 1px;
-  background: rgba(237, 232, 223, 0.4);
+  background: rgba(237, 232, 223, 0.6);
 }
 .num {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 10.5px;
   letter-spacing: 0.18em;
-  color: rgba(237, 232, 223, 0.45);
+  color: rgba(237, 232, 223, 0.7);
 }
 
 /* ===== Reveal motion ===== */
@@ -708,20 +708,26 @@ body {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+  /* mask so paths only show in the outer frame, never behind copy/stage */
+  -webkit-mask-image:
+    radial-gradient(ellipse 65% 55% at 50% 50%, transparent 0%, rgba(0,0,0,0.4) 40%, #000 75%);
+  mask-image:
+    radial-gradient(ellipse 65% 55% at 50% 50%, transparent 0%, rgba(0,0,0,0.4) 40%, #000 75%);
+  opacity: 0.55;
 }
 .hero-backdrop::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 40% at 70% 30%, rgba(214,255,61,0.04), transparent 60%),
-    radial-gradient(ellipse 80% 50% at 20% 80%, rgba(237,232,223,0.025), transparent 65%);
+    radial-gradient(ellipse 60% 40% at 70% 30%, rgba(214,255,61,0.03), transparent 60%),
+    radial-gradient(ellipse 80% 50% at 20% 80%, rgba(237,232,223,0.018), transparent 65%);
 }
 .hero-backdrop::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 0%, transparent 60%, var(--ink) 95%);
+  background: linear-gradient(180deg, var(--ink) 0%, transparent 18%, transparent 70%, var(--ink) 100%);
 }
 
 /* ===== Misc ===== */

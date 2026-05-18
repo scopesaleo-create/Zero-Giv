@@ -93,9 +93,9 @@ export function HeroSock() {
       <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-14 pt-36 pb-24 min-h-screen flex flex-col">
         {/* top meta line */}
         <div className="reveal flex items-center justify-between gap-6 pb-8 border-b border-rule">
-          <span className="num">N°&nbsp;01 / Field-grip system</span>
-          <span className="num hidden md:block">Made for &mdash; the modern game</span>
-          <span className="num">Edition · MMXXVI</span>
+          <span className="num text-bone/80">N°&nbsp;01 / Field-grip system</span>
+          <span className="num text-bone/80 hidden md:block">Made for &mdash; the modern game</span>
+          <span className="num text-bone/80">Edition · MMXXVI</span>
         </div>
 
         <div className="grid lg:grid-cols-12 gap-12 items-center flex-1 pt-12 lg:pt-20">
@@ -109,7 +109,7 @@ export function HeroSock() {
               <span className="reveal editorial block text-bone/95" data-delay="2">game</span>
               <span className="reveal block" data-delay="3">you love.</span>
             </h1>
-            <p className="reveal mt-10 text-bone/65 text-[17px] leading-[1.7] max-w-md" data-delay="4">
+            <p className="reveal mt-10 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="4">
               A biomechanical grip system worn under the boot. Foot stays planted, force stays forward, the boot stays welded to you — for the entire ninety.
             </p>
             <div className="reveal mt-12 flex flex-wrap gap-3 items-center" data-delay="5">
@@ -188,10 +188,10 @@ export function HeroSock() {
           </div>
         </div>
 
-        <div className="mt-auto pt-10 border-t border-rule flex items-center justify-between gap-6 text-bone/45">
-          <span className="num">Scroll → explore the system</span>
-          <span className="num hidden md:block">A1 · A2 · A3 — hover the diagram</span>
-          <span className="num">05 chapters</span>
+        <div className="mt-auto pt-10 border-t border-rule flex items-center justify-between gap-6">
+          <span className="num text-bone/80">Scroll → explore the system</span>
+          <span className="num text-bone/80 hidden md:block">A1 · A2 · A3 — hover the diagram</span>
+          <span className="num text-bone/80">05 chapters</span>
         </div>
       </div>
     </section>
