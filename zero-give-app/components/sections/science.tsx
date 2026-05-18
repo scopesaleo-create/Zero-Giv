@@ -23,7 +23,7 @@ export function Science() {
               <span className="reveal editorial block" data-delay="1">movement</span>
               <span className="reveal block" data-delay="2">leaks energy.</span>
             </h3>
-            <p className="reveal mt-10 text-bone/65 text-[17px] leading-[1.7] max-w-md" data-delay="3">
+            <p className="reveal mt-10 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="3">
               Internal foot movement inside the boot is the silent tax on every athlete. Speed costs you fractions; control costs you angles. Zero Give was built to pay the tax back.
             </p>
             <a href="#tech" className="reveal btn-text mt-10" data-delay="4" data-target>
@@ -38,7 +38,7 @@ export function Science() {
                 <div className="col-span-10 md:col-span-3">
                   <h4 className="display text-2xl tracking-tightest">{c.title}</h4>
                 </div>
-                <p className="col-span-12 md:col-span-7 text-bone/70 leading-[1.7] text-[15px]">{c.body}</p>
+                <p className="col-span-12 md:col-span-7 text-bone/90 leading-[1.7] text-[15px]">{c.body}</p>
               </li>
             ))}
           </ol>

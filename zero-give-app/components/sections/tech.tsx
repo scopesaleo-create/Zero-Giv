@@ -25,7 +25,7 @@ export function Tech() {
               <span className="reveal block">PivotCore™</span>
               <span className="reveal editorial block" data-delay="1">a grip system.</span>
             </h3>
-            <p className="reveal mt-10 text-bone/65 text-[17px] leading-[1.7] max-w-md" data-delay="2">
+            <p className="reveal mt-10 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="2">
               Three zones of directional silicone are knit into the inner sole. They lock the foot to the boot in the directions force actually wants to travel — and let it breathe in the directions it doesn&apos;t.
             </p>
           </div>
@@ -34,7 +34,7 @@ export function Tech() {
             <dl className="grid grid-cols-2 border-t border-l border-rule">
               {specs.map(([k, v], i) => (
                 <div key={k} className="reveal border-b border-r border-rule p-8" data-delay={String((i % 3) + 1)}>
-                  <dt className="label text-bone/40">{k}</dt>
+                  <dt className="label text-bone/75">{k}</dt>
                   <dd className="text-base text-bone mt-3">{v}</dd>
                 </div>
               ))}
@@ -49,7 +49,7 @@ export function Tech() {
                 <div key={p.n} className="border-t border-rule pt-4">
                   <span className="num">{p.n}</span>
                   <h4 className="display text-xl tracking-tightest mt-2">{p.t}</h4>
-                  <p className="text-sm text-bone/60 mt-2 leading-[1.6]">{p.d}</p>
+                  <p className="text-sm text-bone/85 mt-2 leading-[1.6]">{p.d}</p>
                 </div>
               ))}
             </div>

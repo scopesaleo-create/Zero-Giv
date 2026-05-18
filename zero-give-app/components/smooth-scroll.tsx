@@ -6,10 +6,12 @@ import Lenis from 'lenis';
 export function SmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 0.75,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
       smoothWheel: true,
-      touchMultiplier: 1.4,
+      wheelMultiplier: 1.15,
+      touchMultiplier: 1.6,
+      lerp: 0.12,
     });
 
     let raf = 0;
@@ -29,7 +31,7 @@ export function SmoothScroll() {
       const el = document.querySelector(href);
       if (!el) return;
       e.preventDefault();
-      lenis.scrollTo(el as HTMLElement, { offset: -10, duration: 1.4 });
+      lenis.scrollTo(el as HTMLElement, { offset: -10, duration: 1.0 });
     };
     document.addEventListener('click', onClick);
 

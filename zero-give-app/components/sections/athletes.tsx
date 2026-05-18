@@ -34,7 +34,7 @@ export function Athletes() {
               <div className="mt-10 pt-5 border-t border-rule flex items-center justify-between">
                 <div>
                   <p className="text-[15px] font-medium tracking-tight">{q.name}</p>
-                  <p className="text-xs text-bone/50 mt-1">{q.role}</p>
+                  <p className="text-xs text-bone/80 mt-1">{q.role}</p>
                 </div>
                 <span className="num">— ZG-01</span>
               </div>

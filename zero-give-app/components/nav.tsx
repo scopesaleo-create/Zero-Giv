@@ -6,7 +6,7 @@ export function Nav() {
       <div className="px-8 lg:px-14 py-4 flex items-center justify-between backdrop-blur-md bg-ink/55 border-b border-rule">
         <a href="#hero" className="flex items-center gap-4" aria-label="Zero Give home">
           <Logo className="h-7" />
-          <span className="hidden md:inline label text-bone/40">ZG-01 · MMXXVI</span>
+          <span className="hidden md:inline label text-bone/75">ZG-01 · MMXXVI</span>
         </a>
         <nav className="hidden md:flex items-center gap-9 text-sm">
           <a className="nav-link" href="#science">Premise</a>

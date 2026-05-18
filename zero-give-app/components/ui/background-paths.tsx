@@ -7,14 +7,14 @@ import { motion } from 'framer-motion';
  * Theme-adapted: bone-on-ink with very low opacity so it sits behind hero content.
  */
 function FloatingPaths({ position }: { position: number }) {
-  const paths = Array.from({ length: 22 }, (_, i) => ({
+  const paths = Array.from({ length: 30 }, (_, i) => ({
     id: i,
     d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${380 - i * 5 * position} -${189 + i * 6} -${
       312 - i * 5 * position
     } ${216 - i * 6} ${152 - i * 5 * position} ${343 - i * 6}C${616 - i * 5 * position} ${
       470 - i * 6
     } ${684 - i * 5 * position} ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-    width: 0.35 + i * 0.015,
+    width: 0.45 + i * 0.022,
   }));
 
   return (
@@ -27,15 +27,15 @@ function FloatingPaths({ position }: { position: number }) {
             d={path.d}
             stroke="currentColor"
             strokeWidth={path.width}
-            strokeOpacity={0.012 + path.id * 0.004}
-            initial={{ pathLength: 0.3, opacity: 0.18 }}
+            strokeOpacity={0.05 + path.id * 0.008}
+            initial={{ pathLength: 0.3, opacity: 0.35 }}
             animate={{
               pathLength: 1,
-              opacity: [0.08, 0.18, 0.08],
+              opacity: [0.18, 0.32, 0.18],
               pathOffset: [0, 1, 0],
             }}
             transition={{
-              duration: 28 + Math.random() * 14,
+              duration: 24 + Math.random() * 12,
               repeat: Number.POSITIVE_INFINITY,
               ease: 'linear',
             }}

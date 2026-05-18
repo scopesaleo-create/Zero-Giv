@@ -22,7 +22,7 @@ export function Performance() {
             <span className="reveal block">Built for</span>
             <span className="reveal editorial block" data-delay="1">game speed.</span>
           </h3>
-          <p className="reveal lg:col-span-5 text-bone/65 text-[17px] leading-[1.7] max-w-md" data-delay="2">
+          <p className="reveal lg:col-span-5 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="2">
             We tested ZG-01 in real intensity — boots full of sweat, legs full of acid, surfaces that turn against you. The grip held its shape from minute zero to the end of stoppage.
           </p>
         </div>
@@ -30,7 +30,7 @@ export function Performance() {
         <div className="reveal grid grid-cols-2 md:grid-cols-4 border-y border-rule" data-delay="3">
           {STATS.map((s, i) => (
             <div key={s.label} className={`stat ${i < 2 ? 'border-b md:border-b-0' : ''} ${i % 2 === 0 ? 'md:border-r border-rule' : 'md:border-r border-rule'}`}>
-              <p className="label text-bone/40">{s.label}</p>
+              <p className="label text-bone/75">{s.label}</p>
               <p
                 className="display text-[56px] md:text-[80px] text-bone mt-3 tracking-tightest leading-none"
                 data-counter
@@ -40,7 +40,7 @@ export function Performance() {
               >
                 0{s.suffix}
               </p>
-              <p className="text-xs text-bone/50 mt-4 leading-[1.6]">{s.sub}</p>
+              <p className="text-xs text-bone/80 mt-4 leading-[1.6]">{s.sub}</p>
             </div>
           ))}
         </div>
@@ -55,7 +55,7 @@ export function Performance() {
             <li key={t.n} className="ftile">
               <span className="num">{t.n}</span>
               <h4 className="display text-xl mt-3 tracking-tightest">{t.t}</h4>
-              <p className="text-sm text-bone/60 mt-3 leading-[1.65]">{t.b}</p>
+              <p className="text-sm text-bone/85 mt-3 leading-[1.65]">{t.b}</p>
             </li>
           ))}
         </ol>

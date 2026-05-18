@@ -109,7 +109,7 @@ export function Spline3D() {
               <h3 className="reveal display text-4xl md:text-5xl tracking-tightest leading-[1.02]" data-delay="1">
                 A specimen<br />you can <span className="editorial">handle.</span>
               </h3>
-              <p className="reveal text-bone/65 leading-[1.7] mt-8 max-w-sm" data-delay="2">
+              <p className="reveal text-bone/90 leading-[1.7] mt-8 max-w-sm" data-delay="2">
                 Drag your cursor across the panel to walk around the sock. Scroll and the camera follows the page. Step away and the rotation breathes on its own.
               </p>
               <a href="#cta" className="reveal btn-text mt-10" data-target data-delay="3">
@@ -119,19 +119,19 @@ export function Spline3D() {
 
             <dl className="reveal grid grid-cols-2 gap-x-6 gap-y-6 pt-8 border-t border-rule" data-delay="4">
               <div>
-                <dt className="label text-bone/40">Material</dt>
+                <dt className="label text-bone/75">Material</dt>
                 <dd className="text-sm text-bone/85 mt-2">Recycled poly / Lycra®</dd>
               </div>
               <div>
-                <dt className="label text-bone/40">Knit</dt>
+                <dt className="label text-bone/75">Knit</dt>
                 <dd className="text-sm text-bone/85 mt-2">Zonal compression</dd>
               </div>
               <div>
-                <dt className="label text-bone/40">Grip</dt>
+                <dt className="label text-bone/75">Grip</dt>
                 <dd className="text-sm text-bone/85 mt-2">Silicone, directional</dd>
               </div>
               <div>
-                <dt className="label text-bone/40">Edition</dt>
+                <dt className="label text-bone/75">Edition</dt>
                 <dd className="text-sm text-bone/85 mt-2">ZG-01 · launch</dd>
               </div>
             </dl>

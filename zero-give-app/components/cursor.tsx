@@ -25,8 +25,8 @@ export function Cursor() {
       dot.style.transform = `translate3d(${tx}px,${ty}px,0) translate(-50%,-50%)`;
     };
     const loop = () => {
-      rx += (tx - rx) * 0.55;
-      ry += (ty - ry) * 0.55;
+      rx += (tx - rx) * 0.85;
+      ry += (ty - ry) * 0.85;
       ring.style.transform = `translate3d(${rx}px,${ry}px,0) translate(-50%,-50%)`;
       raf = requestAnimationFrame(loop);
     };

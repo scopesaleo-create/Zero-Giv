@@ -165,11 +165,11 @@ export function HeroSock() {
                   </button>
                   <span className="num">{detail.num} · {detail.subtitle}</span>
                   <h3 className="display text-[36px] tracking-tightest leading-[0.95] mt-3">{detail.title}</h3>
-                  <p className="mt-5 text-sm text-bone/65 leading-[1.7]">{detail.body}</p>
+                  <p className="mt-5 text-sm text-bone/90 leading-[1.7]">{detail.body}</p>
                   <dl className="grid grid-cols-2 gap-x-6 gap-y-5 mt-7 pt-6 border-t border-rule">
                     {detail.specs.map(([k, v]) => (
                       <div key={k}>
-                        <dt className="label text-bone/40">{k}</dt>
+                        <dt className="label text-bone/75">{k}</dt>
                         <dd className="text-sm text-bone mt-1.5">{v}</dd>
                       </div>
                     ))}

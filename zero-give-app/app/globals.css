@@ -335,7 +335,7 @@ body {
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   padding: 0;
   background: transparent;
   border: 0;
@@ -343,43 +343,64 @@ body {
   z-index: 6;
 }
 .hot .pin {
-  width: 10px;
-  height: 10px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  border: 1px solid var(--bone);
-  background: var(--ink);
+  border: 2px solid var(--bone);
+  background: var(--signal);
   position: relative;
   flex-shrink: 0;
+  box-shadow:
+    0 0 0 4px rgba(10,10,10,0.5),
+    0 0 18px rgba(214,255,61,0.4),
+    0 2px 10px rgba(0,0,0,0.6);
+}
+.hot .pin::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--ink);
 }
 .hot .pin::after {
   content: '';
   position: absolute;
-  inset: -8px;
+  inset: -10px;
   border-radius: 50%;
-  border: 1px solid rgba(237, 232, 223, 0.15);
-  transition: inset .4s var(--ease-out), border-color .4s;
+  border: 1.5px solid rgba(214,255,61,0.55);
+  animation: hot-pulse 2.4s var(--ease-out) infinite;
 }
-.hot:hover .pin { background: var(--signal); border-color: var(--signal); }
-.hot:hover .pin::after { inset: -12px; border-color: var(--signal); }
+@keyframes hot-pulse {
+  0%   { transform: scale(0.85); opacity: 1; }
+  100% { transform: scale(1.8);  opacity: 0; }
+}
+.hot:hover .pin { transform: scale(1.15); }
+.hot:hover .pin::after { animation-duration: 1.6s; }
 .hot .lead {
-  width: 36px;
-  height: 1px;
-  background: rgba(237, 232, 223, 0.4);
+  width: 48px;
+  height: 1.5px;
+  background: var(--bone);
   transform-origin: left;
   transition: width .35s var(--ease-out), background .35s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
-.hot:hover .lead { background: var(--signal); width: 48px; }
+.hot:hover .lead { background: var(--signal); width: 64px; }
 .hot .tag {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   text-align: left;
+  background: rgba(10,10,10,0.78);
+  padding: 8px 12px;
+  border: 1px solid var(--rule-strong);
+  backdrop-filter: blur(8px);
 }
 .hot .tag .n {
   font-family: var(--font-mono), monospace;
   font-size: 10px;
-  letter-spacing: 0.2em;
-  color: rgba(237, 232, 223, 0.5);
+  letter-spacing: 0.22em;
+  color: var(--signal);
+  font-weight: 600;
 }
 .hot .tag .t {
   font-family: var(--font-display), Inter, sans-serif;
@@ -708,26 +729,23 @@ body {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  /* mask so paths only show in the outer frame, never behind copy/stage */
-  -webkit-mask-image:
-    radial-gradient(ellipse 65% 55% at 50% 50%, transparent 0%, rgba(0,0,0,0.4) 40%, #000 75%);
-  mask-image:
-    radial-gradient(ellipse 65% 55% at 50% 50%, transparent 0%, rgba(0,0,0,0.4) 40%, #000 75%);
-  opacity: 0.55;
+  opacity: 0.85;
 }
 .hero-backdrop::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 40% at 70% 30%, rgba(214,255,61,0.03), transparent 60%),
-    radial-gradient(ellipse 80% 50% at 20% 80%, rgba(237,232,223,0.018), transparent 65%);
+    radial-gradient(ellipse 60% 40% at 70% 30%, rgba(214,255,61,0.04), transparent 60%),
+    radial-gradient(ellipse 80% 50% at 20% 80%, rgba(237,232,223,0.03), transparent 65%);
+  pointer-events: none;
 }
 .hero-backdrop::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, var(--ink) 0%, transparent 18%, transparent 70%, var(--ink) 100%);
+  background: linear-gradient(180deg, var(--ink) 0%, transparent 14%, transparent 86%, var(--ink) 100%);
+  pointer-events: none;
 }
 
 /* ===== Misc ===== */
