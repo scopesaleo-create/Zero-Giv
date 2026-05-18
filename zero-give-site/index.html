@@ -1,0 +1,1046 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Zero Give — Grip The Game You Love</title>
+<meta name="description" content="Zero Give Grip Socks. Engineered for explosive soccer performance. Lock your foot in. Transfer every watt. Take control of every move." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#05070a',
+          panel: '#0a0d12',
+          surface: '#10141c',
+          edge: '#1a1f2b',
+          accent: '#1FA8FF',
+          accentDim: '#0c6dbf',
+          glow: '#7cd3ff',
+          off: '#9aa3b2',
+        },
+        fontFamily: {
+          display: ['Anton', 'Impact', 'sans-serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    background: #05070a;
+    color: #e6ecf3;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* --- custom cursor --- */
+  .cursor-dot, .cursor-ring {
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: transform .12s ease, width .2s ease, height .2s ease, opacity .2s ease;
+    mix-blend-mode: difference;
+  }
+  .cursor-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #fff;
+  }
+  .cursor-ring {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1px solid #fff;
+    opacity: .65;
+  }
+  .cursor-ring.hover {
+    width: 64px; height: 64px; opacity: 1;
+    border-color: #1FA8FF; mix-blend-mode: normal; background: rgba(31,168,255,.08);
+  }
+  @media (pointer: coarse) {
+    body { cursor: auto; }
+    .cursor-dot, .cursor-ring { display: none; }
+  }
+
+  /* --- display headings --- */
+  .display {
+    font-family: 'Anton', Impact, sans-serif;
+    letter-spacing: .01em;
+    line-height: .9;
+    text-transform: uppercase;
+  }
+  .label {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+
+  /* --- mouse-tracked spotlight on hero --- */
+  .spotlight {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(600px circle at var(--mx,50%) var(--my,40%), rgba(31,168,255,.18), transparent 60%),
+      radial-gradient(900px circle at 80% 110%, rgba(31,168,255,.10), transparent 60%);
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  /* --- grid background --- */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%);
+  }
+
+  /* --- subtle noise --- */
+  .noise::after {
+    content:'';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity:.5;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  /* --- reveal animation --- */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal[data-delay="1"] { transition-delay: .08s; }
+  .reveal[data-delay="2"] { transition-delay: .16s; }
+  .reveal[data-delay="3"] { transition-delay: .24s; }
+  .reveal[data-delay="4"] { transition-delay: .32s; }
+  .reveal[data-delay="5"] { transition-delay: .40s; }
+
+  /* --- text gradient stroke --- */
+  .stroke-text {
+    -webkit-text-stroke: 1px rgba(255,255,255,.35);
+    color: transparent;
+  }
+
+  /* --- chip --- */
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 12px; border: 1px solid rgba(255,255,255,.14);
+    border-radius: 999px; backdrop-filter: blur(8px);
+    background: rgba(255,255,255,.02);
+  }
+  .chip .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #1FA8FF; box-shadow: 0 0 10px #1FA8FF;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .35; transform: scale(.85); }
+  }
+
+  /* --- buttons --- */
+  .btn {
+    position: relative; display: inline-flex; align-items: center; gap: 12px;
+    padding: 14px 22px; font-weight: 600; letter-spacing: .04em;
+    border-radius: 999px; overflow: hidden;
+    transition: transform .25s ease, color .25s ease, background .25s ease, border-color .25s ease;
+  }
+  .btn-primary { background: #1FA8FF; color: #02101d; }
+  .btn-primary:hover { background: #7cd3ff; transform: translateY(-1px); }
+  .btn-ghost { border: 1px solid rgba(255,255,255,.18); color: #fff; }
+  .btn-ghost:hover { border-color: #1FA8FF; color: #1FA8FF; transform: translateY(-1px); }
+  .btn .arr { transition: transform .25s ease; }
+  .btn:hover .arr { transform: translateX(4px); }
+
+  /* --- nav --- */
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content:''; position: absolute; left: 0; bottom: -4px;
+    height: 1px; width: 0; background: #1FA8FF;
+    transition: width .35s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  /* --- perspective progress dots --- */
+  .sidedots {
+    position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
+    z-index: 60; display: flex; flex-direction: column; gap: 14px;
+  }
+  .sidedots button {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,.18);
+    transition: all .3s ease;
+  }
+  .sidedots button.active {
+    background: #1FA8FF; box-shadow: 0 0 14px #1FA8FF;
+    transform: scale(1.4);
+  }
+  .sidedots button:hover { background: #fff; }
+
+  /* --- sock illustration --- */
+  .sock-stage {
+    position: relative;
+    aspect-ratio: 1/1;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .ring {
+    position: absolute; inset: 8%;
+    border-radius: 50%;
+    border: 1px solid rgba(31,168,255,.18);
+    pointer-events: none;
+  }
+  .ring.r2 { inset: 16%; border-color: rgba(31,168,255,.12); }
+  .ring.r3 { inset: 24%; border-color: rgba(31,168,255,.08); }
+  .ring.r4 {
+    inset: 0;
+    border: 1px dashed rgba(31,168,255,.22);
+    animation: spin 60s linear infinite;
+  }
+  .ring.r4::before, .ring.r4::after {
+    content:''; position: absolute;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #1FA8FF; box-shadow: 0 0 12px #1FA8FF;
+  }
+  .ring.r4::before { top: -3px; left: 50%; transform: translateX(-50%); }
+  .ring.r4::after { bottom: -3px; left: 50%; transform: translateX(-50%); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* --- callout lines --- */
+  .callout {
+    position: absolute;
+    display: flex; align-items: center; gap: 10px;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .callout.in { opacity: 1; transform: none; }
+  .callout .line {
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, rgba(31,168,255,0), #1FA8FF);
+  }
+  .callout .num {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: #1FA8FF; letter-spacing: .2em;
+  }
+  .callout h4 {
+    font-family: 'Anton', sans-serif;
+    font-size: 16px; letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .callout p {
+    font-size: 12px; color: #9aa3b2; max-width: 200px; line-height: 1.45;
+  }
+
+  /* --- marquee --- */
+  .marquee {
+    display: flex; gap: 64px; animation: scroll 40s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes scroll {
+    to { transform: translateX(-50%); }
+  }
+
+  /* --- testimonial card --- */
+  .tcard {
+    position: relative;
+    border: 1px solid rgba(255,255,255,.08);
+    background: linear-gradient(180deg, rgba(31,168,255,.04), rgba(255,255,255,.02));
+    border-radius: 18px;
+    padding: 28px;
+    overflow: hidden;
+    transition: transform .4s ease, border-color .4s ease;
+  }
+  .tcard:hover { transform: translateY(-4px); border-color: rgba(31,168,255,.4); }
+  .tcard::before {
+    content:''; position: absolute; inset: 0;
+    background: radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(31,168,255,.15), transparent 60%);
+    opacity: 0; transition: opacity .35s ease;
+    pointer-events: none;
+  }
+  .tcard:hover::before { opacity: 1; }
+
+  /* --- feature tile --- */
+  .ftile {
+    position: relative; padding: 32px 28px;
+    border: 1px solid rgba(255,255,255,.06);
+    transition: background .35s ease, border-color .35s ease;
+  }
+  .ftile:hover { background: rgba(31,168,255,.04); border-color: rgba(31,168,255,.35); }
+  .ftile .icon {
+    width: 48px; height: 48px; border: 1px solid rgba(31,168,255,.4);
+    border-radius: 50%; display: grid; place-items: center;
+    color: #1FA8FF; margin-bottom: 18px;
+    transition: transform .4s ease, box-shadow .4s ease;
+  }
+  .ftile:hover .icon { transform: rotate(8deg); box-shadow: 0 0 24px rgba(31,168,255,.35); }
+
+  /* --- scroll indicator --- */
+  .scroll-cue {
+    position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .scroll-cue .bar {
+    width: 1px; height: 36px; background: linear-gradient(180deg, transparent, #1FA8FF);
+    animation: drop 2s ease-in-out infinite;
+  }
+  @keyframes drop {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* --- section divider --- */
+  .divider {
+    display: flex; align-items: center; gap: 14px;
+    color: rgba(255,255,255,.4);
+  }
+  .divider .l { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent); }
+
+  /* --- input --- */
+  .field input {
+    background: transparent; border: 1px solid rgba(255,255,255,.14);
+    padding: 14px 18px; border-radius: 999px; color: #fff;
+    width: 100%; transition: border-color .25s ease;
+  }
+  .field input:focus { outline: none; border-color: #1FA8FF; }
+
+  /* perspective number plate */
+  .pnum {
+    font-family: 'JetBrains Mono', monospace;
+    color: rgba(255,255,255,.35);
+    letter-spacing: .25em;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body class="bg-ink text-white selection:bg-accent selection:text-ink">
+
+<!-- custom cursor -->
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- side perspective dots -->
+<nav class="sidedots hidden lg:flex" aria-label="Section navigation">
+  <button data-jump="hero" class="active" aria-label="Intro"></button>
+  <button data-jump="science" aria-label="Science"></button>
+  <button data-jump="tech" aria-label="Technology"></button>
+  <button data-jump="speed" aria-label="Performance"></button>
+  <button data-jump="athletes" aria-label="Athletes"></button>
+  <button data-jump="cta" aria-label="Join"></button>
+</nav>
+
+<!-- top nav -->
+<header class="fixed top-0 left-0 right-0 z-50 px-6 lg:px-12 py-5 flex items-center justify-between backdrop-blur-md bg-ink/40 border-b border-white/5">
+  <a href="#hero" class="flex items-center gap-3" aria-label="Zero Give home">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <circle cx="14" cy="14" r="13" stroke="#1FA8FF" stroke-width="1.5"/>
+      <path d="M7 14 L14 7 L21 14 L14 21 Z" stroke="#fff" stroke-width="1.4" fill="none"/>
+      <circle cx="14" cy="14" r="2.2" fill="#1FA8FF"/>
+    </svg>
+    <span class="display text-xl tracking-wide">Zero Give</span>
+    <span class="label text-white/40 hidden md:inline">/ ZG-01</span>
+  </a>
+  <nav class="hidden md:flex items-center gap-8 text-sm">
+    <a class="nav-link" href="#science">The Science</a>
+    <a class="nav-link" href="#tech">Technology</a>
+    <a class="nav-link" href="#speed">Performance</a>
+    <a class="nav-link" href="#athletes">Athletes</a>
+    <a class="nav-link" href="#cta">Player's Space</a>
+  </nav>
+  <a href="#cta" class="btn btn-primary text-sm">Shop Now <span class="arr">→</span></a>
+</header>
+
+<!-- ========================== HERO ========================== -->
+<section id="hero" class="relative min-h-screen overflow-hidden noise">
+  <div class="grid-bg absolute inset-0"></div>
+  <div class="spotlight" id="spot"></div>
+
+  <!-- background image: dramatic foot of a player kicking ball -->
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink via-ink/70 to-ink"></div>
+    <svg class="absolute inset-0 w-full h-full opacity-40" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <radialGradient id="hg" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#1FA8FF" stop-opacity=".25"/>
+          <stop offset="60%" stop-color="#1FA8FF" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="1600" height="900" fill="url(#hg)"/>
+      <g stroke="#1FA8FF" stroke-width=".4" fill="none" opacity=".5">
+        <circle cx="800" cy="450" r="240"/>
+        <circle cx="800" cy="450" r="360"/>
+        <circle cx="800" cy="450" r="480"/>
+        <line x1="0" y1="450" x2="1600" y2="450"/>
+        <line x1="800" y1="0" x2="800" y2="900"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-12 pt-40 pb-16">
+    <div class="reveal" data-delay="1">
+      <span class="chip text-xs text-white/70"><span class="dot"></span> Trusted by NCAA, MLS, MLFPA athletes</span>
+    </div>
+
+    <h1 class="reveal display text-[14vw] md:text-[10vw] lg:text-[9.2vw] leading-[0.85] mt-6" data-delay="2">
+      Grip <span class="text-accent">The Game</span><br/>
+      <span class="stroke-text">You</span> Love.
+    </h1>
+
+    <div class="reveal mt-10 grid md:grid-cols-3 gap-8 max-w-5xl" data-delay="3">
+      <p class="md:col-span-2 text-white/70 text-lg md:text-xl leading-relaxed max-w-2xl">
+        Every movement leaks energy. Internal foot slip steals your speed, your power, and your control. <span class="text-white">Zero Give</span> closes the gap between you and the boot — so every watt you produce arrives where it's supposed to.
+      </p>
+      <div class="md:border-l md:border-white/10 md:pl-6">
+        <p class="label text-white/40 mb-2">Performance delta</p>
+        <p class="display text-5xl text-accent" data-counter data-from="0" data-to="38" data-suffix="%">0%</p>
+        <p class="text-sm text-white/50 mt-1">Avg. reduction in heel slip vs. standard athletic socks*</p>
+      </div>
+    </div>
+
+    <div class="reveal mt-12 flex flex-wrap items-center gap-4" data-delay="4">
+      <a href="#cta" class="btn btn-primary">Shop Performance Socks <span class="arr">→</span></a>
+      <a href="#science" class="btn btn-ghost">See The Science <span class="arr">→</span></a>
+    </div>
+
+    <div class="reveal mt-16 flex flex-wrap items-center gap-10 opacity-70" data-delay="5">
+      <span class="label text-white/40">As seen / worn by</span>
+      <span class="display text-2xl text-white/60">MLFPA</span>
+      <span class="display text-2xl text-white/60">NCAA</span>
+      <span class="display text-2xl text-white/60">MLS</span>
+      <span class="display text-2xl text-white/60">SELECT</span>
+      <span class="display text-2xl text-white/60">THE OPENING</span>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span class="label text-white/50">Scroll to explore</span>
+    <span class="bar"></span>
+  </div>
+</section>
+
+<!-- ========================== THE SCIENCE ========================== -->
+<section id="science" class="relative py-32 lg:py-44 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="reveal flex items-center gap-4 mb-6">
+      <span class="pnum">01 / PERSPECTIVE</span>
+      <span class="divider"><span class="l"></span></span>
+      <span class="label text-accent">The Athlete</span>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <h2 class="reveal display text-6xl md:text-7xl lg:text-8xl" data-delay="1">
+          Every<br/>movement<br/><span class="text-accent">leaks</span> energy.
+        </h2>
+        <p class="reveal mt-8 text-white/70 text-lg max-w-md leading-relaxed" data-delay="2">
+          Internal foot movement creates instability, reduces force transfer, and costs you speed, power, and control. Zero Give eliminates the energy leaks — so you can perform at your highest level.
+        </p>
+        <a href="#tech" class="reveal btn btn-ghost mt-10" data-delay="3">Explore the science <span class="arr">→</span></a>
+      </div>
+
+      <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- perspective card: SPRINT -->
+        <article class="reveal tcard" data-delay="1">
+          <div class="relative h-64 -m-7 mb-5 overflow-hidden rounded-t-[18px] bg-gradient-to-b from-accent/20 via-ink to-ink">
+            <svg viewBox="0 0 300 300" class="absolute inset-0 w-full h-full">
+              <defs>
+                <linearGradient id="sp1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#1FA8FF" stop-opacity=".6"/>
+                  <stop offset="100%" stop-color="#1FA8FF" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <g stroke="#1FA8FF" stroke-width=".5" fill="none" opacity=".5">
+                <circle cx="150" cy="150" r="60"/>
+                <circle cx="150" cy="150" r="100"/>
+                <circle cx="150" cy="150" r="140"/>
+              </g>
+              <!-- abstract runner silhouette -->
+              <path d="M120 60 q10 20 0 50 l-10 40 l-20 60 l30 20 l30 -20 l25 -50 l30 -40 l-25 -30 z" fill="url(#sp1)"/>
+              <g stroke="#7cd3ff" stroke-width="1">
+                <line x1="60" y1="240" x2="240" y2="240" opacity=".3"/>
+                <line x1="80" y1="60" x2="220" y2="60" opacity=".2"/>
+              </g>
+            </svg>
+          </div>
+          <p class="label text-accent">01</p>
+          <h3 class="display text-3xl mt-2">Sprint</h3>
+          <p class="text-sm text-white/60 mt-2">Heel lift and slippage reduce acceleration efficiency. Lock the foundation and convert every stride.</p>
+          <a class="mt-5 inline-flex items-center gap-2 text-sm text-accent" href="#tech">View analysis <span class="arr">→</span></a>
+        </article>
+
+        <article class="reveal tcard" data-delay="2">
+          <div class="relative h-64 -m-7 mb-5 overflow-hidden rounded-t-[18px] bg-gradient-to-b from-accent/20 via-ink to-ink">
+            <svg viewBox="0 0 300 300" class="absolute inset-0 w-full h-full">
+              <g stroke="#1FA8FF" stroke-width=".5" fill="none" opacity=".5">
+                <ellipse cx="150" cy="160" rx="100" ry="40"/>
+                <ellipse cx="150" cy="160" rx="140" ry="56"/>
+              </g>
+              <path d="M100 80 q30 -10 60 10 q20 30 -10 60 l-20 50 q-10 40 -40 30 q-30 -10 -10 -50 z" fill="#1FA8FF" opacity=".35"/>
+              <path d="M180 60 l40 30 l-10 20 z" fill="#7cd3ff" opacity=".5"/>
+            </svg>
+          </div>
+          <p class="label text-accent">02</p>
+          <h3 class="display text-3xl mt-2">Cut</h3>
+          <p class="text-sm text-white/60 mt-2">Lateral movement creates rotational forces and instability. Direction without leakage.</p>
+          <a class="mt-5 inline-flex items-center gap-2 text-sm text-accent" href="#tech">View analysis <span class="arr">→</span></a>
+        </article>
+
+        <article class="reveal tcard" data-delay="3">
+          <div class="relative h-64 -m-7 mb-5 overflow-hidden rounded-t-[18px] bg-gradient-to-b from-accent/20 via-ink to-ink">
+            <svg viewBox="0 0 300 300" class="absolute inset-0 w-full h-full">
+              <g stroke="#1FA8FF" stroke-width=".5" fill="none" opacity=".5">
+                <circle cx="220" cy="200" r="30"/>
+                <circle cx="220" cy="200" r="50"/>
+              </g>
+              <path d="M80 90 q20 -10 40 10 l20 60 l40 30 l30 30 l-30 20 l-40 -10 l-30 -40 l-30 -60 z" fill="#1FA8FF" opacity=".35"/>
+              <circle cx="220" cy="200" r="14" fill="#7cd3ff"/>
+            </svg>
+          </div>
+          <p class="label text-accent">03</p>
+          <h3 class="display text-3xl mt-2">Strike</h3>
+          <p class="text-sm text-white/60 mt-2">Uncontrolled movement reduces force transfer and power. Clean contact, every time.</p>
+          <a class="mt-5 inline-flex items-center gap-2 text-sm text-accent" href="#tech">View analysis <span class="arr">→</span></a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================== THE TECHNOLOGY ========================== -->
+<section id="tech" class="relative py-32 lg:py-44 overflow-hidden border-y border-white/5 bg-gradient-to-b from-panel via-ink to-panel">
+  <div class="grid-bg absolute inset-0 opacity-40"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
+    <div class="reveal flex items-center gap-4 mb-6">
+      <span class="pnum">02 / PERSPECTIVE</span>
+      <span class="divider"><span class="l"></span></span>
+      <span class="label text-accent">The Engineer</span>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-5 order-2 lg:order-1">
+        <h2 class="reveal display text-6xl md:text-7xl lg:text-8xl" data-delay="1">
+          PivotCore<sup class="text-2xl text-accent">™</sup><br/>Technology.
+        </h2>
+        <p class="reveal mt-8 text-white/70 text-lg max-w-md leading-relaxed" data-delay="2">
+          A biomechanical grip system designed to lock your foot in, control rotation, and maximize the transfer of force in every direction.
+        </p>
+        <a href="#speed" class="reveal btn btn-ghost mt-10" data-delay="3">How it works <span class="arr">→</span></a>
+
+        <!-- specs -->
+        <dl class="reveal mt-12 grid grid-cols-2 gap-x-8 gap-y-6 max-w-md" data-delay="4">
+          <div>
+            <dt class="label text-white/40">Yarn</dt>
+            <dd class="text-sm text-white/80 mt-1">Recycled poly / Lycra® blend</dd>
+          </div>
+          <div>
+            <dt class="label text-white/40">Grip pads</dt>
+            <dd class="text-sm text-white/80 mt-1">Directional silicone array</dd>
+          </div>
+          <div>
+            <dt class="label text-white/40">Compression</dt>
+            <dd class="text-sm text-white/80 mt-1">Zonal — arch & midfoot</dd>
+          </div>
+          <div>
+            <dt class="label text-white/40">Cuff</dt>
+            <dd class="text-sm text-white/80 mt-1">Locked heel architecture</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- sock stage -->
+      <div class="lg:col-span-7 order-1 lg:order-2 relative">
+        <div class="sock-stage" id="sockStage">
+          <span class="ring r4"></span>
+          <span class="ring r1"></span>
+          <span class="ring r2"></span>
+          <span class="ring r3"></span>
+
+          <!-- SVG sock -->
+          <svg viewBox="0 0 600 600" class="absolute inset-0 w-full h-full">
+            <defs>
+              <linearGradient id="sockFill" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="60%" stop-color="#dbe3ee"/>
+                <stop offset="100%" stop-color="#8a96a8"/>
+              </linearGradient>
+              <linearGradient id="sole" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0a0d12"/>
+                <stop offset="100%" stop-color="#1a1f2b"/>
+              </linearGradient>
+              <radialGradient id="glow" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#1FA8FF" stop-opacity=".35"/>
+                <stop offset="100%" stop-color="#1FA8FF" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- glow base -->
+            <circle cx="300" cy="320" r="220" fill="url(#glow)"/>
+
+            <!-- sock body -->
+            <g id="sockGroup">
+              <path d="M210 110
+                       L210 280
+                       Q210 320 240 340
+                       L420 420
+                       Q470 440 470 400
+                       L470 360
+                       Q470 340 440 330
+                       L300 290
+                       Q280 280 280 250
+                       L280 110 Z"
+                    fill="url(#sockFill)"
+                    stroke="#a8b3c4" stroke-width="1"/>
+              <!-- cuff -->
+              <rect x="200" y="100" width="90" height="22" rx="6" fill="#0a0d12"/>
+              <rect x="200" y="100" width="90" height="22" rx="6" fill="#1FA8FF" opacity=".3"/>
+              <!-- ZG logo on sock -->
+              <text x="245" y="180" text-anchor="middle" font-family="Anton" font-size="20" fill="#0a0d12">ZG</text>
+
+              <!-- sole grip pattern -->
+              <g fill="url(#sole)">
+                <path d="M260 360 Q300 340 360 360 Q420 380 460 400 L450 425 Q400 435 340 425 Q280 415 250 400 Z"/>
+              </g>
+              <g fill="#1FA8FF" opacity=".85">
+                <!-- grip dots / arrows -->
+                <circle cx="290" cy="385" r="3"/>
+                <circle cx="310" cy="392" r="3"/>
+                <circle cx="335" cy="395" r="3"/>
+                <circle cx="360" cy="398" r="3"/>
+                <circle cx="385" cy="402" r="3"/>
+                <circle cx="410" cy="408" r="3"/>
+                <circle cx="430" cy="412" r="3"/>
+                <path d="M300 400 l8 5 l-8 5 z"/>
+                <path d="M340 405 l8 5 l-8 5 z"/>
+                <path d="M380 410 l8 5 l-8 5 z"/>
+                <path d="M420 416 l8 5 l-8 5 z"/>
+              </g>
+            </g>
+
+            <!-- annotation anchor points -->
+            <g stroke="#1FA8FF" stroke-width="1" fill="none">
+              <line class="cline" x1="245" y1="115" x2="120" y2="80" opacity="0"/>
+              <line class="cline" x1="285" y1="240" x2="120" y2="240" opacity="0"/>
+              <line class="cline" x1="395" y1="385" x2="500" y2="320" opacity="0"/>
+              <line class="cline" x1="450" y1="420" x2="540" y2="470" opacity="0"/>
+            </g>
+            <g fill="#1FA8FF">
+              <circle class="cpt" cx="245" cy="115" r="3" opacity="0"/>
+              <circle class="cpt" cx="285" cy="240" r="3" opacity="0"/>
+              <circle class="cpt" cx="395" cy="385" r="3" opacity="0"/>
+              <circle class="cpt" cx="450" cy="420" r="3" opacity="0"/>
+            </g>
+          </svg>
+
+          <!-- HTML callouts positioned over stage -->
+          <div class="callout" style="left:-6%; top:6%;">
+            <div>
+              <span class="num">01 — Heel Lock Zone</span>
+              <h4>Locked Foundation</h4>
+              <p>Engineered to eliminate heel lift and secure your stance under load.</p>
+            </div>
+            <span class="line"></span>
+          </div>
+          <div class="callout" style="left:-6%; top:38%;">
+            <div>
+              <span class="num">02 — Arch Compression</span>
+              <h4>Stabilized Midfoot</h4>
+              <p>Targeted compression supports the arch for maximum stability across cuts.</p>
+            </div>
+            <span class="line"></span>
+          </div>
+          <div class="callout" style="right:-6%; top:38%; flex-direction:row-reverse; text-align:right;">
+            <div>
+              <span class="num">03 — PivotCore™ Grip</span>
+              <h4>Directional Control</h4>
+              <p>Silicone pattern controls rotation and lateral movement at the foot–boot interface.</p>
+            </div>
+            <span class="line" style="background: linear-gradient(90deg, #1FA8FF, rgba(31,168,255,0));"></span>
+          </div>
+          <div class="callout" style="right:-6%; top:70%; flex-direction:row-reverse; text-align:right;">
+            <div>
+              <span class="num">04 — Force Transfer Channel</span>
+              <h4>Watt-Loss Zero</h4>
+              <p>Channels traction and release zones to optimize push-off and acceleration.</p>
+            </div>
+            <span class="line" style="background: linear-gradient(90deg, #1FA8FF, rgba(31,168,255,0));"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================== PERFORMANCE / SPEED ========================== -->
+<section id="speed" class="relative py-32 lg:py-44 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="reveal flex items-center gap-4 mb-6">
+      <span class="pnum">03 / PERSPECTIVE</span>
+      <span class="divider"><span class="l"></span></span>
+      <span class="label text-accent">The Match</span>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-end mb-16">
+      <h2 class="reveal display text-6xl md:text-7xl lg:text-8xl" data-delay="1">
+        Built for<br/><span class="text-accent">game speed.</span>
+      </h2>
+      <p class="reveal text-white/70 text-lg max-w-md" data-delay="2">
+        Real intensity. Real sweat. Real fatigue. Zero Give performs across 90+ minutes — when your boots fail and your legs are full of acid.
+      </p>
+    </div>
+
+    <!-- big stats strip -->
+    <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 mb-16" data-delay="3">
+      <div class="bg-ink p-8">
+        <p class="label text-white/40">Heel slip</p>
+        <p class="display text-5xl md:text-6xl text-accent mt-2" data-counter data-from="0" data-to="38" data-suffix="%">0%</p>
+        <p class="text-xs text-white/50 mt-2">Reduction vs. standard sock</p>
+      </div>
+      <div class="bg-ink p-8">
+        <p class="label text-white/40">Energy transfer</p>
+        <p class="display text-5xl md:text-6xl text-accent mt-2" data-counter data-from="0" data-to="24" data-suffix="%">0%</p>
+        <p class="text-xs text-white/50 mt-2">More force into push-off</p>
+      </div>
+      <div class="bg-ink p-8">
+        <p class="label text-white/40">Rotational control</p>
+        <p class="display text-5xl md:text-6xl text-accent mt-2" data-counter data-from="0" data-to="92" data-suffix="°">0°</p>
+        <p class="text-xs text-white/50 mt-2">Cut-angle stability range</p>
+      </div>
+      <div class="bg-ink p-8">
+        <p class="label text-white/40">Match duration</p>
+        <p class="display text-5xl md:text-6xl text-accent mt-2" data-counter data-from="0" data-to="90" data-suffix="+">0</p>
+        <p class="text-xs text-white/50 mt-2">Minutes of consistent grip</p>
+      </div>
+    </div>
+
+    <!-- feature tiles -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/5">
+      <div class="ftile bg-ink reveal" data-delay="1">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 1 1 8 0v3"/></svg>
+        </div>
+        <h3 class="display text-2xl">Locked-In Fit</h3>
+        <p class="text-sm text-white/60 mt-2">Eliminates internal foot movement so your boot feels welded to you.</p>
+      </div>
+      <div class="ftile bg-ink reveal" data-delay="2">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 L15 9 L22 12 L15 15 L12 22 L9 15 L2 12 L9 9 Z"/></svg>
+        </div>
+        <h3 class="display text-2xl">Max Force Transfer</h3>
+        <p class="text-sm text-white/60 mt-2">More of your energy moves forward — none of it slips sideways.</p>
+      </div>
+      <div class="ftile bg-ink reveal" data-delay="3">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M6 6l12 12M18 6 6 18"/></svg>
+        </div>
+        <h3 class="display text-2xl">Explosive Control</h3>
+        <p class="text-sm text-white/60 mt-2">Control every cut, plant, and pivot — with confidence.</p>
+      </div>
+      <div class="ftile bg-ink reveal" data-delay="4">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 1 9 9"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><path d="M12 12 17 7"/></svg>
+        </div>
+        <h3 class="display text-2xl">Built for Speed</h3>
+        <p class="text-sm text-white/60 mt-2">Optimized for explosive movement, power, and 90+ min performance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================== ATHLETES ========================== -->
+<section id="athletes" class="relative py-32 lg:py-44 overflow-hidden border-y border-white/5 bg-gradient-to-b from-ink via-panel to-ink">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="reveal flex items-center gap-4 mb-6">
+      <span class="pnum">04 / PERSPECTIVE</span>
+      <span class="divider"><span class="l"></span></span>
+      <span class="label text-accent">The Player</span>
+    </div>
+
+    <div class="flex items-end justify-between flex-wrap gap-6 mb-12">
+      <h2 class="reveal display text-6xl md:text-7xl lg:text-8xl" data-delay="1">
+        Trusted by<br/>those who <span class="text-accent">compete.</span>
+      </h2>
+      <a href="#cta" class="reveal btn btn-ghost" data-delay="2">See athlete stories <span class="arr">→</span></a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <article class="tcard reveal" data-delay="1" data-tilt>
+        <div class="text-accent text-4xl leading-none">"</div>
+        <p class="mt-2 text-white/85 text-lg leading-relaxed">They lock my foot in. More power. More control. Genuinely a different feel through every cut.</p>
+        <div class="mt-6 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-accentDim"></div>
+          <div>
+            <p class="font-semibold">CeeDee Lamb</p>
+            <p class="text-xs text-white/50">Wide Receiver · NFL</p>
+          </div>
+        </div>
+      </article>
+      <article class="tcard reveal" data-delay="2" data-tilt>
+        <div class="text-accent text-4xl leading-none">"</div>
+        <p class="mt-2 text-white/85 text-lg leading-relaxed">I feel way more stable in my cuts. There's no internal slide — it's just me and the boot.</p>
+        <div class="mt-6 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-accentDim"></div>
+          <div>
+            <p class="font-semibold">Julian Green</p>
+            <p class="text-xs text-white/50">Professional Footballer</p>
+          </div>
+        </div>
+      </article>
+      <article class="tcard reveal" data-delay="3" data-tilt>
+        <div class="text-accent text-4xl leading-none">"</div>
+        <p class="mt-2 text-white/85 text-lg leading-relaxed">The traction is unreal. Game changer in the rain, on turf, on anything.</p>
+        <div class="mt-6 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-accentDim"></div>
+          <div>
+            <p class="font-semibold">Saquon Barkley</p>
+            <p class="text-xs text-white/50">Running Back · NFL</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- marquee -->
+    <div class="mt-20 overflow-hidden py-6 border-y border-white/10 mask-fade">
+      <div class="marquee display text-5xl md:text-6xl text-white/30">
+        <span>No Slip.</span><span class="text-accent">More Control.</span><span>Better Performance.</span>
+        <span>Grip The Game You Love.</span><span class="text-accent">#ZEROGIVE</span>
+        <span>No Slip.</span><span class="text-accent">More Control.</span><span>Better Performance.</span>
+        <span>Grip The Game You Love.</span><span class="text-accent">#ZEROGIVE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================== CTA ========================== -->
+<section id="cta" class="relative py-32 lg:py-44 overflow-hidden">
+  <div class="absolute inset-0 -z-10">
+    <div class="grid-bg absolute inset-0 opacity-40"></div>
+    <div class="absolute inset-0 bg-gradient-radial" style="background: radial-gradient(800px circle at 50% 50%, rgba(31,168,255,.18), transparent 60%);"></div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-6 lg:px-12 text-center">
+    <div class="reveal flex items-center justify-center gap-4 mb-8">
+      <span class="pnum">05 / PERSPECTIVE</span>
+      <span class="divider"><span class="l w-24"></span></span>
+      <span class="label text-accent">Join</span>
+    </div>
+
+    <h2 class="reveal display text-6xl md:text-8xl lg:text-9xl leading-[0.85]" data-delay="1">
+      Take control<br/>of every <span class="text-accent">move.</span>
+    </h2>
+    <p class="reveal mt-8 text-white/70 text-lg max-w-2xl mx-auto" data-delay="2">
+      Experience the difference biomechanical grip makes. Get exclusive deals, early access to new drops, and stories from the players living the difference.
+    </p>
+
+    <form class="reveal field mt-12 max-w-xl mx-auto flex flex-col sm:flex-row gap-3" data-delay="3" onsubmit="event.preventDefault();this.querySelector('button').textContent='You\\'re in.';this.querySelector('input').value='';">
+      <label class="sr-only" for="email">Email</label>
+      <input id="email" type="email" required placeholder="Your email address" />
+      <button type="submit" class="btn btn-primary justify-center">Join the movement <span class="arr">→</span></button>
+    </form>
+
+    <div class="reveal mt-12 flex flex-wrap justify-center gap-4" data-delay="4">
+      <a href="#" class="btn btn-ghost">Shop Grip Socks <span class="arr">→</span></a>
+      <a href="#" class="btn btn-ghost">Player's Space Blog <span class="arr">→</span></a>
+      <a href="#" class="btn btn-ghost">Contact <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================== FOOTER ========================== -->
+<footer class="relative border-t border-white/5 py-16">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 grid md:grid-cols-4 gap-10">
+    <div class="md:col-span-2">
+      <div class="flex items-center gap-3">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="13" stroke="#1FA8FF" stroke-width="1.5"/>
+          <path d="M7 14 L14 7 L21 14 L14 21 Z" stroke="#fff" stroke-width="1.4" fill="none"/>
+          <circle cx="14" cy="14" r="2.2" fill="#1FA8FF"/>
+        </svg>
+        <span class="display text-xl">Zero Give</span>
+      </div>
+      <p class="mt-4 text-white/55 max-w-sm text-sm">Elite grip socks for explosive soccer performance. Because traction isn't just dots — it's direction.</p>
+    </div>
+    <div>
+      <p class="label text-white/40 mb-3">Shop</p>
+      <ul class="space-y-2 text-sm text-white/70">
+        <li><a class="nav-link" href="#">Grip Socks</a></li>
+        <li><a class="nav-link" href="#">Bundles</a></li>
+        <li><a class="nav-link" href="#">Accessories</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="label text-white/40 mb-3">Brand</p>
+      <ul class="space-y-2 text-sm text-white/70">
+        <li><a class="nav-link" href="#">Our Goal</a></li>
+        <li><a class="nav-link" href="#">Player's Space</a></li>
+        <li><a class="nav-link" href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 mt-12 flex flex-wrap items-center justify-between gap-4 text-xs text-white/40">
+    <p>© 2026 Zero Give. All rights reserved.</p>
+    <p>Powered by performance. Designed for the players.</p>
+  </div>
+</footer>
+
+<script>
+  // --- custom cursor ---
+  (function () {
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`; });
+    function loop() {
+      rx += (mx - rx) * .18;
+      ry += (my - ry) * .18;
+      ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+      requestAnimationFrame(loop);
+    }
+    loop();
+    document.querySelectorAll('a, button, [data-tilt]').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+    });
+  })();
+
+  // --- spotlight (hero) ---
+  (function () {
+    const hero = document.getElementById('hero');
+    const spot = document.getElementById('spot');
+    hero.addEventListener('mousemove', e => {
+      const r = hero.getBoundingClientRect();
+      spot.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      spot.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  })();
+
+  // --- testimonial card spotlight ---
+  document.querySelectorAll('.tcard').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  });
+
+  // --- reveal on scroll ---
+  (function () {
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: .14 });
+    els.forEach(el => io.observe(el));
+  })();
+
+  // --- callouts + sock lines reveal ---
+  (function () {
+    const stage = document.getElementById('sockStage');
+    if (!stage) return;
+    const callouts = stage.querySelectorAll('.callout');
+    const lines = stage.querySelectorAll('.cline');
+    const pts = stage.querySelectorAll('.cpt');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          callouts.forEach((c, i) => setTimeout(() => c.classList.add('in'), 250 + i * 220));
+          lines.forEach((l, i) => setTimeout(() => l.style.opacity = .7, 250 + i * 220));
+          pts.forEach((p, i) => setTimeout(() => p.style.opacity = 1, 250 + i * 220));
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: .25 });
+    io.observe(stage);
+  })();
+
+  // --- number counters ---
+  (function () {
+    const els = document.querySelectorAll('[data-counter]');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        const from = +el.dataset.from || 0;
+        const to = +el.dataset.to || 0;
+        const suffix = el.dataset.suffix || '';
+        const dur = 1400;
+        const start = performance.now();
+        function step(t) {
+          const p = Math.min(1, (t - start) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(from + (to - from) * eased) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        io.unobserve(el);
+      });
+    }, { threshold: .4 });
+    els.forEach(el => io.observe(el));
+  })();
+
+  // --- side dots active state + jump ---
+  (function () {
+    const dots = document.querySelectorAll('.sidedots button');
+    const sections = ['hero','science','tech','speed','athletes','cta'].map(id => document.getElementById(id));
+    dots.forEach(d => d.addEventListener('click', () => {
+      document.getElementById(d.dataset.jump)?.scrollIntoView({ behavior: 'smooth' });
+    }));
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        const idx = sections.indexOf(en.target);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      });
+    }, { threshold: .35 });
+    sections.forEach(s => s && io.observe(s));
+  })();
+
+  // --- subtle parallax on hero headline ---
+  (function () {
+    const hero = document.getElementById('hero');
+    const h = hero.querySelector('h1');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y < window.innerHeight) {
+        h.style.transform = `translateY(${y * 0.15}px)`;
+        h.style.opacity = String(1 - y / window.innerHeight * 0.8);
+      }
+    }, { passive: true });
+  })();
+
+  // --- 3d tilt on sock stage ---
+  (function () {
+    const stage = document.getElementById('sockStage');
+    if (!stage) return;
+    const sock = stage.querySelector('#sockGroup');
+    stage.addEventListener('mousemove', e => {
+      const r = stage.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5;
+      const y = (e.clientY - r.top) / r.height - .5;
+      stage.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 8}deg)`;
+    });
+    stage.addEventListener('mouseleave', () => {
+      stage.style.transform = '';
+    });
+  })();
+</script>
+
+<style>
+  .mask-fade { mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+</style>
+
+</body>
+</html>
