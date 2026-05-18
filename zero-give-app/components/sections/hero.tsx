@@ -4,10 +4,19 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import { COMPONENT_META, type SockFocus } from '@/lib/images';
 import { cn } from '@/lib/utils';
 
-const HOTSPOTS: { key: Exclude<SockFocus, 'hero'>; label: string; num: string; top: string; left: string }[] = [
-  { key: 'heel', label: 'Heel Lock', num: '01', top: '34%', left: '32%' },
-  { key: 'grip', label: 'PivotCore™ Grip', num: '02', top: '72%', left: '52%' },
-  { key: 'toe', label: 'Toe Box', num: '03', top: '68%', left: '74%' },
+type Hot = {
+  key: Exclude<SockFocus, 'hero'>;
+  label: string;
+  num: string;
+  top: string;
+  left: string;
+  side: 'left' | 'right';
+};
+
+const HOTSPOTS: Hot[] = [
+  { key: 'heel', label: 'Heel architecture', num: 'A1', top: '32%', left: '23%', side: 'left' },
+  { key: 'grip', label: 'PivotCore array',   num: 'A2', top: '72%', left: '50%', side: 'right' },
+  { key: 'toe',  label: 'Toe cap',           num: 'A3', top: '70%', left: '78%', side: 'right' },
 ];
 
 export function HeroSock() {
@@ -21,43 +30,46 @@ export function HeroSock() {
   }, []);
 
   useEffect(() => {
-    if (!videoRef.current) return;
-    videoRef.current.playbackRate = focus === 'hero' ? 1 : 0.5;
+    if (videoRef.current) videoRef.current.playbackRate = focus === 'hero' ? 0.8 : 0.4;
   }, [focus]);
 
   const setBack = useCallback(() => setFocus('hero'), []);
   const detail = focus !== 'hero' ? COMPONENT_META[focus] : null;
 
   return (
-    <section id="hero" className="relative min-h-screen overflow-hidden">
-      <div className="grid-bg absolute inset-0 z-0 opacity-60" />
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-ink via-ink/80 to-ink" />
+    <section id="hero" className="relative min-h-screen overflow-hidden bg-ink">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-14 pt-36 pb-24 min-h-screen flex flex-col">
+        {/* top meta line */}
+        <div className="reveal flex items-center justify-between gap-6 pb-8 border-b border-rule">
+          <span className="num">N°&nbsp;01 / Field-grip system</span>
+          <span className="num hidden md:block">Made for &mdash; the modern game</span>
+          <span className="num">Edition · MMXXVI</span>
+        </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-20 min-h-screen flex flex-col">
-        <div className="grid lg:grid-cols-12 gap-10 items-center flex-1">
+        <div className="grid lg:grid-cols-12 gap-12 items-center flex-1 pt-12 lg:pt-20">
+          {/* left copy */}
           <div className="lg:col-span-5">
             <div className="reveal">
-              <span className="chip text-xs text-white/70"><span className="dot" /> Trusted by NCAA · MLS · MLFPA</span>
+              <span className="eyebrow">Worn at NCAA · MLS · MLFPA</span>
             </div>
-            <h1 className="reveal display text-[12vw] md:text-[7.5vw] lg:text-[5.6vw] mt-6 swipe" data-delay="2">
-              Grip<br />
-              <span className="text-accent">The Game</span><br />
-              <span className="stroke-text">You</span> Love.
+            <h1 className="display text-[14vw] md:text-[10vw] lg:text-[7vw] mt-10 tracking-tightest leading-[0.92]">
+              <span className="reveal block" data-delay="1">Grip the</span>
+              <span className="reveal editorial block text-bone/95" data-delay="2">game</span>
+              <span className="reveal block" data-delay="3">you love.</span>
             </h1>
-            <p className="reveal mt-6 text-white/70 text-lg leading-relaxed max-w-md" data-delay="3">
-              Every movement leaks energy. Zero Give closes the gap between you and the boot — so every watt arrives where it&apos;s supposed to.
+            <p className="reveal mt-10 text-bone/65 text-[17px] leading-[1.7] max-w-md" data-delay="4">
+              A biomechanical grip system worn under the boot. Foot stays planted, force stays forward, the boot stays welded to you — for the entire ninety.
             </p>
-            <div className="reveal mt-8 flex flex-wrap gap-3" data-delay="4">
-              <a href="#cta" className="btn btn-primary">Shop Performance Socks <span className="arr">→</span></a>
-              <a href="#science" className="btn btn-ghost">See The Science <span className="arr">→</span></a>
+            <div className="reveal mt-12 flex flex-wrap gap-3 items-center" data-delay="5">
+              <a href="#cta" className="btn btn-primary">Reserve a pair <span className="arr">→</span></a>
+              <a href="#science" className="btn-text ml-2">Read the premise <span className="arr">→</span></a>
             </div>
-            <p className="label mt-10 text-white/50">Hover the sock → explore by component</p>
           </div>
 
+          {/* right: spinning sock with mask */}
           <div className="lg:col-span-7 relative">
             <div className="relative w-full aspect-square max-w-[640px] mx-auto stage">
-              <div className="ring-static" aria-hidden />
-
+              <div className="stage-guide" aria-hidden />
               <video
                 ref={videoRef}
                 className={cn('stage-video', focus !== 'hero' && 'is-focused')}
@@ -69,46 +81,42 @@ export function HeroSock() {
                 preload="auto"
               />
 
-              <div
-                className={cn(
-                  'absolute inset-0 transition-opacity duration-700 pointer-events-none rounded-[28px]',
-                  focus !== 'hero' ? 'bg-ink/55' : 'bg-transparent',
-                )}
-              />
-
+              {/* hotspots */}
               {focus === 'hero' && HOTSPOTS.map((h) => (
                 <button
                   key={h.key}
-                  className="hot"
+                  className={cn('hot', h.side === 'right' && 'is-right')}
                   style={{ top: h.top, left: h.left, transform: 'translate(-50%, -50%)' }}
                   onClick={() => setFocus(h.key)}
                   aria-label={`Explore ${h.label}`}
                 >
-                  <span className="dot" />
-                  <span className="tip">
-                    <span className="num block">{h.num}</span>
-                    <span className="ttl block">{h.label}</span>
+                  <span className="pin" />
+                  <span className="lead" />
+                  <span className="tag">
+                    <span className="n">{h.num}</span>
+                    <span className="t">{h.label}</span>
                   </span>
                 </button>
               ))}
 
+              {/* detail panel */}
               {detail && (
-                <div className="absolute right-0 top-0 w-full md:w-[420px] p-7 rounded-2xl border border-white/10 bg-gradient-to-b from-surface/95 to-ink/95 backdrop-blur-xl z-20 shadow-2xl">
+                <div className="absolute right-0 top-2 w-[92%] md:w-[420px] z-20 bg-graphite border border-rule p-8">
                   <button
-                    className="absolute top-3 right-3 w-8 h-8 rounded-full border border-white/15 grid place-items-center hover:border-accent hover:text-accent transition"
+                    className="absolute top-4 right-4 w-7 h-7 border border-rule-strong grid place-items-center hover:border-bone transition"
                     onClick={setBack}
                     aria-label="Close"
                   >
-                    ×
+                    <span className="text-lg leading-none -mt-px">×</span>
                   </button>
-                  <span className="label text-accent">{detail.num} — Component</span>
-                  <h3 className="display text-4xl mt-2">{detail.title}</h3>
-                  <p className="mt-4 text-sm text-white/70 leading-relaxed">{detail.body}</p>
-                  <dl className="grid grid-cols-2 gap-x-4 gap-y-4 mt-5 pt-4 border-t border-white/10">
+                  <span className="num">{detail.num} · {detail.subtitle}</span>
+                  <h3 className="display text-[36px] tracking-tightest leading-[0.95] mt-3">{detail.title}</h3>
+                  <p className="mt-5 text-sm text-bone/65 leading-[1.7]">{detail.body}</p>
+                  <dl className="grid grid-cols-2 gap-x-6 gap-y-5 mt-7 pt-6 border-t border-rule">
                     {detail.specs.map(([k, v]) => (
                       <div key={k}>
-                        <dt className="label text-white/45">{k}</dt>
-                        <dd className="text-sm text-white mt-1">{v}</dd>
+                        <dt className="label text-bone/40">{k}</dt>
+                        <dd className="text-sm text-bone mt-1.5">{v}</dd>
                       </div>
                     ))}
                   </dl>
@@ -117,23 +125,22 @@ export function HeroSock() {
             </div>
 
             {focus !== 'hero' && (
-              <div className="absolute -top-2 left-2 lg:left-0 flex items-center gap-3 z-30">
-                <button onClick={setBack} className="label text-white/65 hover:text-accent transition">
-                  ← Back to overview
+              <div className="absolute -top-10 left-0 flex items-center gap-3 z-30">
+                <button onClick={setBack} className="btn-text">
+                  <span className="arr -scale-x-100">→</span> Back to overview
                 </button>
-                <span className="pnum">/ {COMPONENT_META[focus].subtitle}</span>
               </div>
             )}
           </div>
         </div>
-      </div>
 
-      {focus === 'hero' && (
-        <div className="scroll-cue">
-          <span className="label text-white/45">Scroll to explore</span>
-          <span className="bar" />
+        {/* bottom meta line */}
+        <div className="mt-auto pt-10 border-t border-rule flex items-center justify-between gap-6 text-bone/45">
+          <span className="num">Scroll → explore the system</span>
+          <span className="num hidden md:block">A1 · A2 · A3 — hover the diagram</span>
+          <span className="num">05 chapters</span>
         </div>
-      )}
+      </div>
     </section>
   );
 }

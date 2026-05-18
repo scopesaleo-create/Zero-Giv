@@ -1,40 +1,45 @@
 export function SiteFooter() {
   return (
-    <footer className="relative border-t border-white/5 py-16">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 grid md:grid-cols-4 gap-10">
-        <div className="md:col-span-2">
-          <div className="flex items-center gap-3">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <circle cx="14" cy="14" r="13" stroke="#1FA8FF" strokeWidth="1.5" />
-              <path d="M7 14 L14 7 L21 14 L14 21 Z" stroke="#fff" strokeWidth="1.4" fill="none" />
-              <circle cx="14" cy="14" r="2.2" fill="#1FA8FF" />
-            </svg>
-            <span className="display text-xl">Zero Give</span>
+    <footer className="relative border-t border-rule bg-ink py-20">
+      <div className="max-w-[1400px] mx-auto px-8 lg:px-14">
+        <div className="display text-[18vw] md:text-[14vw] tracking-tightest leading-[0.86] -my-4 text-bone/95 select-none">
+          ZERO/GIVE
+        </div>
+
+        <div className="mt-16 grid md:grid-cols-12 gap-12 border-t border-rule pt-12">
+          <div className="md:col-span-5">
+            <p className="text-bone/55 max-w-sm text-[15px] leading-[1.7]">
+              A biomechanical grip system for the modern game. Designed in studio, tested in stoppage time.
+            </p>
+            <p className="num mt-8">ZG-01 · MMXXVI · Edition I</p>
           </div>
-          <p className="mt-4 text-white/55 max-w-sm text-sm">
-            Elite grip socks for explosive soccer performance. Because traction isn't just dots — it's direction.
-          </p>
+          <div className="md:col-span-2">
+            <p className="label text-bone/40 mb-5">Shop</p>
+            <ul className="space-y-3 text-sm text-bone/75">
+              <li><a className="nav-link" href="#">ZG-01 sock</a></li>
+              <li><a className="nav-link" href="#">Bundles</a></li>
+              <li><a className="nav-link" href="#">Accessories</a></li>
+            </ul>
+          </div>
+          <div className="md:col-span-2">
+            <p className="label text-bone/40 mb-5">Studio</p>
+            <ul className="space-y-3 text-sm text-bone/75">
+              <li><a className="nav-link" href="#">Premise</a></li>
+              <li><a className="nav-link" href="#">Players</a></li>
+              <li><a className="nav-link" href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div className="md:col-span-3">
+            <p className="label text-bone/40 mb-5">Newsletter</p>
+            <p className="text-sm text-bone/75 leading-[1.7]">A quiet thread, two or three letters a season.</p>
+            <a href="#cta" className="btn-text mt-6">Subscribe <span className="arr">→</span></a>
+          </div>
         </div>
-        <div>
-          <p className="label text-white/40 mb-3">Shop</p>
-          <ul className="space-y-2 text-sm text-white/70">
-            <li><a className="nav-link" href="#">Grip Socks</a></li>
-            <li><a className="nav-link" href="#">Bundles</a></li>
-            <li><a className="nav-link" href="#">Accessories</a></li>
-          </ul>
+
+        <div className="mt-16 pt-8 border-t border-rule flex flex-wrap items-center justify-between gap-6 text-bone/40 text-xs">
+          <p>© MMXXVI · Zero Give. All rights reserved.</p>
+          <p className="num">Made in studio · worn on field</p>
         </div>
-        <div>
-          <p className="label text-white/40 mb-3">Brand</p>
-          <ul className="space-y-2 text-sm text-white/70">
-            <li><a className="nav-link" href="#">Our Goal</a></li>
-            <li><a className="nav-link" href="#">Player's Space</a></li>
-            <li><a className="nav-link" href="#">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-12 flex flex-wrap items-center justify-between gap-4 text-xs text-white/40">
-        <p>© 2026 Zero Give. All rights reserved.</p>
-        <p>Powered by performance. Designed for the players.</p>
       </div>
     </footer>
   );

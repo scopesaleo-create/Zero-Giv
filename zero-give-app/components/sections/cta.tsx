@@ -4,49 +4,61 @@ import { useState } from 'react';
 
 export function CTA() {
   const [done, setDone] = useState(false);
-  return (
-    <section id="cta" className="relative py-32 lg:py-44 overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="grid-bg absolute inset-0 opacity-40" />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'radial-gradient(800px circle at 50% 50%, rgba(31,168,255,.18), transparent 60%)' }}
-        />
-      </div>
 
-      <div className="max-w-5xl mx-auto px-6 lg:px-12 text-center">
-        <div className="reveal flex items-center justify-center gap-4 mb-8">
-          <span className="pnum">05 / PERSPECTIVE</span>
-          <span className="divider"><span className="l w-24" /></span>
-          <span className="label text-accent">Join</span>
+  return (
+    <section id="cta" className="section bg-ink relative overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-8 lg:px-14">
+        <header className="section-head">
+          <div className="flex items-baseline gap-6">
+            <span className="id">N° 06</span>
+            <h2 className="display text-4xl md:text-5xl lg:text-6xl tracking-tightest">Reserve.</h2>
+          </div>
+          <span className="num hidden md:inline">Edition ZG-01 · limited release</span>
+        </header>
+
+        <div className="grid lg:grid-cols-12 gap-16 items-end">
+          <div className="lg:col-span-7">
+            <h3 className="display text-[64px] md:text-[96px] lg:text-[128px] tracking-tightest leading-[0.92]">
+              <span className="reveal block">Take control</span>
+              <span className="reveal editorial block" data-delay="1">of every move.</span>
+            </h3>
+          </div>
+          <p className="reveal lg:col-span-5 text-bone/65 text-[17px] leading-[1.7] max-w-md" data-delay="2">
+            Join the list for exclusive access to the launch edition. Early-access drops, fit guidance, and a quiet thread of letters from the players living the difference.
+          </p>
         </div>
 
-        <h2 className="display text-6xl md:text-8xl lg:text-9xl swipe">
-          Take control<br />of every <span className="text-accent">move.</span>
-        </h2>
-        <p className="reveal mt-8 text-white/70 text-lg max-w-2xl mx-auto" data-delay="2">
-          Experience the difference biomechanical grip makes. Get exclusive deals, early access to new drops, and stories from the players living the difference.
-        </p>
-
         <form
-          className="reveal field mt-12 max-w-xl mx-auto flex flex-col sm:flex-row gap-3"
+          className="reveal field mt-20 max-w-3xl flex flex-col sm:flex-row gap-6 sm:items-end pb-10 border-b border-rule"
           data-delay="3"
           onSubmit={(e) => {
             e.preventDefault();
             setDone(true);
           }}
         >
-          <label className="sr-only" htmlFor="email">Email</label>
-          <input id="email" type="email" required placeholder="Your email address" disabled={done} />
-          <button type="submit" className="btn btn-primary justify-center" data-target>
-            {done ? "You're in." : 'Join the movement'} <span className="arr">→</span>
+          <div className="flex-1">
+            <label className="label text-bone/40 block mb-3" htmlFor="email">Your email</label>
+            <input id="email" type="email" required placeholder="hello@you.com" disabled={done} />
+          </div>
+          <button type="submit" className="btn btn-primary justify-center min-w-[180px]" data-target>
+            {done ? "You're on the list" : 'Join the list'} <span className="arr">→</span>
           </button>
         </form>
 
-        <div className="reveal mt-12 flex flex-wrap justify-center gap-4" data-delay="4">
-          <a href="#" className="btn btn-ghost" data-target>Shop Grip Socks <span className="arr">→</span></a>
-          <a href="#" className="btn btn-ghost" data-target>Player's Space Blog <span className="arr">→</span></a>
-          <a href="#" className="btn btn-ghost" data-target>Contact <span className="arr">→</span></a>
+        <div className="reveal mt-16 grid md:grid-cols-3 gap-px bg-rule border border-rule" data-delay="4">
+          {[
+            { t: 'Shop ZG-01', d: 'Three colourways, sizes XS–XL.' },
+            { t: "Player's Space", d: 'Long-form letters & training notes.' },
+            { t: 'Contact', d: 'Press, partnerships, athletes.' },
+          ].map((b) => (
+            <a key={b.t} href="#" data-target className="bg-ink p-10 group transition-colors hover:bg-graphite">
+              <div className="flex items-start justify-between">
+                <h4 className="display text-2xl tracking-tightest">{b.t}</h4>
+                <span className="lift-link text-bone/60 group-hover:text-signal transition-colors">→</span>
+              </div>
+              <p className="text-sm text-bone/55 mt-3 leading-[1.6] max-w-xs">{b.d}</p>
+            </a>
+          ))}
         </div>
       </div>
     </section>

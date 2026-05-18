@@ -1,86 +1,38 @@
-import { SOCK_IMAGES } from '@/lib/images';
-
 const STATS = [
-  { label: 'Heel slip', to: 38, suffix: '%', sub: 'Reduction vs. standard sock' },
-  { label: 'Energy transfer', to: 24, suffix: '%', sub: 'More force into push-off' },
-  { label: 'Rotational control', to: 92, suffix: '°', sub: 'Cut-angle stability range' },
-  { label: 'Match duration', to: 90, suffix: '+', sub: 'Minutes of consistent grip' },
-];
-
-const TILES = [
-  {
-    title: 'Locked-In Fit',
-    body: 'Eliminates internal foot movement so your boot feels welded to you.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <rect x="5" y="11" width="14" height="10" rx="2" />
-        <path d="M8 11V8a4 4 0 1 1 8 0v3" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Max Force Transfer',
-    body: 'More of your energy moves forward — none of it slips sideways.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <path d="M12 2 L15 9 L22 12 L15 15 L12 22 L9 15 L2 12 L9 9 Z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Explosive Control',
-    body: 'Control every cut, plant, and pivot — with confidence.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 3v18M3 12h18M6 6l12 12M18 6 6 18" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Built for Speed',
-    body: 'Optimized for explosive movement and 90+ min performance.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <path d="M12 3a9 9 0 0 1 9 9" />
-        <circle cx="12" cy="12" r="1.6" fill="currentColor" />
-        <path d="M12 12 17 7" />
-      </svg>
-    ),
-  },
+  { label: 'Heel slip', to: 38, suffix: '%', sub: 'vs. standard sock' },
+  { label: 'Energy transfer', to: 24, suffix: '%', sub: 'more force into push-off' },
+  { label: 'Rotational control', to: 92, suffix: '°', sub: 'cut-angle stability' },
+  { label: 'Match duration', to: 90, suffix: '+', sub: 'minutes of consistent grip' },
 ];
 
 export function Performance() {
   return (
-    <section id="speed" className="relative py-32 lg:py-44 overflow-hidden">
-      <div
-        className="absolute inset-0 -z-10 opacity-20"
-        style={{ backgroundImage: `url(${SOCK_IMAGES.heel})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-        aria-hidden
-      />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink via-ink/80 to-ink" />
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="reveal flex items-center gap-4 mb-6">
-          <span className="pnum">03 / PERSPECTIVE</span>
-          <span className="divider"><span className="l" /></span>
-          <span className="label text-accent">The Match</span>
-        </div>
+    <section id="speed" className="section bg-ink">
+      <div className="max-w-[1400px] mx-auto px-8 lg:px-14">
+        <header className="section-head">
+          <div className="flex items-baseline gap-6">
+            <span className="id">N° 04</span>
+            <h2 className="display text-4xl md:text-5xl lg:text-6xl tracking-tightest">Performance.</h2>
+          </div>
+          <span className="num hidden md:inline">Tested over 9,000 match minutes</span>
+        </header>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-end mb-16">
-          <h2 className="display text-6xl md:text-7xl lg:text-8xl swipe">
-            Built for<br /><span className="text-accent">game speed.</span>
-          </h2>
-          <p className="reveal text-white/70 text-lg max-w-md" data-delay="2">
-            Real intensity. Real sweat. Real fatigue. Zero Give performs across 90+ minutes — when your boots fail and your legs are full of acid.
+        <div className="grid lg:grid-cols-12 gap-12 items-end mb-16">
+          <h3 className="lg:col-span-7 display text-[64px] md:text-[88px] lg:text-[112px] tracking-tightest leading-[0.92]">
+            <span className="reveal block">Built for</span>
+            <span className="reveal editorial block" data-delay="1">game speed.</span>
+          </h3>
+          <p className="reveal lg:col-span-5 text-bone/65 text-[17px] leading-[1.7] max-w-md" data-delay="2">
+            We tested ZG-01 in real intensity — boots full of sweat, legs full of acid, surfaces that turn against you. The grip held its shape from minute zero to the end of stoppage.
           </p>
         </div>
 
-        <div className="reveal grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 mb-16" data-delay="3">
-          {STATS.map((s) => (
-            <div key={s.label} className="bg-ink p-8">
-              <p className="label text-white/40">{s.label}</p>
+        <div className="reveal grid grid-cols-2 md:grid-cols-4 border-y border-rule" data-delay="3">
+          {STATS.map((s, i) => (
+            <div key={s.label} className={`stat ${i < 2 ? 'border-b md:border-b-0' : ''} ${i % 2 === 0 ? 'md:border-r border-rule' : 'md:border-r border-rule'}`}>
+              <p className="label text-bone/40">{s.label}</p>
               <p
-                className="display text-5xl md:text-6xl text-accent mt-2"
+                className="display text-[56px] md:text-[80px] text-bone mt-3 tracking-tightest leading-none"
                 data-counter
                 data-from="0"
                 data-to={String(s.to)}
@@ -88,20 +40,25 @@ export function Performance() {
               >
                 0{s.suffix}
               </p>
-              <p className="text-xs text-white/50 mt-2">{s.sub}</p>
+              <p className="text-xs text-bone/50 mt-4 leading-[1.6]">{s.sub}</p>
             </div>
           ))}
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/5">
-          {TILES.map((t, i) => (
-            <div key={t.title} className="ftile bg-ink reveal" data-delay={String(i + 1)} data-target>
-              <div className="icon">{t.icon}</div>
-              <h3 className="display text-2xl">{t.title}</h3>
-              <p className="text-sm text-white/60 mt-2">{t.body}</p>
-            </div>
+        <ol className="grid md:grid-cols-2 lg:grid-cols-4 mt-px">
+          {[
+            { n: '01', t: 'Locked-in fit', b: 'No internal slide. The boot becomes part of you, not a thing around you.' },
+            { n: '02', t: 'Force transfer', b: 'Energy travels forward, not sideways. The push-off becomes legible again.' },
+            { n: '03', t: 'Cut control', b: 'Plant, pivot, accelerate. The grip is directional, not just sticky.' },
+            { n: '04', t: 'Ninety-minute spec', b: 'The silicone holds its shape at temperature, under sweat, over time.' },
+          ].map((t) => (
+            <li key={t.n} className="ftile">
+              <span className="num">{t.n}</span>
+              <h4 className="display text-xl mt-3 tracking-tightest">{t.t}</h4>
+              <p className="text-sm text-bone/60 mt-3 leading-[1.65]">{t.b}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

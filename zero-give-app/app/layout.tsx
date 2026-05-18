@@ -1,20 +1,21 @@
 import type { Metadata } from 'next';
-import { Anton, Inter, JetBrains_Mono } from 'next/font/google';
+import { Inter_Tight, Bricolage_Grotesque, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const anton = Anton({ subsets: ['latin'], weight: '400', variable: '--font-anton' });
+const sans = Inter_Tight({ subsets: ['latin'], variable: '--font-sans' });
+const display = Bricolage_Grotesque({ subsets: ['latin'], variable: '--font-display' });
+const editorial = Instrument_Serif({ subsets: ['latin'], weight: '400', style: ['normal', 'italic'], variable: '--font-editorial' });
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
-  title: 'Zero Give — Grip The Game You Love',
-  description: 'Elite grip socks engineered for explosive soccer performance. Lock your foot in, transfer every watt, take control of every move.',
+  title: 'Zero Give — Grip Engineered for the Modern Game',
+  description: 'A biomechanical grip system for soccer and field athletes. Zero internal slippage. Maximum force transfer. Built to compete for the full ninety.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${anton.variable} ${mono.variable}`}>
-      <body className="bg-ink text-white selection:bg-accent selection:text-ink">
+    <html lang="en" className={`${sans.variable} ${display.variable} ${editorial.variable} ${mono.variable}`}>
+      <body className="bg-ink text-bone selection:bg-signal selection:text-ink antialiased">
         {children}
       </body>
     </html>

@@ -1,51 +1,57 @@
-import { SOCK_IMAGES } from '@/lib/images';
-
 export function Tech() {
-  return (
-    <section
-      id="tech"
-      className="relative py-32 lg:py-44 overflow-hidden border-y border-white/5 bg-gradient-to-b from-panel via-ink to-panel"
-    >
-      <div className="grid-bg absolute inset-0 opacity-40" />
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
-        <div className="reveal flex items-center gap-4 mb-6">
-          <span className="pnum">02 / PERSPECTIVE</span>
-          <span className="divider"><span className="l" /></span>
-          <span className="label text-accent">The Engineer</span>
-        </div>
+  const specs: [string, string][] = [
+    ['Yarn', 'Recycled poly · Lycra®'],
+    ['Grip array', '3-zone directional silicone'],
+    ['Compression', 'Zonal · arch · midfoot'],
+    ['Cuff', 'Locked heel architecture'],
+    ['Seam', 'Flat-lock, anti-bunch'],
+    ['Wash', 'Cold · air dry'],
+  ];
 
-        <div className="grid lg:grid-cols-12 gap-10 items-center">
+  return (
+    <section id="tech" className="section bg-graphite border-y border-rule">
+      <div className="max-w-[1400px] mx-auto px-8 lg:px-14">
+        <header className="section-head">
+          <div className="flex items-baseline gap-6">
+            <span className="id">N° 02</span>
+            <h2 className="display text-4xl md:text-5xl lg:text-6xl tracking-tightest">Technology.</h2>
+          </div>
+          <span className="num hidden md:inline">PivotCore™ — directional grip system</span>
+        </header>
+
+        <div className="grid lg:grid-cols-12 gap-16 items-start">
           <div className="lg:col-span-5">
-            <h2 className="display text-6xl md:text-7xl lg:text-8xl swipe">
-              PivotCore<sup className="text-2xl text-accent">™</sup><br />Technology.
-            </h2>
-            <p className="reveal mt-8 text-white/70 text-lg max-w-md leading-relaxed" data-delay="2">
-              A biomechanical grip system designed to lock your foot in, control rotation, and maximize the transfer of force in every direction.
+            <h3 className="display text-[56px] md:text-[80px] tracking-tightest leading-[0.95]">
+              <span className="reveal block">PivotCore™</span>
+              <span className="reveal editorial block" data-delay="1">a grip system.</span>
+            </h3>
+            <p className="reveal mt-10 text-bone/65 text-[17px] leading-[1.7] max-w-md" data-delay="2">
+              Three zones of directional silicone are knit into the inner sole. They lock the foot to the boot in the directions force actually wants to travel — and let it breathe in the directions it doesn&apos;t.
             </p>
-            <dl className="reveal mt-12 grid grid-cols-2 gap-x-8 gap-y-6 max-w-md" data-delay="4">
-              <div><dt className="label text-white/40">Yarn</dt><dd className="text-sm text-white/80 mt-1">Recycled poly / Lycra® blend</dd></div>
-              <div><dt className="label text-white/40">Grip pads</dt><dd className="text-sm text-white/80 mt-1">Directional silicone array</dd></div>
-              <div><dt className="label text-white/40">Compression</dt><dd className="text-sm text-white/80 mt-1">Zonal — arch & midfoot</dd></div>
-              <div><dt className="label text-white/40">Cuff</dt><dd className="text-sm text-white/80 mt-1">Locked heel architecture</dd></div>
-            </dl>
           </div>
 
-          <div className="lg:col-span-7 relative">
-            <div className="relative aspect-square max-w-[560px] mx-auto">
-              <div className="halo absolute inset-0">
-                <div className="h-orbit" />
-                <div className="h-ring" />
-                <div className="h-ring r2" />
-              </div>
-              <div
-                className="absolute inset-[8%] rounded-full overflow-hidden border border-accent/20"
-                style={{
-                  backgroundImage: `url(${SOCK_IMAGES.grip})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-                aria-label="PivotCore grip pattern close-up"
-              />
+          <div className="lg:col-span-7">
+            <dl className="grid grid-cols-2 border-t border-l border-rule">
+              {specs.map(([k, v], i) => (
+                <div key={k} className="reveal border-b border-r border-rule p-8" data-delay={String((i % 3) + 1)}>
+                  <dt className="label text-bone/40">{k}</dt>
+                  <dd className="text-base text-bone mt-3">{v}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="reveal mt-10 grid grid-cols-3 gap-6" data-delay="3">
+              {[
+                { n: '01', t: 'Anchor', d: 'Heel-locked architecture eliminates lift.' },
+                { n: '02', t: 'Rotate', d: 'Concentric grip controls pivot to ±92°.' },
+                { n: '03', t: 'Release', d: 'Compression returns force into push-off.' },
+              ].map((p) => (
+                <div key={p.n} className="border-t border-rule pt-4">
+                  <span className="num">{p.n}</span>
+                  <h4 className="display text-xl tracking-tightest mt-2">{p.t}</h4>
+                  <p className="text-sm text-bone/60 mt-2 leading-[1.6]">{p.d}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

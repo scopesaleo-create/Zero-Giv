@@ -1,13 +1,21 @@
 'use client';
 import { useEffect, useRef } from 'react';
 
-const SECTIONS = ['hero', 'science', 'tech', 'spline', 'speed', 'athletes', 'cta'];
+const SECTIONS: { id: string; label: string }[] = [
+  { id: 'hero', label: 'Hero' },
+  { id: 'science', label: 'Premise' },
+  { id: 'tech', label: 'Technology' },
+  { id: 'spline', label: 'Specimen' },
+  { id: 'speed', label: 'Performance' },
+  { id: 'athletes', label: 'Players' },
+  { id: 'cta', label: 'Reserve' },
+];
 
 export function SideDots() {
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
-    const sections = SECTIONS.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    const sections = SECTIONS.map((s) => document.getElementById(s.id)).filter(Boolean) as HTMLElement[];
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((en) => {
@@ -24,16 +32,16 @@ export function SideDots() {
 
   return (
     <nav className="sidedots hidden lg:flex" aria-label="Section navigation">
-      {SECTIONS.map((id, i) => (
+      {SECTIONS.map((s, i) => (
         <button
-          key={id}
-          ref={(el) => {
-            refs.current[i] = el;
-          }}
+          key={s.id}
+          ref={(el) => { refs.current[i] = el; }}
           className={i === 0 ? 'active' : ''}
-          aria-label={id}
-          onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}
-        />
+          aria-label={s.label}
+          onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth' })}
+        >
+          <span className="ttl">{s.label}</span>
+        </button>
       ))}
     </nav>
   );
