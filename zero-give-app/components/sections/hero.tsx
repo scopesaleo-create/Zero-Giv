@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { COMPONENT_META, type SockFocus } from '@/lib/images';
 import { cn } from '@/lib/utils';
+import { BackgroundPathsLayer } from '@/components/ui/background-paths';
 
 type Hot = {
   key: Exclude<SockFocus, 'hero'>;
@@ -22,6 +23,9 @@ const HOTSPOTS: Hot[] = [
 export function HeroSock() {
   const [focus, setFocus] = useState<SockFocus>('hero');
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const stageInnerRef = useRef<HTMLDivElement | null>(null);
+  const copyRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setFocus('hero'); };
@@ -33,11 +37,59 @@ export function HeroSock() {
     if (videoRef.current) videoRef.current.playbackRate = focus === 'hero' ? 0.8 : 0.4;
   }, [focus]);
 
+  // 3D spatial scroll zoom: while the hero section is on screen, push the sock
+  // forward (z-translate) and slightly upward as the user scrolls past it.
+  // Copy fades and lifts in counter-direction for parallax depth.
+  useEffect(() => {
+    const section = sectionRef.current;
+    const stage = stageInnerRef.current;
+    const copy = copyRef.current;
+    if (!section || !stage) return;
+
+    let raf = 0;
+    const update = () => {
+      const r = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // 0 when section just enters from bottom, 1 when fully scrolled past top
+      const total = r.height + vh;
+      const passed = Math.min(total, Math.max(0, vh - r.top));
+      const p = passed / total; // 0..1
+
+      // sock: subtle scale up + push forward in z + tiny vertical lift
+      const scale = 1 + p * 0.22;
+      const tz = p * 220; // px forward
+      const ty = -p * 80;
+      const rot = p * -4; // gentle rotateX for depth tilt
+      stage.style.transform = `translate3d(0, ${ty}px, ${tz}px) rotateX(${rot}deg) scale(${scale})`;
+
+      // copy: lift up and fade out as we leave
+      if (copy) {
+        const ct = -p * 60;
+        const alpha = Math.max(0, 1 - p * 1.4);
+        copy.style.transform = `translate3d(0, ${ct}px, 0)`;
+        copy.style.opacity = String(alpha);
+      }
+      raf = 0;
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
+
   const setBack = useCallback(() => setFocus('hero'), []);
   const detail = focus !== 'hero' ? COMPONENT_META[focus] : null;
 
   return (
-    <section id="hero" className="relative min-h-screen overflow-hidden bg-ink">
+    <section ref={sectionRef} id="hero" className="relative min-h-screen overflow-hidden bg-ink">
+      <div className="hero-backdrop">
+        <BackgroundPathsLayer />
+      </div>
+
       <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-14 pt-36 pb-24 min-h-screen flex flex-col">
         {/* top meta line */}
         <div className="reveal flex items-center justify-between gap-6 pb-8 border-b border-rule">
@@ -47,8 +99,8 @@ export function HeroSock() {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-12 items-center flex-1 pt-12 lg:pt-20">
-          {/* left copy */}
-          <div className="lg:col-span-5">
+          {/* left copy — parallax-lifted */}
+          <div ref={copyRef} className="lg:col-span-5 will-change-transform">
             <div className="reveal">
               <span className="eyebrow">Worn at NCAA · MLS · MLFPA</span>
             </div>
@@ -66,23 +118,25 @@ export function HeroSock() {
             </div>
           </div>
 
-          {/* right: spinning sock with mask */}
+          {/* right: spinning sock with 3D scroll-zoom */}
           <div className="lg:col-span-7 relative">
             <div className="relative w-full aspect-square max-w-[640px] mx-auto stage">
-              <div className="stage-guide" aria-hidden />
-              <video
-                ref={videoRef}
-                className={cn('stage-video', focus !== 'hero' && 'is-focused')}
-                src="/videos/sock-hero.mp4"
-                poster="/videos/sock-hero-poster.jpg"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-              />
+              <div ref={stageInnerRef} className="stage-inner">
+                <div className="stage-guide" aria-hidden />
+                <video
+                  ref={videoRef}
+                  className={cn('stage-video', focus !== 'hero' && 'is-focused')}
+                  src="/videos/sock-hero.mp4"
+                  poster="/videos/sock-hero-poster.jpg"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+              </div>
 
-              {/* hotspots */}
+              {/* hotspots (not inside stage-inner so they don't zoom with the sock) */}
               {focus === 'hero' && HOTSPOTS.map((h) => (
                 <button
                   key={h.key}
@@ -100,7 +154,6 @@ export function HeroSock() {
                 </button>
               ))}
 
-              {/* detail panel */}
               {detail && (
                 <div className="absolute right-0 top-2 w-[92%] md:w-[420px] z-20 bg-graphite border border-rule p-8">
                   <button
@@ -135,7 +188,6 @@ export function HeroSock() {
           </div>
         </div>
 
-        {/* bottom meta line */}
         <div className="mt-auto pt-10 border-t border-rule flex items-center justify-between gap-6 text-bone/45">
           <span className="num">Scroll → explore the system</span>
           <span className="num hidden md:block">A1 · A2 · A3 — hover the diagram</span>
