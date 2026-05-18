@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" fill="currentColor" aria-label="Zero Give">
+  <!-- ZG monogram — angular sportswear cut with merged Z/G -->
+  <g>
+    <!-- Z: top bar with notched corners, diagonal stroke, bottom bar -->
+    <path d="M22 14 L98 14 L98 32 L70 32 L70 38 L92 38 L92 56 L46 56 L46 50 L74 50 L74 32 L52 32 L52 26 L22 26 Z" />
+    <!-- Z diagonal (chevron) -->
+    <path d="M30 26 L80 26 L36 92 L96 92 L96 110 L18 110 L62 44 L30 44 Z" />
+    <!-- G: open shield form with horizontal bar -->
+    <path d="M108 50 L182 50 L182 110 L108 110 Z M124 66 L166 66 L166 78 L150 78 L150 90 L166 90 L166 96 L124 96 Z" />
+    <!-- G crossbar accent (right inner notch) -->
+    <path d="M160 82 L182 82 L182 96 L160 96 Z" />
+    <!-- top notches -->
+    <path d="M22 14 L34 4 L46 14 Z" />
+    <path d="M74 14 L86 4 L98 14 Z" />
+    <path d="M108 50 L120 40 L132 50 Z" />
+    <path d="M158 50 L170 40 L182 50 Z" />
+  </g>
+</svg>

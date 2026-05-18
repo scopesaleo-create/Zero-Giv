@@ -1,39 +1,38 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { KeyedVideo, type KeyedVideoHandle } from '@/components/keyed-video';
 
 export function Spline3D() {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const kvRef = useRef<KeyedVideoHandle>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0);
   const [mode, setMode] = useState<'auto' | 'cursor' | 'scroll'>('auto');
 
-  // play-through and scrub via hover OR scroll
   useEffect(() => {
-    const v = videoRef.current;
+    const v = kvRef.current?.video;
     const w = wrapRef.current;
     if (!v || !w) return;
 
+    // ensure metadata loads so we have duration
+    v.preload = 'metadata';
+
     let raf = 0;
-    let target = 0;        // 0–1 desired scrub position
-    let current = 0;       // smoothed
+    let target = 0;
+    let current = 0;
     let autoTime = 0;
     let lastNow = performance.now();
     let interacting = false;
     let scrolling = false;
     let scrollTimer: number | null = null;
 
-    const setTarget = (t: number) => {
-      target = Math.min(1, Math.max(0, t));
-    };
+    const setT = (t: number) => { target = Math.min(1, Math.max(0, t)); };
 
     const loop = (now: number) => {
       const dt = (now - lastNow) / 1000;
       lastNow = now;
-
       if (!interacting && !scrolling) {
-        // ambient autoplay loop
-        autoTime += dt * 0.06; // slow ambient pass — 0..1 over ~16s
+        autoTime += dt * 0.06;
         target = autoTime % 1;
       }
       current += (target - current) * 0.12;
@@ -49,25 +48,22 @@ export function Spline3D() {
       const x = (e.clientX - r.left) / r.width;
       interacting = true;
       setMode('cursor');
-      setTarget(x);
+      setT(x);
     };
     const onLeave = () => {
       interacting = false;
-      // smoothly hand back to auto from current position
       autoTime = current;
       setMode('auto');
     };
-
     const onScroll = () => {
       const r = w.getBoundingClientRect();
       const vh = window.innerHeight;
-      // scroll progress through the section (entry → exit)
       const total = r.height + vh;
       const passed = Math.min(total, Math.max(0, vh - r.top));
       const p = passed / total;
       scrolling = true;
       setMode('scroll');
-      setTarget(p);
+      setT(p);
       if (scrollTimer) window.clearTimeout(scrollTimer);
       scrollTimer = window.setTimeout(() => {
         scrolling = false;
@@ -101,26 +97,27 @@ export function Spline3D() {
         <header className="section-head">
           <div className="flex items-baseline gap-6">
             <span className="id">N° 03</span>
-            <h2 className="display text-4xl md:text-5xl lg:text-6xl tracking-tightest">Specimen.</h2>
+            <h2 className="display text-4xl md:text-5xl lg:text-6xl tracking-tightest reveal">Specimen.</h2>
           </div>
           <span className="num hidden md:inline">A live walk-through · ZG-01</span>
         </header>
 
         <div className="grid lg:grid-cols-12 gap-10 items-stretch">
-          {/* left copy */}
           <div className="lg:col-span-4 flex flex-col justify-between gap-12">
             <div>
               <p className="reveal eyebrow mb-6">Hover · scroll · scrub</p>
-              <h3 className="display text-4xl md:text-5xl tracking-tightest leading-[1.02]">
+              <h3 className="reveal display text-4xl md:text-5xl tracking-tightest leading-[1.02]" data-delay="1">
                 A specimen<br />you can <span className="editorial">handle.</span>
               </h3>
               <p className="reveal text-bone/65 leading-[1.7] mt-8 max-w-sm" data-delay="2">
                 Drag your cursor across the panel to walk around the sock. Scroll and the camera follows the page. Step away and the rotation breathes on its own.
               </p>
-              <a href="#cta" className="btn-text mt-10" data-target>Reserve a pair <span className="arr">→</span></a>
+              <a href="#cta" className="reveal btn-text mt-10" data-target data-delay="3">
+                Reserve a pair <span className="arr">→</span>
+              </a>
             </div>
 
-            <dl className="grid grid-cols-2 gap-x-6 gap-y-6 pt-8 border-t border-rule">
+            <dl className="reveal grid grid-cols-2 gap-x-6 gap-y-6 pt-8 border-t border-rule" data-delay="4">
               <div>
                 <dt className="label text-bone/40">Material</dt>
                 <dd className="text-sm text-bone/85 mt-2">Recycled poly / Lycra®</dd>
@@ -140,32 +137,32 @@ export function Spline3D() {
             </dl>
           </div>
 
-          {/* right: vitrine */}
           <div className="lg:col-span-8">
-            <div ref={wrapRef} className="vitrine aspect-[7/5] relative cursor-none" data-target>
-              <video
-                ref={videoRef}
+            <div
+              ref={wrapRef}
+              className="vitrine vitrine--isolated cursor-drag aspect-[7/5] relative"
+              data-cursor="DRAG · SCRUB"
+            >
+              <KeyedVideo
+                ref={kvRef}
                 src="/videos/sock-interactive.mp4"
-                muted
-                playsInline
-                preload="auto"
-                className="absolute inset-0 w-full h-full object-cover"
+                preload="metadata"
+                className="vitrine-canvas"
+                keyColor={[255, 255, 255]}
+                threshold={232}
+                softness={14}
               />
               {/* registration marks */}
               <span className="vitrine-cross" style={{ top: 14, left: 14 }} />
               <span className="vitrine-cross" style={{ top: 14, right: 14 }} />
               <span className="vitrine-cross" style={{ bottom: 14, left: 14 }} />
               <span className="vitrine-cross" style={{ bottom: 14, right: 14 }} />
-
-              {/* meta tags */}
               <span className="vitrine-meta" style={{ top: 24, left: 36 }}>ZG-01 · 360°</span>
               <span className="vitrine-meta" style={{ top: 24, right: 36 }}>{modeLabel}</span>
               <span className="vitrine-meta" style={{ bottom: 24, left: 36 }}>Fig. 03.A</span>
               <span className="vitrine-meta" style={{ bottom: 24, right: 36 }}>
                 {String(Math.round(progress * 360)).padStart(3, '0')}°
               </span>
-
-              {/* scrub track */}
               <div className="vitrine-scrub" style={{ ['--p' as any]: `${progress * 100}%` }} />
             </div>
           </div>

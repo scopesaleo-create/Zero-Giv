@@ -74,11 +74,12 @@ export function HeroSock() {
                 ref={videoRef}
                 className={cn('stage-video', focus !== 'hero' && 'is-focused')}
                 src="/videos/sock-hero.mp4"
+                poster="/videos/sock-hero-poster.jpg"
                 autoPlay
                 loop
                 muted
                 playsInline
-                preload="auto"
+                preload="metadata"
               />
 
               {/* hotspots */}

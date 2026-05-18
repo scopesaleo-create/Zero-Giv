@@ -1,9 +1,12 @@
+import { Logo } from '../logo';
+
 export function SiteFooter() {
   return (
     <footer className="relative border-t border-rule bg-ink py-20">
       <div className="max-w-[1400px] mx-auto px-8 lg:px-14">
-        <div className="display text-[18vw] md:text-[14vw] tracking-tightest leading-[0.86] -my-4 text-bone/95 select-none">
-          ZERO/GIVE
+        <div className="flex items-center justify-between gap-10 border-b border-rule pb-12">
+          <Logo className="h-24 md:h-40" />
+          <span className="num hidden md:inline">Edition I · ZG-01</span>
         </div>
 
         <div className="mt-16 grid md:grid-cols-12 gap-12 border-t border-rule pt-12">
