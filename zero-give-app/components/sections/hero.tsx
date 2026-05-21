@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import { COMPONENT_META, type SockFocus } from '@/lib/images';
 import { cn } from '@/lib/utils';
 import { BackgroundPathsLayer } from '@/components/ui/background-paths';
+import { BlurText } from '@/components/ui/blur-text';
 
 type Hot = {
   key: Exclude<SockFocus, 'hero'>;
@@ -102,12 +103,19 @@ export function HeroSock() {
           {/* left copy — parallax-lifted */}
           <div ref={copyRef} className="lg:col-span-5 will-change-transform">
             <div className="reveal">
-              <span className="eyebrow">Worn at NCAA · MLS · MLFPA</span>
+              <span className="glass inline-flex items-center gap-3 rounded-full pl-1.5 pr-4 py-1.5">
+                <span className="bg-bone text-ink rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase">
+                  Edition I
+                </span>
+                <span className="text-[11px] text-bone/90 font-mono tracking-widest uppercase">
+                  Worn at NCAA · MLS · MLFPA
+                </span>
+              </span>
             </div>
             <h1 className="display text-[14vw] md:text-[10vw] lg:text-[7vw] mt-10 tracking-tightest leading-[0.92]">
-              <span className="reveal block" data-delay="1">Grip the</span>
-              <span className="reveal editorial block text-bone/95" data-delay="2">game</span>
-              <span className="reveal block" data-delay="3">you love.</span>
+              <BlurText text="Grip the" className="block" delay={0.15} />
+              <BlurText text="game" className="editorial block text-bone" delay={0.4} />
+              <BlurText text="you love." className="block" delay={0.6} />
             </h1>
             <p className="reveal mt-10 text-bone text-[17px] leading-[1.7] max-w-md font-medium" data-delay="4">
               A biomechanical grip system worn under the boot. Foot stays planted, force stays forward, the boot stays welded to you — for the entire ninety.
@@ -115,6 +123,19 @@ export function HeroSock() {
             <div className="reveal mt-12 flex flex-wrap gap-3 items-center" data-delay="5">
               <a href="#cta" className="btn btn-primary">Reserve a pair <span className="arr">→</span></a>
               <a href="#science" className="btn-text ml-2">Read the premise <span className="arr">→</span></a>
+            </div>
+
+            {/* glass stat cards */}
+            <div className="reveal mt-12 flex flex-wrap gap-4" data-delay="5">
+              {[
+                { v: '−38%', l: 'Heel slip vs. a standard sock' },
+                { v: '+24%', l: 'More force into every push-off' },
+              ].map((s) => (
+                <div key={s.v} className="glass rounded-2xl px-6 py-5 w-[210px]">
+                  <p className="display text-[40px] tracking-tightest leading-none text-bone">{s.v}</p>
+                  <p className="text-[11px] text-bone/85 mt-3 leading-[1.5]">{s.l}</p>
+                </div>
+              ))}
             </div>
           </div>
 
