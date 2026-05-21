@@ -5,6 +5,7 @@ import { Nav } from '@/components/nav';
 import { Intro } from '@/components/intro';
 import { SmoothScroll } from '@/components/smooth-scroll';
 import { ScrollObserver } from '@/components/scroll-observer';
+import { Magnetic } from '@/components/magnetic';
 import { Counters, CardSpotlight } from '@/components/reveal';
 import { HeroSock } from '@/components/sections/hero';
 import { Science } from '@/components/sections/science';
@@ -35,6 +36,7 @@ export default function Page() {
       <SiteFooter />
 
       <ScrollObserver />
+      <Magnetic />
       <Counters />
       <CardSpotlight />
     </>
