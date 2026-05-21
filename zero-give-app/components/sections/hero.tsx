@@ -7,19 +7,16 @@ import { BackgroundPathsLayer } from '@/components/ui/background-paths';
 import { BlurText } from '@/components/ui/blur-text';
 import { SeamlessVideo } from '@/components/seamless-video';
 
-type Hot = {
+type Component = {
   key: Exclude<SockFocus, 'hero'>;
   label: string;
   num: string;
-  top: string;
-  left: string;
-  side: 'left' | 'right';
 };
 
-const HOTSPOTS: Hot[] = [
-  { key: 'heel', label: 'Heel architecture', num: 'A1', top: '36%', left: '64%', side: 'right' },
-  { key: 'grip', label: 'PivotCore array',   num: 'A2', top: '62%', left: '47%', side: 'right' },
-  { key: 'toe',  label: 'Toe cap',           num: 'A3', top: '66%', left: '24%', side: 'left' },
+const COMPONENTS: Component[] = [
+  { key: 'heel', label: 'Heel architecture', num: 'A1' },
+  { key: 'grip', label: 'PivotCore array',   num: 'A2' },
+  { key: 'toe',  label: 'Toe cap',           num: 'A3' },
 ];
 
 export function HeroSock() {
@@ -135,70 +132,73 @@ export function HeroSock() {
             </div>
           </div>
 
-          {/* right: official sock model floating on the dark hero */}
-          <div className="lg:col-span-7 relative">
-            <div className="relative w-full aspect-[16/9] max-w-[720px] mx-auto stage">
-              <div ref={stageInnerRef} className="stage-inner">
-                <div className="stage-model-bg" aria-hidden />
-                <div className="stage-glow" aria-hidden />
-                <div className="stage-guide" aria-hidden />
-                <SeamlessVideo
-                  src="/videos/sock-model.mp4"
-                  poster="/videos/sock-model-poster.jpg"
-                  className={cn('stage-model', focus !== 'hero' && 'is-focused')}
-                  playbackRate={focus === 'hero' ? 0.85 : 0.4}
-                />
-              </div>
-
-              {/* hotspots (not inside stage-inner so they don't zoom with the sock) */}
-              {focus === 'hero' && HOTSPOTS.map((h) => (
-                <button
-                  key={h.key}
-                  className={cn('hot', h.side === 'right' && 'is-right')}
-                  style={{ top: h.top, left: h.left, transform: 'translate(-50%, -50%)' }}
-                  onClick={() => setFocus(h.key)}
-                  aria-label={`Explore ${h.label}`}
-                >
-                  <span className="pin" />
-                  <span className="lead" />
-                  <span className="tag">
-                    <span className="n">{h.num}</span>
-                    <span className="t">{h.label}</span>
-                  </span>
-                </button>
-              ))}
-
-              {detail && (
-                <div className="absolute right-0 top-2 w-[92%] md:w-[420px] z-20 bg-graphite border border-rule p-8">
-                  <button
-                    className="absolute top-4 right-4 w-7 h-7 border border-rule-strong grid place-items-center hover:border-bone transition"
-                    onClick={setBack}
-                    aria-label="Close"
-                  >
-                    <span className="text-lg leading-none -mt-px">×</span>
-                  </button>
-                  <span className="num">{detail.num} · {detail.subtitle}</span>
-                  <h3 className="display text-[36px] tracking-tightest leading-[0.95] mt-3">{detail.title}</h3>
-                  <p className="mt-5 text-sm text-bone/90 leading-[1.7]">{detail.body}</p>
-                  <dl className="grid grid-cols-2 gap-x-6 gap-y-5 mt-7 pt-6 border-t border-rule">
-                    {detail.specs.map(([k, v]) => (
-                      <div key={k}>
-                        <dt className="label text-bone/75">{k}</dt>
-                        <dd className="text-sm text-bone mt-1.5">{v}</dd>
-                      </div>
-                    ))}
-                  </dl>
+          {/* right: sock model + stacked component links */}
+          <div className="lg:col-span-7">
+            <div className="flex items-center gap-5 lg:gap-7">
+              {/* sock stage */}
+              <div className="relative flex-1 aspect-[16/9] stage">
+                <div ref={stageInnerRef} className="stage-inner">
+                  <div className="stage-model-bg" aria-hidden />
+                  <div className="stage-glow" aria-hidden />
+                  <div className="stage-guide" aria-hidden />
+                  <SeamlessVideo
+                    src="/videos/sock-model.mp4"
+                    poster="/videos/sock-model-poster.jpg"
+                    className={cn('stage-model', focus !== 'hero' && 'is-focused')}
+                    fade={0.8}
+                    playbackRate={focus === 'hero' ? 0.5 : 0.28}
+                  />
+                  <div className="stage-grade" aria-hidden />
                 </div>
-              )}
-            </div>
 
-            {focus !== 'hero' && (
-              <div className="absolute -top-10 left-0 flex items-center gap-3 z-30">
-                <button onClick={setBack} className="btn-text">
-                  <span className="arr -scale-x-100">→</span> Back to overview
-                </button>
+                {detail && (
+                  <div className="absolute left-0 bottom-0 w-full md:w-[440px] z-20 bg-graphite border border-rule p-8">
+                    <button
+                      className="absolute top-4 right-4 w-7 h-7 border border-rule-strong grid place-items-center hover:border-bone transition"
+                      onClick={setBack}
+                      aria-label="Close"
+                    >
+                      <span className="text-lg leading-none -mt-px">×</span>
+                    </button>
+                    <span className="num">{detail.num} · {detail.subtitle}</span>
+                    <h3 className="display text-[32px] tracking-tightest leading-[0.95] mt-3">{detail.title}</h3>
+                    <p className="mt-4 text-sm text-bone/90 leading-[1.7]">{detail.body}</p>
+                    <dl className="grid grid-cols-2 gap-x-6 gap-y-4 mt-6 pt-5 border-t border-rule">
+                      {detail.specs.map(([k, v]) => (
+                        <div key={k}>
+                          <dt className="label text-bone/75">{k}</dt>
+                          <dd className="text-sm text-bone mt-1.5">{v}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
+                )}
               </div>
-            )}
+
+              {/* stacked component links */}
+              <div className="w-[150px] sm:w-[176px] shrink-0 flex flex-col gap-3">
+                <span className="num mb-1">Components / 03</span>
+                {COMPONENTS.map((c) => (
+                  <button
+                    key={c.key}
+                    className="comp-card"
+                    data-active={focus === c.key}
+                    data-target
+                    onClick={() => setFocus(focus === c.key ? 'hero' : c.key)}
+                    aria-label={`Explore ${c.label}`}
+                  >
+                    <span className="comp-num">{c.num}</span>
+                    <span className="comp-label">{c.label}</span>
+                    <span className="comp-go" aria-hidden>→</span>
+                  </button>
+                ))}
+                {focus !== 'hero' && (
+                  <button onClick={setBack} className="btn-text mt-2 text-[11px]">
+                    <span className="arr -scale-x-100">→</span> Overview
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 

@@ -344,24 +344,91 @@ body {
   mix-blend-mode: screen;
   transform: scale(1.12);
   transition: filter 1s var(--ease-out), transform 1.4s var(--ease-out), opacity .2s linear;
-  /* softer, more natural studio grade — lifted blacks, gentle warmth, clean white */
-  filter: contrast(1.04) brightness(1.05) saturate(1.03);
+  /* darker, more natural grade — reads as a lit object, not a bright cut-out */
+  filter: contrast(1.08) brightness(0.86) saturate(1.02);
 }
 .stage-model.is-focused {
-  filter: contrast(1.06) brightness(0.95) saturate(1);
+  filter: contrast(1.1) brightness(0.74) saturate(0.98);
   transform: scale(1.18);
 }
 
-/* soft studio key-light glow behind the floating sock */
+/* soft studio key-light glow behind the floating sock — subtle */
 .stage-glow {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 1;
   background:
-    radial-gradient(ellipse 52% 46% at 50% 40%, rgba(237, 232, 223, 0.16) 0%, rgba(237, 232, 223, 0.05) 38%, transparent 70%),
-    radial-gradient(ellipse 40% 30% at 38% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 26% at 50% 84%, rgba(0, 0, 0, 0.55) 0%, transparent 72%);
+    radial-gradient(ellipse 48% 40% at 50% 52%, rgba(237, 232, 223, 0.07) 0%, transparent 68%),
+    radial-gradient(ellipse 56% 24% at 50% 90%, rgba(0, 0, 0, 0.6) 0%, transparent 74%);
+}
+
+/* top-down shadow grade — drops the top of the sock into natural shadow */
+.stage-grade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  mix-blend-mode: multiply;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.5) 22%,
+    rgba(0, 0, 0, 0.18) 42%,
+    rgba(0, 0, 0, 0.02) 62%,
+    transparent 78%
+  );
+}
+
+/* ===== Stacked component links (hero) ===== */
+.comp-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 16px 16px;
+  border: 1px solid var(--rule);
+  background: rgba(237, 232, 223, 0.015);
+  text-align: left;
+  cursor: none;
+  transition: border-color .35s var(--ease-out), background .35s var(--ease-out), transform .35s var(--ease-out);
+}
+.comp-card:hover {
+  border-color: var(--rule-strong);
+  background: rgba(237, 232, 223, 0.045);
+  transform: translateX(-3px);
+}
+.comp-card[data-active='true'] {
+  border-color: var(--signal);
+  background: rgba(214, 255, 61, 0.06);
+}
+.comp-card .comp-num {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--signal);
+  font-weight: 600;
+}
+.comp-card .comp-label {
+  font-family: var(--font-display), Inter, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--bone);
+}
+.comp-card .comp-go {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 13px;
+  color: rgba(237, 232, 223, 0.4);
+  transition: transform .35s var(--ease-out), color .35s;
+}
+.comp-card:hover .comp-go,
+.comp-card[data-active='true'] .comp-go {
+  color: var(--signal);
+  transform: translate(3px, -3px);
 }
 
 /* ===== Hero product vitrine (light display panel) ===== */
