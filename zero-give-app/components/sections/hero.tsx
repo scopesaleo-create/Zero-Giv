@@ -139,22 +139,27 @@ export function HeroSock() {
             </div>
           </div>
 
-          {/* right: spinning sock with 3D scroll-zoom */}
+          {/* right: official sock model in a product vitrine */}
           <div className="lg:col-span-7 relative">
-            <div className="relative w-full aspect-square max-w-[640px] mx-auto stage">
+            <div className="relative w-full aspect-square max-w-[640px] mx-auto stage stage--light">
               <div ref={stageInnerRef} className="stage-inner">
-                <div className="stage-guide" aria-hidden />
-                <video
-                  ref={videoRef}
-                  className={cn('stage-video', focus !== 'hero' && 'is-focused')}
-                  src="/videos/sock-hero.mp4"
-                  poster="/videos/sock-hero-poster.jpg"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                />
+                <div className="hero-vitrine">
+                  <video
+                    ref={videoRef}
+                    className={cn('hero-vitrine-video', focus !== 'hero' && 'is-focused')}
+                    src="/videos/sock-model.mp4"
+                    poster="/videos/sock-model-poster.jpg"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                  />
+                  <span className="hero-vitrine-meta" style={{ top: 18, left: 22 }}>ZG-01 · Official model</span>
+                  <span className="hero-vitrine-meta" style={{ top: 18, right: 22 }}>360°</span>
+                  <span className="hero-vitrine-meta" style={{ bottom: 18, left: 22 }}>Fig. 01</span>
+                  <span className="hero-vitrine-meta" style={{ bottom: 18, right: 22 }}>MMXXVI</span>
+                </div>
               </div>
 
               {/* hotspots (not inside stage-inner so they don't zoom with the sock) */}
