@@ -5,7 +5,6 @@ import { COMPONENT_META, type SockFocus } from '@/lib/images';
 import { cn } from '@/lib/utils';
 import { BackgroundPathsLayer } from '@/components/ui/background-paths';
 import { BlurText } from '@/components/ui/blur-text';
-import { TurntableVideo } from '@/components/turntable-video';
 
 type Component = {
   key: Exclude<SockFocus, 'hero'>;
@@ -24,12 +23,18 @@ export function HeroSock() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const stageInnerRef = useRef<HTMLDivElement | null>(null);
   const copyRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setFocus('hero'); };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
+
+  // ease the rotation speed when a component is focused
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.playbackRate = focus === 'hero' ? 0.7 : 0.32;
+  }, [focus]);
 
   // 3D spatial scroll zoom: while the hero section is on screen, push the sock
   // forward (z-translate) and slightly upward as the user scrolls past it.
@@ -141,12 +146,16 @@ export function HeroSock() {
                   <div className="stage-model-bg" aria-hidden />
                   <div className="stage-glow" aria-hidden />
                   <div className="stage-guide" aria-hidden />
-                  <TurntableVideo
+                  <video
+                    ref={videoRef}
+                    className={cn('stage-model', focus !== 'hero' && 'is-focused')}
                     src="/videos/sock-model.mp4"
                     poster="/videos/sock-model-poster.jpg"
-                    className={cn('stage-model', focus !== 'hero' && 'is-focused')}
-                    cycle={24}
-                    speed={focus === 'hero' ? 1 : 0.45}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
                   />
                   <div className="stage-grade" aria-hidden />
                 </div>

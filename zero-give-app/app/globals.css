@@ -347,14 +347,14 @@ body {
   height: 100%;
   object-fit: contain;
   mix-blend-mode: screen;
-  transform: scale(1.1);
+  transform: scale(1.62);
   transition: filter 1s var(--ease-out), transform 1.4s var(--ease-out), opacity .2s linear;
   /* darker, more natural grade — reads as a lit object, not a bright cut-out */
-  filter: contrast(1.08) brightness(0.86) saturate(1.02);
+  filter: contrast(1.06) brightness(0.9) saturate(1.02);
 }
 .stage-model.is-focused {
-  filter: contrast(1.1) brightness(0.74) saturate(0.98);
-  transform: scale(1.16);
+  filter: contrast(1.08) brightness(0.78) saturate(0.98);
+  transform: scale(1.7);
 }
 
 /* soft studio key-light glow behind the floating sock — subtle */
