@@ -332,6 +332,31 @@ body {
   border: 1px dashed rgba(237, 232, 223, 0.06);
 }
 
+/* ===== Hero floating sock (black-bg video, screen-blended) ===== */
+/* The model video has a pure-black studio backdrop. An opaque ink layer behind
+   it + mix-blend-mode:screen drops the black away — the white sock floats and
+   its dark details read against the dark page. */
+.stage-model-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  border-radius: 8px;
+}
+.stage-model {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  transition: filter 1s var(--ease-out), transform 1.2s var(--ease-out);
+  filter: contrast(1.06) brightness(1.04) saturate(1.02);
+}
+.stage-model.is-focused {
+  filter: contrast(1.1) brightness(0.92) saturate(1);
+  transform: scale(1.05);
+}
+
 /* ===== Hero product vitrine (light display panel) ===== */
 /* The model video has a flat ~#eeeeee studio backdrop; the panel is tuned to
    the same tone so the video's background dissolves into the panel and the
