@@ -309,20 +309,13 @@ body {
   filter: contrast(1.12) brightness(.78) saturate(0.85);
   transform: scale(1.05);
 }
-.stage::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 52%, rgba(214,255,61,0.04) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 1;
-}
 .stage-guide {
   position: absolute;
-  inset: 6%;
+  inset: 8% 6%;
   border-radius: 50%;
   border: 1px solid var(--rule);
   pointer-events: none;
+  z-index: 0;
 }
 .stage-guide::before {
   content: '';
@@ -347,14 +340,28 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   mix-blend-mode: screen;
-  transition: filter 1s var(--ease-out), transform 1.2s var(--ease-out);
-  filter: contrast(1.06) brightness(1.04) saturate(1.02);
+  transform: scale(1.12);
+  transition: filter 1s var(--ease-out), transform 1.4s var(--ease-out), opacity .2s linear;
+  /* softer, more natural studio grade — lifted blacks, gentle warmth, clean white */
+  filter: contrast(1.04) brightness(1.05) saturate(1.03);
 }
 .stage-model.is-focused {
-  filter: contrast(1.1) brightness(0.92) saturate(1);
-  transform: scale(1.05);
+  filter: contrast(1.06) brightness(0.95) saturate(1);
+  transform: scale(1.18);
+}
+
+/* soft studio key-light glow behind the floating sock */
+.stage-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 52% 46% at 50% 40%, rgba(237, 232, 223, 0.16) 0%, rgba(237, 232, 223, 0.05) 38%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 38% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 26% at 50% 84%, rgba(0, 0, 0, 0.55) 0%, transparent 72%);
 }
 
 /* ===== Hero product vitrine (light display panel) ===== */

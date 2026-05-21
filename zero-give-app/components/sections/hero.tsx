@@ -5,6 +5,7 @@ import { COMPONENT_META, type SockFocus } from '@/lib/images';
 import { cn } from '@/lib/utils';
 import { BackgroundPathsLayer } from '@/components/ui/background-paths';
 import { BlurText } from '@/components/ui/blur-text';
+import { SeamlessVideo } from '@/components/seamless-video';
 
 type Hot = {
   key: Exclude<SockFocus, 'hero'>;
@@ -16,14 +17,13 @@ type Hot = {
 };
 
 const HOTSPOTS: Hot[] = [
-  { key: 'heel', label: 'Heel architecture', num: 'A1', top: '32%', left: '23%', side: 'left' },
-  { key: 'grip', label: 'PivotCore array',   num: 'A2', top: '58%', left: '58%', side: 'right' },
-  { key: 'toe',  label: 'Toe cap',           num: 'A3', top: '70%', left: '78%', side: 'right' },
+  { key: 'heel', label: 'Heel architecture', num: 'A1', top: '36%', left: '64%', side: 'right' },
+  { key: 'grip', label: 'PivotCore array',   num: 'A2', top: '62%', left: '47%', side: 'right' },
+  { key: 'toe',  label: 'Toe cap',           num: 'A3', top: '66%', left: '24%', side: 'left' },
 ];
 
 export function HeroSock() {
   const [focus, setFocus] = useState<SockFocus>('hero');
-  const videoRef = useRef<HTMLVideoElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
   const stageInnerRef = useRef<HTMLDivElement | null>(null);
   const copyRef = useRef<HTMLDivElement | null>(null);
@@ -33,10 +33,6 @@ export function HeroSock() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
-
-  useEffect(() => {
-    if (videoRef.current) videoRef.current.playbackRate = focus === 'hero' ? 0.8 : 0.4;
-  }, [focus]);
 
   // 3D spatial scroll zoom: while the hero section is on screen, push the sock
   // forward (z-translate) and slightly upward as the user scrolls past it.
@@ -141,20 +137,16 @@ export function HeroSock() {
 
           {/* right: official sock model floating on the dark hero */}
           <div className="lg:col-span-7 relative">
-            <div className="relative w-full aspect-square max-w-[640px] mx-auto stage">
+            <div className="relative w-full aspect-[16/9] max-w-[720px] mx-auto stage">
               <div ref={stageInnerRef} className="stage-inner">
                 <div className="stage-model-bg" aria-hidden />
+                <div className="stage-glow" aria-hidden />
                 <div className="stage-guide" aria-hidden />
-                <video
-                  ref={videoRef}
-                  className={cn('stage-model', focus !== 'hero' && 'is-focused')}
+                <SeamlessVideo
                   src="/videos/sock-model.mp4"
                   poster="/videos/sock-model-poster.jpg"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
+                  className={cn('stage-model', focus !== 'hero' && 'is-focused')}
+                  playbackRate={focus === 'hero' ? 0.85 : 0.4}
                 />
               </div>
 
