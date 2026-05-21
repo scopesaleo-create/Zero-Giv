@@ -5,7 +5,7 @@ import { COMPONENT_META, type SockFocus } from '@/lib/images';
 import { cn } from '@/lib/utils';
 import { BackgroundPathsLayer } from '@/components/ui/background-paths';
 import { BlurText } from '@/components/ui/blur-text';
-import { SeamlessVideo } from '@/components/seamless-video';
+import { TurntableVideo } from '@/components/turntable-video';
 
 type Component = {
   key: Exclude<SockFocus, 'hero'>;
@@ -136,17 +136,17 @@ export function HeroSock() {
           <div className="lg:col-span-7">
             <div className="flex items-center gap-5 lg:gap-7">
               {/* sock stage */}
-              <div className="relative flex-1 aspect-[16/9] stage">
-                <div ref={stageInnerRef} className="stage-inner">
+              <div className="relative flex-1 aspect-square stage">
+                <div ref={stageInnerRef} className="stage-inner stage-inner--circular">
                   <div className="stage-model-bg" aria-hidden />
                   <div className="stage-glow" aria-hidden />
                   <div className="stage-guide" aria-hidden />
-                  <SeamlessVideo
+                  <TurntableVideo
                     src="/videos/sock-model.mp4"
                     poster="/videos/sock-model-poster.jpg"
                     className={cn('stage-model', focus !== 'hero' && 'is-focused')}
-                    fade={0.8}
-                    playbackRate={focus === 'hero' ? 0.5 : 0.28}
+                    cycle={24}
+                    speed={focus === 'hero' ? 1 : 0.45}
                   />
                   <div className="stage-grade" aria-hidden />
                 </div>
