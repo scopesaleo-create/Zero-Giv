@@ -1,60 +1,71 @@
-export function Tech() {
-  const specs: [string, string][] = [
-    ['Yarn', 'Recycled poly · Lycra®'],
-    ['Grip array', '3-zone directional silicone'],
-    ['Compression', 'Zonal · arch · midfoot'],
-    ['Cuff', 'Locked heel architecture'],
-    ['Seam', 'Flat-lock, anti-bunch'],
-    ['Wash', 'Cold · air dry'],
-  ];
+const FEATURES: { n: string; t: string; d: string; m: string }[] = [
+  {
+    n: '01',
+    t: 'Heel-lock architecture',
+    d: 'A reinforced lock band and 3D-knit pocket eliminate vertical lift. The boot becomes structural.',
+    m: '−38% slip',
+  },
+  {
+    n: '02',
+    t: 'PivotCore™ silicone array',
+    d: 'Three zones of directional grip control rotation across the foot–boot interface. Plant, pivot, accelerate.',
+    m: '±92° stability',
+  },
+  {
+    n: '03',
+    t: 'Zonal compression',
+    d: 'Arch and midfoot compression mapped to the lines of force. Energy returns into push-off instead of leaking sideways.',
+    m: '+24% return',
+  },
+  {
+    n: '04',
+    t: 'Ninety-minute spec',
+    d: 'High-friction silicone keeps its shape under sweat and surface temperature. The grip ends the match the way it started.',
+    m: '90+ min hold',
+  },
+];
 
+export function Tech() {
   return (
-    <section id="tech" className="section bg-graphite border-y border-rule">
-      <div className="max-w-[1400px] mx-auto px-8 lg:px-14">
+    <section id="tech" className="section bg-carbon border-y border-rule">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14">
         <header className="section-head">
           <div className="flex items-baseline gap-6">
-            <span className="id">N° 02</span>
-            <h2 className="display text-4xl md:text-5xl lg:text-6xl tracking-tightest">Technology.</h2>
+            <span className="id">N° 02 — Technology</span>
           </div>
-          <span className="num hidden md:inline">PivotCore™ — directional grip system</span>
+          <span className="num hidden md:inline">PivotCore™ · directional grip system</span>
         </header>
 
-        <div className="grid lg:grid-cols-12 gap-16 items-start">
-          <div className="lg:col-span-5">
-            <h3 className="display text-[56px] md:text-[80px] tracking-tightest leading-[0.95]">
-              <span className="reveal block">PivotCore™</span>
-              <span className="reveal editorial block" data-delay="1">a grip system.</span>
-            </h3>
-            <p className="reveal mt-10 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="2">
-              Three zones of directional silicone are knit into the inner sole. They lock the foot to the boot in the directions force actually wants to travel — and let it breathe in the directions it doesn&apos;t.
-            </p>
-          </div>
-
-          <div className="lg:col-span-7">
-            <dl className="grid grid-cols-2 border-t border-l border-rule">
-              {specs.map(([k, v], i) => (
-                <div key={k} className="reveal border-b border-r border-rule p-8" data-delay={String((i % 3) + 1)}>
-                  <dt className="label text-bone/75">{k}</dt>
-                  <dd className="text-base text-bone mt-3">{v}</dd>
-                </div>
-              ))}
-            </dl>
-
-            <div className="reveal mt-10 grid grid-cols-3 gap-6" data-delay="3">
-              {[
-                { n: '01', t: 'Anchor', d: 'Heel-locked architecture eliminates lift.' },
-                { n: '02', t: 'Rotate', d: 'Concentric grip controls pivot to ±92°.' },
-                { n: '03', t: 'Release', d: 'Compression returns force into push-off.' },
-              ].map((p) => (
-                <div key={p.n} className="border-t border-rule pt-4">
-                  <span className="num">{p.n}</span>
-                  <h4 className="display text-xl tracking-tightest mt-2">{p.t}</h4>
-                  <p className="text-sm text-bone/85 mt-2 leading-[1.6]">{p.d}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-24 mb-24">
+          <h3 className="reveal lg:col-span-7 display text-display-lg tracking-tightest">
+            A grip system,
+            <br />
+            <span className="editorial text-accent">not a sock</span>.
+          </h3>
+          <p className="reveal lg:col-span-5 text-bone/85 text-[18px] leading-[1.7] max-w-md self-end" data-delay="1">
+            Four engineered systems, knit into a single garment. Each one solves a specific
+            failure mode of the foot–boot interface. Together they lock the athlete in.
+          </p>
         </div>
+
+        {/* feature grid — numeric prefix, thin underline, name, line */}
+        <ol className="grid md:grid-cols-2 gap-px bg-rule border-y border-rule">
+          {FEATURES.map((f, i) => (
+            <li
+              key={f.n}
+              className="reveal bg-carbon p-8 md:p-12 flex flex-col gap-6 min-h-[280px]"
+              data-delay={String((i % 3) + 1)}
+            >
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[11px] tracking-widest text-accent">{f.n}</span>
+                <span className="font-mono text-[10px] tracking-widest text-bone/55">{f.m}</span>
+              </div>
+              <div className="w-12 h-px bg-bone/40" />
+              <h4 className="display text-[26px] md:text-[34px] tracking-tightest leading-[1.0]">{f.t}</h4>
+              <p className="text-[15px] text-bone/75 leading-[1.65] max-w-md">{f.d}</p>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
