@@ -23,7 +23,7 @@ export function Intro() {
     <div className="intro" aria-hidden>
       <Logo className="intro-mark" />
       <span className="intro-meta">N° 01 · MMXXVI</span>
-      <span className="intro-meta right">Grip · The Game · You Love</span>
+      <span className="intro-meta right">ZG-01 · Zero Give</span>
     </div>
   );
 }

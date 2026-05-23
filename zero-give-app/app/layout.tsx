@@ -8,8 +8,8 @@ const editorial = Instrument_Serif({ subsets: ['latin'], weight: '400', style: [
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
-  title: 'Zero Give — Grip Engineered for the Modern Game',
-  description: 'A biomechanical grip system for soccer and field athletes. Zero internal slippage. Maximum force transfer. Built to compete for the full ninety.',
+  title: 'Zero Give — No Give. Engineered for the modern game.',
+  description: 'A biomechanical grip system worn under the boot. Zero internal slippage. Maximum force transfer. Built to compete for the full ninety.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
