@@ -23,7 +23,7 @@ export function CTA() {
       <div className="relative max-w-[1400px] mx-auto px-8 lg:px-14">
         <header className="section-head">
           <div className="flex items-baseline gap-6">
-            <span className="id">N° 06</span>
+            <span className="id">N° 07</span>
             <h2 className="display text-4xl md:text-5xl lg:text-6xl tracking-tightest">Reserve.</h2>
           </div>
           <span className="num hidden md:inline">Edition ZG-01 · limited release</span>
@@ -60,11 +60,11 @@ export function CTA() {
 
         <div className="reveal mt-16 grid md:grid-cols-3 gap-px bg-rule border border-rule" data-delay="4">
           {[
-            { t: 'Shop ZG-01', d: 'Three colourways, sizes XS–XL.' },
-            { t: "Player's Space", d: 'Long-form letters & training notes.' },
-            { t: 'Contact', d: 'Press, partnerships, athletes.' },
+            { t: 'Shop ZG-01', d: 'Three colourways, sizes XS–XL.', href: '#edition' },
+            { t: "Player's Space", d: 'Long-form letters & training notes.', href: '#athletes' },
+            { t: 'Contact', d: 'Press, partnerships, athletes.', href: 'mailto:hello@zerogive.com' },
           ].map((b) => (
-            <a key={b.t} href="#" data-target className="bg-ink p-10 group transition-colors hover:bg-graphite">
+            <a key={b.t} href={b.href} data-target className="bg-ink p-10 group transition-colors hover:bg-graphite">
               <div className="flex items-start justify-between">
                 <h4 className="display text-2xl tracking-tightest">{b.t}</h4>
                 <span className="lift-link text-bone/85 group-hover:text-signal transition-colors">→</span>

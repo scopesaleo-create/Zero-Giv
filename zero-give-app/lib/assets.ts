@@ -11,6 +11,30 @@ export const MODEL_IMAGES = {
   stadium:   'https://d8j0ntlcm91z4.cloudfront.net/user_3DMEyv5KQ2ERwEjJebn3NZHtYXd/hf_20260524_032337_cd62b543-135f-4ce9-92e3-c319c0ef42ef.png',
 } as const;
 
+export const ATHLETE_PORTRAITS = [
+  {
+    name: 'Marcus Adeyemi',
+    role: 'Midfielder · ZG-01',
+    text: 'It locks my foot in. More power. More control. A different feel through every cut.',
+    src: 'https://d8j0ntlcm91z4.cloudfront.net/user_3DMEyv5KQ2ERwEjJebn3NZHtYXd/hf_20260524_032756_f25e6b37-d430-4595-abd8-8478f6ab2c81.png',
+  },
+  {
+    name: 'Julian Green',
+    role: 'Professional Footballer',
+    text: 'I feel way more stable in my cuts. There is no internal slide — it is just me and the boot.',
+    src: 'https://d8j0ntlcm91z4.cloudfront.net/user_3DMEyv5KQ2ERwEjJebn3NZHtYXd/hf_20260524_032759_f61068d8-1e19-48b4-b4e8-6021b2928158.png',
+  },
+  {
+    name: 'Camila Torres',
+    role: 'Forward · NWSL',
+    text: 'The traction is unreal. A game changer in the rain, on turf, on anything.',
+    src: 'https://d8j0ntlcm91z4.cloudfront.net/user_3DMEyv5KQ2ERwEjJebn3NZHtYXd/hf_20260524_032802_4c019861-df9a-4b35-8af3-7b74771f7a65.png',
+  },
+] as const;
+
+export const EDITION_FLATLAY =
+  'https://d8j0ntlcm91z4.cloudfront.net/user_3DMEyv5KQ2ERwEjJebn3NZHtYXd/hf_20260524_032805_a8470eb2-c6c1-406d-9577-a12dd6ef45fc.png';
+
 export const LOCAL_ASSETS = {
   logo:     '/images/zero-give-logo.png',
   london:   '/images/zero-give-london.png',

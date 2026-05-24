@@ -1,8 +1,4 @@
-const QUOTES = [
-  { name: 'CeeDee Lamb', role: 'Wide Receiver · NFL', text: 'They lock my foot in. More power. More control. A different feel through every cut.' },
-  { name: 'Julian Green', role: 'Professional Footballer', text: 'I feel way more stable in my cuts. There is no internal slide — it is just me and the boot.' },
-  { name: 'Saquon Barkley', role: 'Running Back · NFL', text: 'The traction is unreal. A game changer in the rain, on turf, on anything.' },
-];
+import { ATHLETE_PORTRAITS } from '@/lib/assets';
 
 export function Athletes() {
   return (
@@ -44,17 +40,33 @@ export function Athletes() {
           </a>
         </div>
 
-        <ul className="grid md:grid-cols-3 border-t border-rule">
-          {QUOTES.map((q, i) => (
-            <li key={q.name} className="reveal tcard border-r border-rule last:border-r-0 first:border-l-0 border-b" data-delay={String(i + 1)} data-target>
-              <span className="num">Q.{String(i + 1).padStart(2, '0')}</span>
-              <p className="editorial text-[22px] leading-[1.4] text-bone mt-4">&ldquo;{q.text}&rdquo;</p>
-              <div className="mt-10 pt-5 border-t border-rule flex items-center justify-between">
-                <div>
-                  <p className="text-[15px] font-medium tracking-tight">{q.name}</p>
-                  <p className="text-xs text-bone/80 mt-1">{q.role}</p>
+        <ul className="grid md:grid-cols-3 gap-px bg-rule border border-rule">
+          {ATHLETE_PORTRAITS.map((q, i) => (
+            <li
+              key={q.name}
+              className="reveal bg-graphite flex flex-col"
+              data-delay={String(i + 1)}
+              data-target
+            >
+              <div className="relative aspect-[3/4] overflow-hidden bg-ink">
+                <img
+                  src={q.src}
+                  alt={`${q.name}, ${q.role}`}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.03]"
+                />
+                <span className="absolute top-4 left-4 num text-bone/85">Q.{String(i + 1).padStart(2, '0')}</span>
+                <span className="absolute top-4 right-4 num text-bone/75">— ZG-01</span>
+                <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent pointer-events-none" />
+              </div>
+              <div className="p-7 md:p-8 flex-1 flex flex-col">
+                <p className="editorial text-[22px] leading-[1.4] text-bone">&ldquo;{q.text}&rdquo;</p>
+                <div className="mt-auto pt-8 border-t border-rule flex items-center justify-between">
+                  <div>
+                    <p className="text-[15px] font-medium tracking-tight">{q.name}</p>
+                    <p className="text-xs text-bone/80 mt-1">{q.role}</p>
+                  </div>
+                  <span className="num text-bone/70">N°{String(i + 1).padStart(2, '0')}</span>
                 </div>
-                <span className="num">— ZG-01</span>
               </div>
             </li>
           ))}
