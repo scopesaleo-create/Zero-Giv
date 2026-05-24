@@ -7,7 +7,7 @@ const SPECS: [string, string][] = [
   ['Edition', 'ZG-01 · I'],
   ['Cut', 'Crew · low-friction cuff'],
   ['Material', '74% recycled poly · 22% Lycra® · 4% silicone'],
-  ['Sizing', 'XS — XL · half-size friendly'],
+  ['Sizing', 'XS to XL · half-size friendly'],
   ['Colourway', 'Bone / Ink / Signal'],
   ['Release', 'MMXXVI · limited drop'],
 ];
@@ -36,7 +36,7 @@ export function Edition() {
             <span className="reveal editorial block" data-delay="1">engineered three ways.</span>
           </h3>
           <p className="reveal lg:col-span-5 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="2">
-            Cuff, ankle, sole — three faces of the same piece of engineering.
+            Cuff, ankle, sole: three faces of the same piece of engineering.
             The first edition ships in bone, the next two colourways follow
             the season.
           </p>
@@ -98,7 +98,7 @@ export function Edition() {
                   </div>
                   <div className="text-right">
                     <p className="display text-[28px] md:text-[34px] tracking-tightest leading-none">{t.price}</p>
-                    {t.highlight && <p className="num text-signal mt-2">— Most chosen</p>}
+                    {t.highlight && <p className="num text-signal mt-2">Most chosen</p>}
                   </div>
                 </li>
               ))}

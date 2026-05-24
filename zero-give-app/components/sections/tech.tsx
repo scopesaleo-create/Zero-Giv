@@ -18,7 +18,7 @@ export function Tech() {
             <span className="id">N° 02</span>
             <h2 className="display text-4xl md:text-5xl lg:text-6xl tracking-tightest">Technology.</h2>
           </div>
-          <span className="num hidden md:inline">PivotCore™ — directional grip system</span>
+          <span className="num hidden md:inline">PivotCore™ · directional grip system</span>
         </header>
 
         <div className="grid lg:grid-cols-12 gap-16 items-start">
@@ -28,7 +28,7 @@ export function Tech() {
               <span className="reveal editorial block" data-delay="1">a grip system.</span>
             </h3>
             <p className="reveal mt-10 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="2">
-              Three zones of directional silicone are knit into the inner sole. They lock the foot to the boot in the directions force actually wants to travel — and let it breathe in the directions it doesn&apos;t.
+              Three zones of directional silicone are knit into the inner sole. They lock the foot to the boot in the directions force actually wants to travel, and let it breathe in the directions it doesn&apos;t.
             </p>
 
             <figure

@@ -24,7 +24,7 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.55;
-  font-feature-settings: 'ss01', 'cv11';
+  font-feature-settings: 'ss01', 'cv11', 'ss03';
   overflow-x: hidden;
   cursor: none;
   -webkit-font-smoothing: antialiased;
@@ -35,6 +35,30 @@ body {
   body { cursor: auto; }
   .c-dot, .c-ring { display: none !important; }
 }
+
+/* Tabular figures wherever numbers carry meaning (stats, prices, counters). */
+.num, [data-counter], .tnum, .display {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum', 'cv11';
+}
+
+/* Honor the user's motion preference. Keep opacity transitions for clarity
+   but kill all transforms and parallax so the page stops moving. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 120ms !important;
+    transition-property: opacity, color, background-color, border-color !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { transform: none !important; opacity: 1 !important; }
+  .stage-inner, .marquee, .marquee-text { transform: none !important; animation: none !important; }
+}
+
+/* Press feedback on every interactive surface. */
+button, .btn, a.btn, .comp-card { transition: transform 160ms var(--ease-out); }
+button:active, .btn:active, .comp-card:active { transform: scale(0.97); }
 
 ::selection { background: var(--signal); color: var(--ink); }
 

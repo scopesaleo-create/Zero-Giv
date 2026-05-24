@@ -35,6 +35,9 @@ export const ATHLETE_PORTRAITS = [
 export const EDITION_FLATLAY =
   'https://d8j0ntlcm91z4.cloudfront.net/user_3DMEyv5KQ2ERwEjJebn3NZHtYXd/hf_20260524_032805_a8470eb2-c6c1-406d-9577-a12dd6ef45fc.png';
 
+export const FEATURE_HOLD =
+  'https://d8j0ntlcm91z4.cloudfront.net/user_3DMEyv5KQ2ERwEjJebn3NZHtYXd/hf_20260524_152012_87149e5d-a58d-4528-8aed-208a2656ac2b.png';
+
 export const LOCAL_ASSETS = {
   logo:     '/images/zero-give-logo.png',
   london:   '/images/zero-give-london.png',

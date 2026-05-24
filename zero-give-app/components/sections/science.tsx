@@ -15,7 +15,7 @@ export function Science() {
             <span className="id">N° 01</span>
             <h2 className="display text-4xl md:text-5xl lg:text-6xl tracking-tightest">Premise.</h2>
           </div>
-          <span className="num hidden md:inline">A short read — three pages</span>
+          <span className="num hidden md:inline">A short read · three pages</span>
         </header>
 
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">

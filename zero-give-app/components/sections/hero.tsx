@@ -84,12 +84,12 @@ export function HeroSock() {
   const detail = focus !== 'hero' ? COMPONENT_META[focus] : null;
 
   return (
-    <section ref={sectionRef} id="hero" className="relative min-h-screen overflow-hidden bg-ink">
+    <section ref={sectionRef} id="hero" className="relative min-h-[100dvh] overflow-hidden bg-ink">
       <div className="hero-backdrop">
         <BackgroundPathsLayer />
       </div>
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-14 pt-36 pb-24 min-h-screen flex flex-col">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-14 pt-36 pb-24 min-h-[100dvh] flex flex-col">
         {/* top meta line */}
         <div className="reveal flex items-center justify-between gap-6 pb-8 border-b border-rule">
           <span className="num text-bone">N°&nbsp;01 / Field-grip system</span>
@@ -116,7 +116,7 @@ export function HeroSock() {
               <BlurText text="you love." className="block" delay={0.6} />
             </h1>
             <p className="reveal mt-10 text-bone text-[17px] leading-[1.7] max-w-md font-medium" data-delay="4">
-              A biomechanical grip system worn under the boot. Foot stays planted, force stays forward, the boot stays welded to you — for the entire ninety.
+              A biomechanical grip system worn under the boot. Foot stays planted, force stays forward, the boot stays welded to you, for the entire ninety.
             </p>
             <div className="reveal mt-12 flex flex-wrap gap-3 items-center" data-delay="5">
               <a href="#cta" className="btn btn-primary">Reserve a pair <span className="arr">→</span></a>
@@ -213,7 +213,7 @@ export function HeroSock() {
 
         <div className="mt-auto pt-10 border-t border-rule flex items-center justify-between gap-6">
           <span className="num text-bone">Scroll → explore the system</span>
-          <span className="num text-bone hidden md:block">A1 · A2 · A3 — hover the diagram</span>
+          <span className="num text-bone hidden md:block">A1 · A2 · A3 · hover the diagram</span>
           <span className="num text-bone">05 chapters</span>
         </div>
       </div>

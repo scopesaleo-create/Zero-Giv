@@ -43,7 +43,7 @@ export function Performance() {
             <span className="reveal editorial block" data-delay="1">game speed.</span>
           </h3>
           <p className="reveal lg:col-span-5 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="2">
-            We tested ZG-01 in real intensity — boots full of sweat, legs full of acid, surfaces that turn against you. The grip held its shape from minute zero to the end of stoppage.
+            We tested ZG-01 in real intensity: boots full of sweat, legs full of acid, surfaces that turn against you. The grip held its shape from minute zero to the end of stoppage.
           </p>
         </div>
 

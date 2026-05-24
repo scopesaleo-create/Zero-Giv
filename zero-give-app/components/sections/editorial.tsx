@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { MODEL_IMAGES } from '@/lib/assets';
+import { MODEL_IMAGES, FEATURE_HOLD } from '@/lib/assets';
 
 // Editorial campaign gallery — generated model imagery rendered in a
 // magazine-grid layout. The four shots step from product → street → match
@@ -57,10 +57,37 @@ export function Editorial() {
             <span className="reveal editorial block" data-delay="1">for the loudest minutes.</span>
           </h3>
           <p className="reveal lg:col-span-5 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="2">
-            A photographic study of Zero Give in its environment — under boot,
+            A photographic study of Zero Give in its environment: under boot,
             on street, through the cut. Four frames, one piece of engineering.
           </p>
         </div>
+
+        {/* Single editorial spread: image right, oversize quote left.
+            Uses the hand-held feature shot whose left third is intentional
+            negative space, anchoring the inline display headline. */}
+        <figure
+          className="reveal relative overflow-hidden border border-rule bg-graphite mb-12 aspect-[16/9]"
+          data-target
+        >
+          <img
+            src={FEATURE_HOLD}
+            alt="Zero Give sock held to camera, monogram and grip pattern visible."
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/40 to-transparent" />
+          <figcaption className="absolute inset-y-0 left-0 w-full md:w-[55%] p-8 md:p-14 flex flex-col justify-center">
+            <span className="eyebrow mb-6">Spread 01 · the inch you don&apos;t see</span>
+            <p className="display text-[44px] md:text-[64px] lg:text-[80px] tracking-tightest leading-[0.95] text-bone">
+              Built for the inch
+              <br />
+              <span className="editorial text-bone/95">you don&apos;t see.</span>
+            </p>
+            <p className="text-bone/85 mt-6 max-w-md leading-[1.65] text-[15px]">
+              The grip lives under the boot, in the millimetre between sock
+              and insole. Invisible until the moment it isn&apos;t.
+            </p>
+          </figcaption>
+        </figure>
 
         <div className="relative mb-12 -mx-8 lg:-mx-14 overflow-hidden border-y border-rule py-8 md:py-10 bg-ink mask-fade">
           <div className="marquee whitespace-nowrap text-bone flex items-center gap-12">
@@ -68,7 +95,7 @@ export function Editorial() {
               <span key={n} className="flex items-center gap-12 shrink-0">
                 <span className="display text-[64px] md:text-[120px] tracking-tightest leading-none">Zero</span>
                 <span className="editorial text-[64px] md:text-[120px] tracking-tightest leading-none text-bone/80">give</span>
-                <span className="num text-bone/60">— Edition I —</span>
+                <span className="num text-bone/60">· Edition I ·</span>
               </span>
             ))}
           </div>
