@@ -62,6 +62,18 @@ export function Editorial() {
           </p>
         </div>
 
+        <div className="relative mb-12 -mx-8 lg:-mx-14 overflow-hidden border-y border-rule py-8 md:py-10 bg-ink mask-fade">
+          <div className="marquee whitespace-nowrap text-bone flex items-center gap-12">
+            {Array.from({ length: 6 }).map((_, n) => (
+              <span key={n} className="flex items-center gap-12 shrink-0">
+                <span className="display text-[64px] md:text-[120px] tracking-tightest leading-none">Zero</span>
+                <span className="editorial text-[64px] md:text-[120px] tracking-tightest leading-none text-bone/80">give</span>
+                <span className="num text-bone/60">— Edition I —</span>
+              </span>
+            ))}
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-12 gap-4 md:gap-6">
           {FRAMES.map((f, i) => (
             <figure

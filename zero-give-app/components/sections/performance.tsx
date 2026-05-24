@@ -1,3 +1,5 @@
+import { MODEL_IMAGES } from '@/lib/assets';
+
 const STATS = [
   { label: 'Heel slip', to: 38, suffix: '%', sub: 'vs. standard sock' },
   { label: 'Energy transfer', to: 24, suffix: '%', sub: 'more force into push-off' },
@@ -16,6 +18,24 @@ export function Performance() {
           </div>
           <span className="num hidden md:inline">Tested over 9,000 match minutes</span>
         </header>
+
+        <figure className="reveal relative mb-20 overflow-hidden border border-rule aspect-[16/9] bg-graphite" data-target>
+          <img
+            src={MODEL_IMAGES.stadium}
+            alt="Athlete sprinting under floodlights wearing Zero Give."
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-ink/40" />
+          <figcaption className="absolute inset-0 p-8 md:p-12 flex flex-col justify-between">
+            <span className="num text-bone/85">Lab → Pitch · MMXXVI</span>
+            <div className="flex items-end justify-between gap-6">
+              <p className="display text-[28px] md:text-[44px] tracking-tightest leading-[0.95] text-bone max-w-2xl">
+                Nine thousand minutes of stoppage time.
+              </p>
+              <span className="num text-bone/75 hidden md:inline">ZG-01</span>
+            </div>
+          </figcaption>
+        </figure>
 
         <div className="grid lg:grid-cols-12 gap-12 items-end mb-16">
           <h3 className="lg:col-span-7 display text-[64px] md:text-[88px] lg:text-[112px] tracking-tightest leading-[0.92]">

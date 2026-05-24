@@ -1,3 +1,5 @@
+import { MODEL_IMAGES } from '@/lib/assets';
+
 export function Science() {
   const items = [
     { num: '01', title: 'Sprint', body: 'Heel lift and slippage rob the first three metres of an acceleration. The window where games are won.' },
@@ -16,7 +18,7 @@ export function Science() {
           <span className="num hidden md:inline">A short read — three pages</span>
         </header>
 
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           <div className="lg:col-span-5">
             <h3 className="display text-[64px] md:text-[88px] lg:text-[112px] tracking-tightest leading-[0.92]">
               <span className="reveal block">Every</span>
@@ -31,14 +33,31 @@ export function Science() {
             </a>
           </div>
 
-          <ol className="lg:col-span-7 divide-y divide-rule border-t border-b border-rule">
+          <figure
+            className="reveal lg:col-span-3 relative overflow-hidden border border-rule bg-graphite aspect-[3/4]"
+            data-delay="2"
+            data-target
+          >
+            <img
+              src={MODEL_IMAGES.portrait}
+              alt="Athlete lacing a boot over a Zero Give sock."
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent" />
+            <figcaption className="absolute left-4 bottom-4 right-4 flex items-end justify-between gap-3">
+              <span className="num text-bone/85">Fig. 01.A</span>
+              <span className="num text-bone/85">Pre-match</span>
+            </figcaption>
+          </figure>
+
+          <ol className="lg:col-span-4 divide-y divide-rule border-t border-b border-rule">
             {items.map((c, i) => (
-              <li key={c.num} className="reveal grid grid-cols-12 gap-6 py-10" data-delay={String(i + 1)} data-target>
+              <li key={c.num} className="reveal grid grid-cols-12 gap-4 py-8" data-delay={String(i + 1)} data-target>
                 <div className="col-span-2 num">{c.num}</div>
-                <div className="col-span-10 md:col-span-3">
+                <div className="col-span-10">
                   <h4 className="display text-2xl tracking-tightest">{c.title}</h4>
+                  <p className="text-bone/85 leading-[1.65] text-[14.5px] mt-3">{c.body}</p>
                 </div>
-                <p className="col-span-12 md:col-span-7 text-bone/90 leading-[1.7] text-[15px]">{c.body}</p>
               </li>
             ))}
           </ol>
