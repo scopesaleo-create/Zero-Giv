@@ -16,6 +16,24 @@ export function Athletes() {
           <span className="num hidden md:inline">In the words of those who compete</span>
         </header>
 
+        <figure className="reveal relative overflow-hidden border border-rule mb-20 aspect-[21/9] bg-ink" data-target>
+          <img
+            src="/images/zero-give-london.png"
+            alt="Zero Give athletes presenting ZG-01 in London."
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent" />
+          <figcaption className="absolute inset-x-0 bottom-0 p-8 md:p-12 flex items-end justify-between gap-6">
+            <div>
+              <span className="num text-bone/85">Field test · London</span>
+              <p className="display text-[28px] md:text-[44px] tracking-tightest leading-[0.95] mt-3 text-bone max-w-2xl">
+                Carried out under stadium lights, on wet stone, after ninety.
+              </p>
+            </div>
+            <span className="num text-bone/75 hidden md:inline">ZG-01 · Edition I</span>
+          </figcaption>
+        </figure>
+
         <div className="flex items-end justify-between flex-wrap gap-6 mb-16">
           <h3 className="display text-[56px] md:text-[80px] lg:text-[104px] tracking-tightest leading-[0.94]">
             <span className="reveal block">Trusted by</span>

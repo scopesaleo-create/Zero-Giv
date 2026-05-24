@@ -149,8 +149,8 @@ export function HeroSock() {
                   <video
                     ref={videoRef}
                     className={cn('stage-model', focus !== 'hero' && 'is-focused')}
-                    src="/videos/sock-model.mp4"
-                    poster="/videos/sock-model-poster.jpg"
+                    src="/media/zero-give-360.mp4"
+                    poster="/images/zero-give-london.png"
                     autoPlay
                     loop
                     muted

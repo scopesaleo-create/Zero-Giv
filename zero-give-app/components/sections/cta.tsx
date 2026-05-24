@@ -1,13 +1,26 @@
 'use client';
 
 import { useState } from 'react';
+import { MODEL_IMAGES } from '@/lib/assets';
 
 export function CTA() {
   const [done, setDone] = useState(false);
 
   return (
     <section id="cta" className="section bg-ink relative overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-8 lg:px-14">
+      {/* product specimen bleed-through, anchored to the right edge */}
+      <div
+        aria-hidden
+        className="absolute -right-32 top-24 w-[680px] h-[680px] hidden lg:block pointer-events-none opacity-[0.18] mix-blend-screen"
+        style={{
+          backgroundImage: `url(${MODEL_IMAGES.product})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          maskImage: 'radial-gradient(circle at center, #000 35%, transparent 70%)',
+          WebkitMaskImage: 'radial-gradient(circle at center, #000 35%, transparent 70%)',
+        }}
+      />
+      <div className="relative max-w-[1400px] mx-auto px-8 lg:px-14">
         <header className="section-head">
           <div className="flex items-baseline gap-6">
             <span className="id">N° 06</span>
