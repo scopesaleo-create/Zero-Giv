@@ -1,5 +1,3 @@
-import { MODEL_IMAGES } from '@/lib/assets';
-
 export function Tech() {
   const specs: [string, string][] = [
     ['Yarn', 'Recycled poly · Lycra®'],
@@ -30,23 +28,6 @@ export function Tech() {
             <p className="reveal mt-10 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="2">
               Three zones of directional silicone are knit into the inner sole. They lock the foot to the boot in the directions force actually wants to travel, and let it breathe in the directions it doesn&apos;t.
             </p>
-
-            <figure
-              className="reveal relative mt-12 overflow-hidden border border-rule aspect-[3/2] bg-ink"
-              data-delay="3"
-              data-target
-            >
-              <img
-                src={MODEL_IMAGES.stillLife}
-                alt="Macro still life of a Zero Give sock with kit and tools."
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
-              <figcaption className="absolute left-4 bottom-4 right-4 flex items-end justify-between gap-3">
-                <span className="num text-bone/85">Fig. 02.B · Specimen</span>
-                <span className="num text-bone/85">ZG-01</span>
-              </figcaption>
-            </figure>
           </div>
 
           <div className="lg:col-span-7">

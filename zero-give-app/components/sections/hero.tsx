@@ -33,12 +33,14 @@ export function HeroSock() {
 
   // ease the rotation speed when a component is focused
   useEffect(() => {
-    if (videoRef.current) videoRef.current.playbackRate = focus === 'hero' ? 0.7 : 0.32;
+    if (videoRef.current) videoRef.current.playbackRate = focus === 'hero' ? 1.0 : 0.45;
   }, [focus]);
 
   // 3D spatial scroll zoom: while the hero section is on screen, push the sock
   // forward (z-translate) and slightly upward as the user scrolls past it.
-  // Copy fades and lifts in counter-direction for parallax depth.
+  // Copy only begins to lift + fade once we've actually started scrolling
+  // past the hero — otherwise the left column renders semi-transparent on
+  // first paint (the old `passed/total` formula started at ~0.5).
   useEffect(() => {
     const section = sectionRef.current;
     const stage = stageInnerRef.current;
@@ -49,22 +51,25 @@ export function HeroSock() {
     const update = () => {
       const r = section.getBoundingClientRect();
       const vh = window.innerHeight;
-      // 0 when section just enters from bottom, 1 when fully scrolled past top
+
+      // sock 3D effect — keeps the prior "passed/total" curve so the stage
+      // still drifts forward through the whole pass.
       const total = r.height + vh;
       const passed = Math.min(total, Math.max(0, vh - r.top));
-      const p = passed / total; // 0..1
-
-      // sock: subtle scale up + push forward in z + tiny vertical lift
+      const p = passed / total;
       const scale = 1 + p * 0.22;
-      const tz = p * 220; // px forward
+      const tz = p * 220;
       const ty = -p * 80;
-      const rot = p * -4; // gentle rotateX for depth tilt
+      const rot = p * -4;
       stage.style.transform = `translate3d(0, ${ty}px, ${tz}px) rotateX(${rot}deg) scale(${scale})`;
 
-      // copy: lift up and fade out as we leave
+      // copy: stays fully bold until the hero begins to scroll off the top.
       if (copy) {
-        const ct = -p * 60;
-        const alpha = Math.max(0, 1 - p * 1.4);
+        const scrolledPast = Math.max(0, -r.top);
+        const fadeStart = vh * 0.35;
+        const fadeRange = vh * 0.45;
+        const alpha = Math.max(0, Math.min(1, 1 - (scrolledPast - fadeStart) / fadeRange));
+        const ct = -Math.min(scrolledPast * 0.18, 80);
         copy.style.transform = `translate3d(0, ${ct}px, 0)`;
         copy.style.opacity = String(alpha);
       }
@@ -93,7 +98,7 @@ export function HeroSock() {
         {/* top meta line */}
         <div className="reveal flex items-center justify-between gap-6 pb-8 border-b border-rule">
           <span className="num text-bone">N°&nbsp;01 / Field-grip system</span>
-          <span className="num text-bone hidden md:block">Made for &mdash; the modern game</span>
+          <span className="num text-bone hidden md:block">Made for the modern game</span>
           <span className="num text-bone">Edition · MMXXVI</span>
         </div>
 
@@ -150,12 +155,11 @@ export function HeroSock() {
                     ref={videoRef}
                     className={cn('stage-model', focus !== 'hero' && 'is-focused')}
                     src="/media/zero-give-360.mp4"
-                    poster="/images/zero-give-london.png"
                     autoPlay
                     loop
                     muted
                     playsInline
-                    preload="metadata"
+                    preload="auto"
                   />
                   <div className="stage-grade" aria-hidden />
                 </div>
