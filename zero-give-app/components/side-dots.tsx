@@ -7,7 +7,10 @@ const SECTIONS: { id: string; label: string }[] = [
   { id: 'tech', label: 'Technology' },
   { id: 'spline', label: 'Specimen' },
   { id: 'speed', label: 'Performance' },
+  { id: 'editorial', label: 'Campaign' },
   { id: 'athletes', label: 'Players' },
+  { id: 'edition', label: 'Edition' },
+  { id: 'faq', label: 'Questions' },
   { id: 'cta', label: 'Reserve' },
 ];
 

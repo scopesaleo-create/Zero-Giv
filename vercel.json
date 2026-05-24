@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "cd zero-give-app && npm run build",
+  "installCommand": "cd zero-give-app && npm install",
+  "outputDirectory": "zero-give-app/.next",
+  "framework": "nextjs"
+}

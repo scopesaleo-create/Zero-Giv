@@ -12,7 +12,10 @@ import { Science } from '@/components/sections/science';
 import { Tech } from '@/components/sections/tech';
 import { Spline3D } from '@/components/sections/spline-3d';
 import { Performance } from '@/components/sections/performance';
+import { Editorial } from '@/components/sections/editorial';
 import { Athletes } from '@/components/sections/athletes';
+import { Edition } from '@/components/sections/edition';
+import { Faq } from '@/components/sections/faq';
 import { CTA } from '@/components/sections/cta';
 import { SiteFooter } from '@/components/sections/footer';
 
@@ -31,7 +34,10 @@ export default function Page() {
       <Tech />
       <Spline3D />
       <Performance />
+      <Editorial />
       <Athletes />
+      <Edition />
+      <Faq />
       <CTA />
       <SiteFooter />
 
