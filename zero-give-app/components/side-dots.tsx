@@ -10,6 +10,7 @@ const SECTIONS: { id: string; label: string }[] = [
   { id: 'editorial', label: 'Campaign' },
   { id: 'athletes', label: 'Players' },
   { id: 'edition', label: 'Edition' },
+  { id: 'faq', label: 'Questions' },
   { id: 'cta', label: 'Reserve' },
 ];
 

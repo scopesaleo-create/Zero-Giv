@@ -16,6 +16,7 @@ export function Nav() {
           <a className="nav-link" href="#editorial">Campaign</a>
           <a className="nav-link" href="#athletes">Players</a>
           <a className="nav-link" href="#edition">Edition</a>
+          <a className="nav-link" href="#faq">Questions</a>
         </nav>
         <a href="#cta" className="btn-text">
           Reserve <span className="arr">→</span>

@@ -15,6 +15,7 @@ import { Performance } from '@/components/sections/performance';
 import { Editorial } from '@/components/sections/editorial';
 import { Athletes } from '@/components/sections/athletes';
 import { Edition } from '@/components/sections/edition';
+import { Faq } from '@/components/sections/faq';
 import { CTA } from '@/components/sections/cta';
 import { SiteFooter } from '@/components/sections/footer';
 
@@ -36,6 +37,7 @@ export default function Page() {
       <Editorial />
       <Athletes />
       <Edition />
+      <Faq />
       <CTA />
       <SiteFooter />
 
