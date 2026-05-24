@@ -1,30 +1,15 @@
 import { Logo } from '../logo';
-import { MODEL_IMAGES } from '@/lib/assets';
 
 export function SiteFooter() {
   return (
     <footer className="relative border-t border-rule bg-ink overflow-hidden">
-      {/* atmospheric product wash on the right edge */}
-      <div
-        aria-hidden
-        className="absolute -right-40 -top-20 w-[720px] h-[720px] hidden md:block pointer-events-none opacity-[0.12] mix-blend-screen"
-        style={{
-          backgroundImage: `url(${MODEL_IMAGES.product})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          maskImage: 'radial-gradient(circle at center, #000 40%, transparent 72%)',
-          WebkitMaskImage: 'radial-gradient(circle at center, #000 40%, transparent 72%)',
-        }}
-      />
-
       <div className="relative max-w-[1400px] mx-auto px-8 lg:px-14 pt-24 pb-14">
         <div className="grid md:grid-cols-12 gap-12 pb-16 border-b border-rule">
           <div className="md:col-span-5">
             <p className="eyebrow mb-6">The brand</p>
             <p className="text-bone/85 max-w-sm text-[15px] leading-[1.7]">
               A biomechanical grip system for the modern game. Designed in
-              studio, tested in stoppage time, worn by those who refuse to
-              slip.
+              studio, tested in stoppage time, worn by those who refuse to slip.
             </p>
             <p className="num mt-8">ZG-01 · MMXXVI · Edition I</p>
           </div>
@@ -43,6 +28,7 @@ export function SiteFooter() {
               <li><a className="nav-link" href="#tech">Technology</a></li>
               <li><a className="nav-link" href="#editorial">Campaign</a></li>
               <li><a className="nav-link" href="#athletes">Players</a></li>
+              <li><a className="nav-link" href="#faq">Questions</a></li>
             </ul>
           </div>
           <div className="md:col-span-3">
@@ -55,7 +41,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* the wordmark as architecture — full-bleed lockup */}
+        {/* the wordmark as architecture, full-bleed lockup */}
         <div className="py-16 flex items-center justify-center">
           <Logo className="h-[28vw] max-h-[360px] text-bone/90" />
         </div>

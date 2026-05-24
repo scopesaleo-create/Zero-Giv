@@ -1,41 +1,33 @@
-import Image from 'next/image';
-import { MODEL_IMAGES, FEATURE_HOLD } from '@/lib/assets';
+import { LOCAL_IMAGES } from '@/lib/assets';
 
-// Editorial campaign gallery — generated model imagery rendered in a
-// magazine-grid layout. The four shots step from product → street → match
-// → portrait to mirror the brand narrative.
+// Editorial spread built only from the assets in /public/images.
+// Four frames: wide hero (two-model shot), product double-sock, the
+// London squad moment, and the single sock model close-up. New
+// Higgsfield drops slot in by adding a new key in lib/assets.ts.
 const FRAMES = [
   {
-    src: MODEL_IMAGES.street,
+    src: LOCAL_IMAGES.twoModels,
     label: 'Look 01',
-    title: 'Worn under the boot.',
-    caption: 'London, blue hour. The grip works where you cannot see it.',
-    span: 'lg:col-span-7 lg:row-span-2',
-    aspect: 'aspect-[3/2]',
+    title: 'Two on the pitch.',
+    caption: 'Same grip, same edition, two players writing the same line.',
+    span: 'lg:col-span-12',
+    aspect: 'aspect-[21/9]',
   },
   {
-    src: MODEL_IMAGES.product,
+    src: LOCAL_IMAGES.doubleSocks,
     label: 'Look 02',
+    title: 'Pair, in hand.',
+    caption: 'Cuff, ankle, sole. Three faces, one piece of engineering.',
+    span: 'lg:col-span-7',
+    aspect: 'aspect-[4/3]',
+  },
+  {
+    src: LOCAL_IMAGES.sockModel,
+    label: 'Look 03',
     title: 'The specimen.',
     caption: 'PivotCore™ underside. Concentric grip, directional intent.',
     span: 'lg:col-span-5',
-    aspect: 'aspect-square',
-  },
-  {
-    src: MODEL_IMAGES.cut,
-    label: 'Look 03',
-    title: 'The cut.',
-    caption: 'Plant. Pivot. Push. The angle holds.',
-    span: 'lg:col-span-5',
-    aspect: 'aspect-[3/2]',
-  },
-  {
-    src: MODEL_IMAGES.tunnel,
-    label: 'Look 04',
-    title: 'Tunnel walk.',
-    caption: 'Held up before kickoff. Engineering you can show.',
-    span: 'lg:col-span-12',
-    aspect: 'aspect-[21/9]',
+    aspect: 'aspect-[4/3]',
   },
 ];
 
@@ -58,36 +50,9 @@ export function Editorial() {
           </h3>
           <p className="reveal lg:col-span-5 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="2">
             A photographic study of Zero Give in its environment: under boot,
-            on street, through the cut. Four frames, one piece of engineering.
+            on street, through the cut. Three frames, one piece of engineering.
           </p>
         </div>
-
-        {/* Single editorial spread: image right, oversize quote left.
-            Uses the hand-held feature shot whose left third is intentional
-            negative space, anchoring the inline display headline. */}
-        <figure
-          className="reveal relative overflow-hidden border border-rule bg-graphite mb-12 aspect-[16/9]"
-          data-target
-        >
-          <img
-            src={FEATURE_HOLD}
-            alt="Zero Give sock held to camera, monogram and grip pattern visible."
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/40 to-transparent" />
-          <figcaption className="absolute inset-y-0 left-0 w-full md:w-[55%] p-8 md:p-14 flex flex-col justify-center">
-            <span className="eyebrow mb-6">Spread 01 · the inch you don&apos;t see</span>
-            <p className="display text-[44px] md:text-[64px] lg:text-[80px] tracking-tightest leading-[0.95] text-bone">
-              Built for the inch
-              <br />
-              <span className="editorial text-bone/95">you don&apos;t see.</span>
-            </p>
-            <p className="text-bone/85 mt-6 max-w-md leading-[1.65] text-[15px]">
-              The grip lives under the boot, in the millimetre between sock
-              and insole. Invisible until the moment it isn&apos;t.
-            </p>
-          </figcaption>
-        </figure>
 
         <div className="relative mb-12 -mx-8 lg:-mx-14 overflow-hidden border-y border-rule py-8 md:py-10 bg-ink mask-fade">
           <div className="marquee whitespace-nowrap text-bone flex items-center gap-12">
@@ -109,14 +74,11 @@ export function Editorial() {
               data-delay={String((i % 4) + 1)}
               data-target
             >
-              <Image
+              <img
                 src={f.src}
                 alt={f.title}
-                fill
-                sizes="(min-width: 1024px) 60vw, 100vw"
-                className="object-cover transition-transform ease-out group-hover:scale-[1.03]"
-                style={{ transitionDuration: '1600ms' }}
-                priority={i === 0}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03]"
+                style={{ transition: 'transform 1600ms cubic-bezier(0.16, 1, 0.3, 1)' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent pointer-events-none" />
               <figcaption className="absolute inset-x-0 bottom-0 p-6 md:p-8 flex items-end justify-between gap-6">

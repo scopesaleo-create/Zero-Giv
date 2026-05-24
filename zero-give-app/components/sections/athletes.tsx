@@ -1,4 +1,10 @@
-import { ATHLETE_PORTRAITS } from '@/lib/assets';
+import { LOCAL_IMAGES } from '@/lib/assets';
+
+const QUOTES = [
+  { name: 'Marcus Adeyemi', role: 'Midfielder · ZG-01', text: 'It locks my foot in. More power. More control. A different feel through every cut.' },
+  { name: 'Julian Green',   role: 'Professional Footballer', text: 'I feel way more stable in my cuts. There is no internal slide, it is just me and the boot.' },
+  { name: 'Camila Torres',  role: 'Forward · NWSL', text: 'The traction is unreal. A game changer in the rain, on turf, on anything.' },
+];
 
 export function Athletes() {
   return (
@@ -14,7 +20,7 @@ export function Athletes() {
 
         <figure className="reveal relative overflow-hidden border border-rule mb-20 aspect-[21/9] bg-ink" data-target>
           <img
-            src="/images/zero-give-london.png"
+            src={LOCAL_IMAGES.london}
             alt="Zero Give athletes presenting ZG-01 in London."
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -40,69 +46,60 @@ export function Athletes() {
           </a>
         </div>
 
-        {/* Asymmetric quote layout: one large feature card on the left,
-            two stacked secondary cards on the right. Breaks the 3-equal
-            grid reflex the design skills flag as AI slop. */}
+        {/* Asymmetric quote layout. One feature card on the left with an
+            ember-yellow signal accent on the quote mark; two stacked
+            secondary cards on the right. No portrait images yet — they
+            ship in the next Higgsfield batch. */}
         {(() => {
-          const [feature, ...rest] = ATHLETE_PORTRAITS;
+          const [feature, ...rest] = QUOTES;
           return (
             <div className="grid lg:grid-cols-12 gap-px bg-rule border border-rule">
-              {/* Feature */}
-              <article
-                className="reveal lg:col-span-7 lg:row-span-2 bg-graphite flex flex-col lg:flex-row"
-                data-target
-              >
-                <div className="relative aspect-[4/5] lg:aspect-auto lg:w-3/5 overflow-hidden bg-ink">
-                  <img
-                    src={feature.src}
-                    alt={`${feature.name}, ${feature.role}`}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    style={{ transition: 'transform 1200ms cubic-bezier(0.16, 1, 0.3, 1)' }}
-                  />
-                  <span className="absolute top-4 left-4 num text-bone/85">Q.01 · Feature</span>
-                  <span className="absolute top-4 right-4 num text-bone/75">· ZG-01</span>
-                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/95 via-ink/30 to-transparent pointer-events-none" />
-                </div>
-                <div className="p-8 md:p-10 lg:w-2/5 flex flex-col">
-                  <span className="eyebrow mb-6">Conversation 01</span>
-                  <p className="editorial text-[26px] md:text-[30px] leading-[1.35] text-bone">
-                    &ldquo;{feature.text}&rdquo;
-                  </p>
-                  <div className="mt-auto pt-8 border-t border-rule flex items-center justify-between">
-                    <div>
-                      <p className="text-[16px] font-medium tracking-tight">{feature.name}</p>
-                      <p className="text-xs text-bone/80 mt-1">{feature.role}</p>
-                    </div>
-                    <span className="num text-bone/70">N°01</span>
+              <article className="reveal lg:col-span-7 lg:row-span-2 bg-graphite p-10 md:p-14 flex flex-col justify-between" data-target>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="eyebrow">Conversation 01</span>
+                    <span className="num text-signal">N°01</span>
                   </div>
+                  <p
+                    className="editorial mt-10 leading-[1.2] text-bone"
+                    style={{ fontSize: 'clamp(34px, 4vw, 56px)' }}
+                  >
+                    <span className="text-signal" aria-hidden>&ldquo;</span>
+                    {feature.text}
+                    <span className="text-signal" aria-hidden>&rdquo;</span>
+                  </p>
+                </div>
+                <div className="mt-10 pt-8 border-t border-rule flex items-center justify-between">
+                  <div>
+                    <p className="text-[16px] font-medium tracking-tight">{feature.name}</p>
+                    <p className="text-xs text-bone/80 mt-1">{feature.role}</p>
+                  </div>
+                  <span className="num text-bone/70">ZG-01 · Feature</span>
                 </div>
               </article>
 
-              {/* Secondary stack */}
               {rest.map((q, i) => (
                 <article
                   key={q.name}
-                  className="reveal lg:col-span-5 bg-graphite grid grid-cols-5"
+                  className="reveal lg:col-span-5 bg-graphite p-8 md:p-10 flex flex-col justify-between"
                   data-delay={String(i + 1)}
                   data-target
                 >
-                  <div className="relative col-span-2 aspect-[3/4] overflow-hidden bg-ink">
-                    <img
-                      src={q.src}
-                      alt={`${q.name}, ${q.role}`}
-                      className="absolute inset-0 w-full h-full object-cover"
-                      style={{ transition: 'transform 1200ms cubic-bezier(0.16, 1, 0.3, 1)' }}
-                    />
-                    <span className="absolute top-3 left-3 num text-bone/85">Q.{String(i + 2).padStart(2, '0')}</span>
-                  </div>
-                  <div className="col-span-3 p-6 md:p-8 flex flex-col">
-                    <p className="editorial text-[17px] md:text-[19px] leading-[1.4] text-bone">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="eyebrow">Conversation 0{i + 2}</span>
+                      <span className="num text-bone/70">N°0{i + 2}</span>
+                    </div>
+                    <p className="editorial mt-6 text-[22px] md:text-[26px] leading-[1.35] text-bone">
                       &ldquo;{q.text}&rdquo;
                     </p>
-                    <div className="mt-auto pt-6 border-t border-rule">
-                      <p className="text-[14px] font-medium tracking-tight">{q.name}</p>
+                  </div>
+                  <div className="mt-8 pt-6 border-t border-rule flex items-center justify-between">
+                    <div>
+                      <p className="text-[15px] font-medium tracking-tight">{q.name}</p>
                       <p className="text-xs text-bone/80 mt-1">{q.role}</p>
                     </div>
+                    <span className="num text-bone/65">ZG-01</span>
                   </div>
                 </article>
               ))}

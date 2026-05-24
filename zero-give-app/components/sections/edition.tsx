@@ -1,4 +1,4 @@
-import { EDITION_FLATLAY } from '@/lib/assets';
+import { LOCAL_IMAGES } from '@/lib/assets';
 
 // Edition card section — the closest the site gets to a product detail
 // page. Three-up specs, the flat-lay still life as the visual anchor,
@@ -47,7 +47,7 @@ export function Edition() {
           data-target
         >
           <img
-            src={EDITION_FLATLAY}
+            src={LOCAL_IMAGES.doubleSocks}
             alt="Three Zero Give socks aligned on concrete: cuff, ankle, and sole."
             className="absolute inset-0 w-full h-full object-cover"
           />

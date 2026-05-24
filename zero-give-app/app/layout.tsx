@@ -25,10 +25,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://d8j0ntlcm91z4.cloudfront.net/user_3DMEyv5KQ2ERwEjJebn3NZHtYXd/hf_20260524_030310_4e988cf2-27f4-4534-ba2b-c3d3d6329637.png',
-        width: 1264,
-        height: 848,
-        alt: 'Zero Give · campaign hero, ZG-01.',
+        url: '/images/zg-two-models.png',
+        width: 1920,
+        height: 1080,
+        alt: 'Zero Give · ZG-01 worn on the pitch.',
       },
     ],
   },
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Zero Give · Grip Engineered for the Modern Game',
     description: 'A biomechanical grip system for the modern game.',
-    images: ['https://d8j0ntlcm91z4.cloudfront.net/user_3DMEyv5KQ2ERwEjJebn3NZHtYXd/hf_20260524_030310_4e988cf2-27f4-4534-ba2b-c3d3d6329637.png'],
+    images: ['/images/zg-two-models.png'],
   },
   icons: {
     icon: '/images/zero-give-logo.png',

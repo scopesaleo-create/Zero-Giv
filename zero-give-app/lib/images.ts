@@ -1,11 +1,6 @@
-// AI-generated product hero images. Swap with real product photography when available.
-export const SOCK_IMAGES = {
-  hero: 'https://d8j0ntlcm91z4.cloudfront.net/user_3DsbCcUmbuua7dCJ2lMKxJPaZak/hf_20260518_052445_8d5c346b-c9c3-45ef-a50e-618bef5351b6.png',
-  heel: 'https://d8j0ntlcm91z4.cloudfront.net/user_3DsbCcUmbuua7dCJ2lMKxJPaZak/hf_20260518_052651_3a99b626-2549-439e-b44e-14bd073d1a67.png',
-  grip: 'https://d8j0ntlcm91z4.cloudfront.net/user_3DsbCcUmbuua7dCJ2lMKxJPaZak/hf_20260518_053045_294c9835-abcd-48a8-b6f0-0e1cc816c401.png',
-  toe: 'https://d8j0ntlcm91z4.cloudfront.net/user_3DsbCcUmbuua7dCJ2lMKxJPaZak/hf_20260518_053327_487ea782-5919-48fd-bcd0-0bf6d4dc14cb.png',
-} as const;
-
+// Component-detail metadata for the hero's interactive A1/A2/A3 panels.
+// No image URLs here — the 360 rotation video already on stage supplies
+// the visual; these panels add the engineering callouts on top.
 export type SockFocus = 'hero' | 'heel' | 'grip' | 'toe';
 
 export const COMPONENT_META: Record<Exclude<SockFocus, 'hero'>, { num: string; title: string; subtitle: string; body: string; specs: [string, string][] }> = {

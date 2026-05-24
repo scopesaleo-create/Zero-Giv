@@ -145,7 +145,7 @@ export function Spline3D() {
             >
               <KeyedVideo
                 ref={kvRef}
-                src="/media/zero-give-360.mp4"
+                src="/media/zero-give-action.mp4"
                 preload="metadata"
                 className="vitrine-canvas"
                 keyColor={[255, 255, 255]}
