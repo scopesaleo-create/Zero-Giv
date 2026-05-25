@@ -32,7 +32,7 @@ export function Performance() {
             <div key={s.label} className={`stat ${i < 2 ? 'border-b md:border-b-0' : ''} ${i % 2 === 0 ? 'md:border-r border-rule' : 'md:border-r border-rule'}`}>
               <p className="label text-bone/75">{s.label}</p>
               <p
-                className="display text-[56px] md:text-[80px] text-bone mt-3 tracking-tightest leading-none"
+                className="display text-[56px] md:text-[80px] text-signal mt-3 tracking-tightest leading-none"
                 data-counter
                 data-from="0"
                 data-to={String(s.to)}

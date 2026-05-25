@@ -157,14 +157,16 @@ button:active, .btn:active, .comp-card:active { transform: scale(0.97); }
   text-transform: none;
 }
 .btn-primary {
-  background: var(--bone);
+  background: var(--signal);
   color: var(--ink);
-  border: 1px solid var(--bone);
+  border: 1px solid var(--signal);
+  box-shadow: 0 0 0 1px rgba(214, 255, 61, 0.18), 0 14px 30px -16px rgba(214, 255, 61, 0.35);
 }
 .btn-primary:hover {
-  background: var(--signal);
-  border-color: var(--signal);
+  background: var(--bone);
+  border-color: var(--bone);
   color: var(--ink);
+  box-shadow: 0 14px 30px -16px rgba(237, 232, 223, 0.35);
 }
 .btn-ghost {
   background: transparent;
@@ -209,7 +211,7 @@ button:active, .btn:active, .comp-card:active { transform: scale(0.97); }
   bottom: -6px;
   height: 1px;
   width: 0;
-  background: var(--bone);
+  background: var(--signal);
   transition: width .4s var(--ease-out);
 }
 .nav-link:hover::after { width: 100%; }
@@ -291,7 +293,8 @@ button:active, .btn:active, .comp-card:active { transform: scale(0.97); }
   background: rgba(237, 232, 223, 0.3);
   transition: width .35s var(--ease-out), background .35s;
 }
-.sidedots button.active::after { width: 28px; background: var(--bone); }
+.sidedots button.active { color: var(--signal); }
+.sidedots button.active::after { width: 28px; background: var(--signal); box-shadow: 0 0 8px rgba(214, 255, 61, 0.45); }
 .sidedots .ttl {
   font-family: var(--font-mono), monospace;
   font-size: 10px;
@@ -721,8 +724,9 @@ button:active, .btn:active, .comp-card:active { transform: scale(0.97); }
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: var(--bone);
+  height: 2px;
+  background: var(--signal);
+  box-shadow: 0 0 8px rgba(214, 255, 61, 0.5);
   transform: scaleX(0);
   transform-origin: 0 50%;
   z-index: 100;
@@ -781,7 +785,7 @@ button:active, .btn:active, .comp-card:active { transform: scale(0.97); }
   line-height: 1;
   color: rgba(237, 232, 223, 0.08);
 }
-.marquee-text .accent { color: var(--bone); }
+.marquee-text .accent { color: var(--signal); }
 .marquee-text .dot {
   display: inline-block;
   width: 14px;
@@ -814,7 +818,7 @@ button:active, .btn:active, .comp-card:active { transform: scale(0.97); }
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(237, 232, 223, 0.45);
+  color: var(--signal);
 }
 
 /* ===== Scroll-driven utilities ===== */
