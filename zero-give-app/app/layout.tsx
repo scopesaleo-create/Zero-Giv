@@ -47,6 +47,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} ${display.variable} ${editorial.variable}`}>
+      <head>
+        {/* Preload the hero rotation and Specimen action clips so they
+            start downloading the moment the document parses, instead of
+            after the markup loads — kills the visible delay on the
+            rotating sock at first paint. */}
+        <link rel="preload" as="video" href="/media/zero-give-360.mp4" type="video/mp4" />
+        <link rel="preload" as="video" href="/media/zero-give-action.mp4" type="video/mp4" />
+      </head>
       <body className="bg-ink text-bone selection:bg-signal selection:text-ink antialiased">
         {children}
       </body>

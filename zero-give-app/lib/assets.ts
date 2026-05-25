@@ -7,7 +7,6 @@ export const LOCAL_IMAGES = {
   london:      '/images/zero-give-london.png',
   twoModels:   '/images/zg-two-models.png',
   doubleSocks: '/images/zg-double-socks.png',
-  sockModel:   '/images/sock-model.png',
 
   // New 896 x 1200 (3:4) drops.
   logoMark:    '/images/ZgLogo2.avif',    // alt logo glyph

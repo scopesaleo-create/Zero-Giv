@@ -26,13 +26,12 @@ export function Performance() {
             data-target
           >
             <img
-              src={LOCAL_IMAGES.running1}
-              alt="Athlete sprinting, Zero Give socks visible mid-flight."
+              src={LOCAL_IMAGES.layers}
+              alt="Exploded view of the Zero Give construction: knit, mesh, silicone grip, midsole."
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-ink/60 via-transparent to-transparent" />
             <figcaption className="absolute left-5 right-5 bottom-5 flex items-end justify-between gap-3">
-              <span className="num text-bone/85">Fig. 04.A · sprint</span>
+              <span className="num text-bone/85">Fig. 04.A · layers</span>
               <span className="num text-signal">● live</span>
             </figcaption>
           </figure>

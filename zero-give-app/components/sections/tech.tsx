@@ -29,12 +29,13 @@ export function Tech() {
             data-target
           >
             <img
-              src={LOCAL_IMAGES.layers}
-              alt="Exploded view of the Zero Give construction: knit, mesh, silicone grip, midsole."
+              src={LOCAL_IMAGES.running1}
+              alt="Athlete sprinting, Zero Give socks visible mid-flight."
               className="absolute inset-0 w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
             <figcaption className="absolute left-4 right-4 bottom-4 flex items-end justify-between gap-3">
-              <span className="num text-bone/85">Fig. 02.A · layers</span>
+              <span className="num text-bone/85">Fig. 02.A · in motion</span>
               <span className="num text-signal">ZG-01</span>
             </figcaption>
           </figure>
