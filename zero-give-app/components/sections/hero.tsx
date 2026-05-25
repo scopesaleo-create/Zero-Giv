@@ -94,6 +94,17 @@ export function HeroSock() {
         <BackgroundPathsLayer />
       </div>
 
+      {/* Giant brand watermark: the actual logo PNG bleeding off the
+          left edge at low opacity. Acts as a typographic backbone for
+          the hero, not as a decoration. */}
+      <img
+        src="/images/zero-give-logo.png"
+        alt=""
+        aria-hidden
+        className="hidden md:block absolute -left-[8vw] top-1/2 -translate-y-1/2 h-[110vh] w-auto pointer-events-none select-none"
+        style={{ opacity: 0.05, mixBlendMode: 'screen', filter: 'saturate(0)' }}
+      />
+
       <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-14 pt-36 pb-24 min-h-[100dvh] flex flex-col">
         {/* top meta line */}
         <div className="reveal flex items-center justify-between gap-6 pb-8 border-b border-rule">
@@ -158,6 +169,7 @@ export function HeroSock() {
                     ref={videoRef}
                     className={cn('stage-model', focus !== 'hero' && 'is-focused')}
                     src="/media/zero-give-360.mp4"
+                    poster="/images/sock-model.png"
                     autoPlay
                     loop
                     muted
