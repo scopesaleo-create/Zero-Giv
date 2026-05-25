@@ -1,3 +1,5 @@
+import { LOCAL_IMAGES } from '@/lib/assets';
+
 const STATS = [
   { label: 'Heel slip', to: 38, suffix: '%', sub: 'vs. standard sock' },
   { label: 'Energy transfer', to: 24, suffix: '%', sub: 'more force into push-off' },
@@ -17,14 +19,33 @@ export function Performance() {
           <span className="num hidden md:inline">Tested over 9,000 match minutes</span>
         </header>
 
-        <div className="grid lg:grid-cols-12 gap-12 items-end mb-16">
-          <h3 className="lg:col-span-7 display text-[64px] md:text-[88px] lg:text-[112px] tracking-tightest leading-[0.92]">
-            <span className="reveal block">Built for</span>
-            <span className="reveal editorial block" data-delay="1">game speed.</span>
-          </h3>
-          <p className="reveal lg:col-span-5 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="2">
-            We tested ZG-01 in real intensity: boots full of sweat, legs full of acid, surfaces that turn against you. The grip held its shape from minute zero to the end of stoppage.
-          </p>
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-stretch mb-16">
+          {/* Native 3:4 sprint portrait, presented at its source aspect. */}
+          <figure
+            className="reveal lg:col-span-5 relative overflow-hidden border border-rule bg-ink aspect-[3/4]"
+            data-target
+          >
+            <img
+              src={LOCAL_IMAGES.running1}
+              alt="Athlete sprinting, Zero Give socks visible mid-flight."
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-ink/60 via-transparent to-transparent" />
+            <figcaption className="absolute left-5 right-5 bottom-5 flex items-end justify-between gap-3">
+              <span className="num text-bone/85">Fig. 04.A · sprint</span>
+              <span className="num text-signal">● live</span>
+            </figcaption>
+          </figure>
+
+          <div className="lg:col-span-7 flex flex-col justify-end">
+            <h3 className="display text-[56px] md:text-[80px] lg:text-[104px] tracking-tightest leading-[0.92]">
+              <span className="reveal block">Built for</span>
+              <span className="reveal editorial block text-signal" data-delay="1">game speed.</span>
+            </h3>
+            <p className="reveal mt-8 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="2">
+              We tested ZG-01 in real intensity: boots full of sweat, legs full of acid, surfaces that turn against you. The grip held its shape from minute zero to the end of stoppage.
+            </p>
+          </div>
         </div>
 
         <div className="reveal grid grid-cols-2 md:grid-cols-4 border-y border-rule" data-delay="3">
@@ -53,7 +74,7 @@ export function Performance() {
             { n: '04', t: 'Ninety-minute spec', b: 'The silicone holds its shape at temperature, under sweat, over time.' },
           ].map((t) => (
             <li key={t.n} className="ftile">
-              <span className="num">{t.n}</span>
+              <span className="num text-signal">{t.n}</span>
               <h4 className="display text-xl mt-3 tracking-tightest">{t.t}</h4>
               <p className="text-sm text-bone/85 mt-3 leading-[1.65]">{t.b}</p>
             </li>

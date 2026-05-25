@@ -21,7 +21,10 @@ export function Intro() {
   if (!shown || hidden) return null;
   return (
     <div className="intro" aria-hidden>
-      <Logo className="intro-mark" />
+      <div className="intro-stack">
+        <img src="/images/ZgLogo2.avif" alt="" className="intro-glyph" aria-hidden />
+        <Logo className="intro-mark" />
+      </div>
       <span className="intro-meta">N° 01 · MMXXVI</span>
       <span className="intro-meta right">Grip · The Game · You Love</span>
     </div>

@@ -18,23 +18,51 @@ export function Athletes() {
           <span className="num hidden md:inline">In the words of those who compete</span>
         </header>
 
-        <figure className="reveal relative overflow-hidden border border-rule mb-20 aspect-[21/9] bg-ink" data-target>
-          <img
-            src={LOCAL_IMAGES.london}
-            alt="Zero Give athletes presenting ZG-01 in London."
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent" />
-          <figcaption className="absolute inset-x-0 bottom-0 p-8 md:p-12 flex items-end justify-between gap-6">
+        {/* The London squad shot, now in its native 3:4 portrait. We pair
+            it with display copy in a side-by-side that respects the
+            original aspect ratio so the image isn't cropped to a banner. */}
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 mb-20 items-stretch">
+          <figure
+            className="reveal relative lg:col-span-5 overflow-hidden border border-rule bg-ink aspect-[3/4]"
+            data-target
+          >
+            <img
+              src={LOCAL_IMAGES.inAction1}
+              alt="Zero Give athletes presenting ZG-01 with Big Ben in the background."
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
+            <figcaption className="absolute left-5 right-5 bottom-5 flex items-end justify-between gap-4">
+              <span className="num text-bone/85">London · MMXXVI</span>
+              <span className="num text-signal">● ZG-01</span>
+            </figcaption>
+          </figure>
+
+          <div className="reveal lg:col-span-7 flex flex-col justify-between border border-rule bg-graphite p-8 md:p-12" data-target>
             <div>
-              <span className="num text-bone/85">Field test · London</span>
-              <p className="display text-[28px] md:text-[44px] tracking-tightest leading-[0.95] mt-3 text-bone max-w-2xl">
-                Carried out under stadium lights, on wet stone, after ninety.
+              <p className="eyebrow mb-6">Field test 01</p>
+              <p className="display text-[34px] md:text-[52px] lg:text-[64px] tracking-tightest leading-[0.95]">
+                Carried out under stadium lights,
+                <br />
+                <span className="editorial text-signal">on wet stone, after ninety.</span>
               </p>
             </div>
-            <span className="num text-bone/75 hidden md:inline">ZG-01 · Edition I</span>
-          </figcaption>
-        </figure>
+            <div className="mt-10 pt-8 border-t border-rule grid sm:grid-cols-3 gap-6">
+              <div>
+                <p className="label text-bone/75">Conditions</p>
+                <p className="text-sm text-bone/85 mt-2">Wet asphalt, 7°C</p>
+              </div>
+              <div>
+                <p className="label text-bone/75">Squad</p>
+                <p className="text-sm text-bone/85 mt-2">Six players, two halves</p>
+              </div>
+              <div>
+                <p className="label text-bone/75">Result</p>
+                <p className="text-sm text-bone/85 mt-2">Zero internal slip</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="flex items-end justify-between flex-wrap gap-6 mb-16">
           <h3 className="display text-[56px] md:text-[80px] lg:text-[104px] tracking-tightest leading-[0.94]">

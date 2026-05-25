@@ -1,9 +1,8 @@
 import { LOCAL_IMAGES } from '@/lib/assets';
 
 // Editorial spread built only from the assets in /public/images.
-// Four frames: wide hero (two-model shot), product double-sock, the
-// London squad moment, and the single sock model close-up. New
-// Higgsfield drops slot in by adding a new key in lib/assets.ts.
+// Five frames at mixed native aspect ratios — every image renders at
+// or near its source dimensions so nothing is cropped.
 const FRAMES = [
   {
     src: LOCAL_IMAGES.twoModels,
@@ -11,11 +10,19 @@ const FRAMES = [
     title: 'Two on the pitch.',
     caption: 'Same grip, same edition, two players writing the same line.',
     span: 'lg:col-span-12',
-    aspect: 'aspect-[21/9]',
+    aspect: 'aspect-[16/9]',
+  },
+  {
+    src: LOCAL_IMAGES.action2,
+    label: 'Look 02',
+    title: 'Court after dark.',
+    caption: 'Cage, concrete, ZG-01. The grip travels.',
+    span: 'lg:col-span-5',
+    aspect: 'aspect-[3/4]',
   },
   {
     src: LOCAL_IMAGES.doubleSocks,
-    label: 'Look 02',
+    label: 'Look 03',
     title: 'Pair, in hand.',
     caption: 'Cuff, ankle, sole. Three faces, one piece of engineering.',
     span: 'lg:col-span-7',
@@ -23,11 +30,11 @@ const FRAMES = [
   },
   {
     src: LOCAL_IMAGES.sockModel,
-    label: 'Look 03',
+    label: 'Look 04',
     title: 'The specimen.',
     caption: 'PivotCore™ underside. Concentric grip, directional intent.',
-    span: 'lg:col-span-5',
-    aspect: 'aspect-[4/3]',
+    span: 'lg:col-span-12',
+    aspect: 'aspect-[16/9]',
   },
 ];
 
@@ -50,7 +57,7 @@ export function Editorial() {
           </h3>
           <p className="reveal lg:col-span-5 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="2">
             A photographic study of Zero Give in its environment: under boot,
-            on street, through the cut. Three frames, one piece of engineering.
+            on street, through the cut. Four frames, one piece of engineering.
           </p>
         </div>
 

@@ -1,3 +1,5 @@
+import { LOCAL_IMAGES } from '@/lib/assets';
+
 export function Tech() {
   const specs: [string, string][] = [
     ['Yarn', 'Recycled poly · Lycra®'],
@@ -19,35 +21,50 @@ export function Tech() {
           <span className="num hidden md:inline">PivotCore™ · directional grip system</span>
         </header>
 
-        <div className="grid lg:grid-cols-12 gap-16 items-start">
-          <div className="lg:col-span-5">
-            <h3 className="display text-[56px] md:text-[80px] tracking-tightest leading-[0.95]">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Native 3:4 technical diagram — the exploded layered view fits
+              its source dimensions exactly, no cropping. */}
+          <figure
+            className="reveal lg:col-span-4 relative overflow-hidden border border-rule bg-ink aspect-[3/4]"
+            data-target
+          >
+            <img
+              src={LOCAL_IMAGES.layers}
+              alt="Exploded view of the Zero Give construction: knit, mesh, silicone grip, midsole."
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <figcaption className="absolute left-4 right-4 bottom-4 flex items-end justify-between gap-3">
+              <span className="num text-bone/85">Fig. 02.A · layers</span>
+              <span className="num text-signal">ZG-01</span>
+            </figcaption>
+          </figure>
+
+          <div className="lg:col-span-8">
+            <h3 className="display text-[52px] md:text-[72px] lg:text-[88px] tracking-tightest leading-[0.95]">
               <span className="reveal block">PivotCore™</span>
-              <span className="reveal editorial block" data-delay="1">a grip system.</span>
+              <span className="reveal editorial block text-signal" data-delay="1">a grip system.</span>
             </h3>
-            <p className="reveal mt-10 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="2">
+            <p className="reveal mt-8 text-bone/90 text-[17px] leading-[1.7] max-w-2xl" data-delay="2">
               Three zones of directional silicone are knit into the inner sole. They lock the foot to the boot in the directions force actually wants to travel, and let it breathe in the directions it doesn&apos;t.
             </p>
-          </div>
 
-          <div className="lg:col-span-7">
-            <dl className="grid grid-cols-2 border-t border-l border-rule">
-              {specs.map(([k, v], i) => (
-                <div key={k} className="reveal border-b border-r border-rule p-8" data-delay={String((i % 3) + 1)}>
+            <dl className="reveal grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-rule mt-10" data-delay="3">
+              {specs.map(([k, v]) => (
+                <div key={k} className="border-b border-r border-rule p-6">
                   <dt className="label text-bone/75">{k}</dt>
-                  <dd className="text-base text-bone mt-3">{v}</dd>
+                  <dd className="text-sm text-bone mt-2.5">{v}</dd>
                 </div>
               ))}
             </dl>
 
-            <div className="reveal mt-10 grid grid-cols-3 gap-6" data-delay="3">
+            <div className="reveal mt-8 grid grid-cols-3 gap-6" data-delay="4">
               {[
                 { n: '01', t: 'Anchor', d: 'Heel-locked architecture eliminates lift.' },
                 { n: '02', t: 'Rotate', d: 'Concentric grip controls pivot to ±92°.' },
                 { n: '03', t: 'Release', d: 'Compression returns force into push-off.' },
               ].map((p) => (
                 <div key={p.n} className="border-t border-rule pt-4">
-                  <span className="num">{p.n}</span>
+                  <span className="num text-signal">{p.n}</span>
                   <h4 className="display text-xl tracking-tightest mt-2">{p.t}</h4>
                   <p className="text-sm text-bone/85 mt-2 leading-[1.6]">{p.d}</p>
                 </div>
