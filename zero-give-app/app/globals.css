@@ -375,9 +375,9 @@ button:active, .btn:active, .comp-card:active { transform: scale(0.97); }
   object-fit: contain;
   mix-blend-mode: screen;
   transform: scale(1.62);
-  transition: filter 1s var(--ease-out), transform 1.4s var(--ease-out), opacity .2s linear;
-  /* darker, more natural grade — reads as a lit object, not a bright cut-out */
+  transition: filter 1s var(--ease-out), transform 1.4s var(--ease-out), opacity 60ms linear;
   filter: contrast(1.06) brightness(0.9) saturate(1.02);
+  background: var(--ink);
 }
 .stage-model.is-focused {
   filter: contrast(1.08) brightness(0.78) saturate(0.98);
@@ -886,7 +886,7 @@ button:active, .btn:active, .comp-card:active { transform: scale(0.97); }
 }
 .intro-mark {
   color: var(--bone);
-  height: 64px;
+  height: 140px;
   width: auto;
   opacity: 0;
   transform: translateY(12px);
@@ -896,15 +896,19 @@ button:active, .btn:active, .comp-card:active { transform: scale(0.97); }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
 }
 .intro-glyph {
-  height: 40px;
+  height: 72px;
   width: auto;
   opacity: 0;
   transform: translateY(12px);
   animation: intro-mark-in .9s var(--ease-out) .15s forwards;
-  filter: drop-shadow(0 0 12px rgba(214, 255, 61, 0.25));
+  filter: drop-shadow(0 0 18px rgba(214, 255, 61, 0.35));
+}
+@media (min-width: 768px) {
+  .intro-mark { height: 200px; }
+  .intro-glyph { height: 96px; }
 }
 .intro-meta {
   position: absolute;
