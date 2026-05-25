@@ -107,7 +107,10 @@ export function HeroSock() {
           <div ref={copyRef} className="lg:col-span-5 will-change-transform">
             <div className="reveal">
               <span className="glass inline-flex items-center gap-3 rounded-full pl-1.5 pr-4 py-1.5">
-                <span className="bg-bone text-ink rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase">
+                <span
+                  className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase"
+                  style={{ background: 'var(--signal)', color: 'var(--ink)' }}
+                >
                   Edition I
                 </span>
                 <span className="text-[11px] text-bone/90 font-mono tracking-widest uppercase">
@@ -117,7 +120,7 @@ export function HeroSock() {
             </div>
             <h1 className="display text-[14vw] md:text-[10vw] lg:text-[7vw] mt-10 tracking-tightest leading-[0.92]">
               <BlurText text="Grip the" className="block" delay={0.15} />
-              <BlurText text="game" className="editorial block text-bone" delay={0.4} />
+              <BlurText text="game" className="editorial block text-signal" delay={0.4} />
               <BlurText text="you love." className="block" delay={0.6} />
             </h1>
             <p className="reveal mt-10 text-bone text-[17px] leading-[1.7] max-w-md font-medium" data-delay="4">
@@ -135,7 +138,7 @@ export function HeroSock() {
                 { v: '+24%', l: 'More force into every push-off' },
               ].map((s) => (
                 <div key={s.v} className="glass rounded-2xl px-6 py-5 w-[210px]">
-                  <p className="display text-[40px] tracking-tightest leading-none text-bone">{s.v}</p>
+                  <p className="display text-[40px] tracking-tightest leading-none text-signal">{s.v}</p>
                   <p className="text-[11px] text-bone/85 mt-3 leading-[1.5]">{s.l}</p>
                 </div>
               ))}
