@@ -43,20 +43,21 @@ export function Edition() {
         </div>
 
         <figure
-          className="reveal relative overflow-hidden border border-rule aspect-[16/9] bg-graphite mb-16"
+          className="reveal relative overflow-hidden border border-rule bg-graphite mb-16"
+          style={{ aspectRatio: '1264 / 848' }}
           data-target
         >
           <img
-            src={LOCAL_IMAGES.doubleSocks}
-            alt="Three Zero Give socks aligned on concrete: cuff, ankle, and sole."
-            className="absolute inset-0 w-full h-full object-cover"
+            src={LOCAL_IMAGES.chrome}
+            alt="Zero Give sock suspended in a sculptural ribbon of chrome and water."
+            className="absolute inset-0 w-full h-full object-contain"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
           <figcaption className="absolute inset-x-0 bottom-0 p-8 md:p-12 flex items-end justify-between gap-6">
             <div>
-              <span className="num text-bone/85">Fig. 06.A · Three faces</span>
+              <span className="num text-bone/85">Fig. 06.A · the specimen</span>
               <p className="display text-[24px] md:text-[36px] tracking-tightest leading-[0.95] mt-2 text-bone max-w-xl">
-                Cuff · Ankle · Sole.
+                Engineered to <span className="editorial text-signal">flow.</span>
               </p>
             </div>
             <span className="num text-bone/75 hidden md:inline">Bone / Ink / Signal</span>

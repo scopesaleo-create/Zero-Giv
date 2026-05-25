@@ -15,6 +15,7 @@ export const LOCAL_IMAGES = {
   running1:    '/images/ZgRunning1.png',   // sprint, sock visible mid-flight
   running2:    '/images/ZgRunning2.png',   // foot close-up on wet pitch
   layers:      '/images/ZgLayers.png',     // technical exploded view
+  chrome:      '/images/ZgChrome.png',     // chrome / liquid sculptural product shot (3:2)
 } as const;
 
 export const LOCAL_MEDIA = {
