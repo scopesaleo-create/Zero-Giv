@@ -33,7 +33,7 @@ export function HeroSock() {
 
   // ease the rotation speed when a component is focused
   useEffect(() => {
-    if (videoRef.current) videoRef.current.playbackRate = focus === 'hero' ? 1.0 : 0.45;
+    if (videoRef.current) videoRef.current.playbackRate = focus === 'hero' ? 1.25 : 0.55;
   }, [focus]);
 
   // 3D spatial scroll zoom: while the hero section is on screen, push the sock

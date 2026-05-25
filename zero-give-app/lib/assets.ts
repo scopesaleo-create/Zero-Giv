@@ -14,7 +14,7 @@ export const LOCAL_IMAGES = {
   action2:     '/images/ZgAction2.png',    // graffiti court at night
   running1:    '/images/ZgRunning1.png',   // sprint, sock visible mid-flight
   running2:    '/images/ZgRunning2.png',   // foot close-up on wet pitch
-  layers:      '/images/ZgLayers.png',     // technical exploded view
+  layers:      '/images/ZgLayers2.png',    // technical exploded view (v2)
   chrome:      '/images/ZgChrome.png',     // chrome / liquid sculptural product shot (3:2)
 } as const;
 
