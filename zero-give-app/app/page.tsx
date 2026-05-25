@@ -11,7 +11,6 @@ import { HeroSock } from '@/components/sections/hero';
 import { Science } from '@/components/sections/science';
 import { Tech } from '@/components/sections/tech';
 import { Spline3D } from '@/components/sections/spline-3d';
-import { InAction } from '@/components/sections/in-action';
 import { Performance } from '@/components/sections/performance';
 import { Editorial } from '@/components/sections/editorial';
 import { Athletes } from '@/components/sections/athletes';
@@ -34,7 +33,6 @@ export default function Page() {
       <Science />
       <Tech />
       <Spline3D />
-      <InAction />
       <Performance />
       <Editorial />
       <Athletes />
