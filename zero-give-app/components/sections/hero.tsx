@@ -94,15 +94,27 @@ export function HeroSock() {
         <BackgroundPathsLayer />
       </div>
 
-      {/* Giant brand watermark: the actual logo PNG bleeding off the
-          left edge at low opacity. Acts as a typographic backbone for
-          the hero, not as a decoration. */}
-      <img
-        src="/images/zero-give-logo.png"
-        alt=""
+      {/* Giant brand watermark: the Zero Give wordmark rendered as a
+          CSS-masked silhouette so only the logo shape shows. No grey
+          background plate. Bleeds off the left edge as a typographic
+          backbone behind the headline. */}
+      <span
         aria-hidden
-        className="hidden md:block absolute -left-[8vw] top-1/2 -translate-y-1/2 h-[110vh] w-auto pointer-events-none select-none"
-        style={{ opacity: 0.05, mixBlendMode: 'screen', filter: 'saturate(0)' }}
+        className="hidden md:block absolute -left-[8vw] top-1/2 -translate-y-1/2 pointer-events-none select-none"
+        style={{
+          height: '110vh',
+          aspectRatio: '3584 / 4800',
+          WebkitMaskImage: 'url(/images/zero-give-logo.png)',
+          maskImage: 'url(/images/zero-give-logo.png)',
+          WebkitMaskRepeat: 'no-repeat',
+          maskRepeat: 'no-repeat',
+          WebkitMaskSize: 'contain',
+          maskSize: 'contain',
+          WebkitMaskPosition: 'center',
+          maskPosition: 'center',
+          backgroundColor: 'var(--bone)',
+          opacity: 0.05,
+        }}
       />
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-14 pt-36 pb-24 min-h-[100dvh] flex flex-col">
@@ -169,7 +181,6 @@ export function HeroSock() {
                     ref={videoRef}
                     className={cn('stage-model', focus !== 'hero' && 'is-focused')}
                     src="/media/zero-give-360.mp4"
-                    poster="/images/sock-model.png"
                     autoPlay
                     loop
                     muted
