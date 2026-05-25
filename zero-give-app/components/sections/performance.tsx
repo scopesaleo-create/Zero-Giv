@@ -22,7 +22,7 @@ export function Performance() {
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-stretch mb-16">
           {/* Native 3:4 sprint portrait, presented at its source aspect. */}
           <figure
-            className="reveal lg:col-span-5 relative overflow-hidden border border-rule bg-ink aspect-[3/4]"
+            className="reveal lg:col-span-3 relative overflow-hidden border border-rule bg-ink aspect-[3/4]"
             data-target
           >
             <img
@@ -36,7 +36,7 @@ export function Performance() {
             </figcaption>
           </figure>
 
-          <div className="lg:col-span-7 flex flex-col justify-end">
+          <div className="lg:col-span-9 flex flex-col justify-end">
             <h3 className="display text-[56px] md:text-[80px] lg:text-[104px] tracking-tightest leading-[0.92]">
               <span className="reveal block">Built for</span>
               <span className="reveal editorial block text-signal" data-delay="1">game speed.</span>
