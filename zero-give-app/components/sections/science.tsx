@@ -1,3 +1,5 @@
+import { LOCAL_IMAGES } from '@/lib/assets';
+
 export function Science() {
   const items = [
     { num: '01', title: 'Sprint', body: 'Heel lift and slippage rob the first three metres of an acceleration. The window where games are won.' },
@@ -16,11 +18,11 @@ export function Science() {
           <span className="num hidden md:inline">A short read · three pages</span>
         </header>
 
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5">
-            <h3 className="display text-[64px] md:text-[88px] lg:text-[112px] tracking-tightest leading-[0.92]">
+            <h3 className="display text-[64px] md:text-[88px] lg:text-[104px] tracking-tightest leading-[0.92]">
               <span className="reveal block">Every</span>
-              <span className="reveal editorial block" data-delay="1">movement</span>
+              <span className="reveal editorial block text-signal" data-delay="1">movement</span>
               <span className="reveal block" data-delay="2">leaks energy.</span>
             </h3>
             <p className="reveal mt-10 text-bone/90 text-[17px] leading-[1.7] max-w-md" data-delay="3">
@@ -31,14 +33,33 @@ export function Science() {
             </a>
           </div>
 
-          <ol className="lg:col-span-7 divide-y divide-rule border-t border-b border-rule">
+          {/* Native 3:4 portrait — the cinematic foot close-up sits inside
+              its natural aspect so nothing gets cropped. */}
+          <figure
+            className="reveal lg:col-span-3 relative overflow-hidden border border-rule bg-ink aspect-[3/4]"
+            data-delay="2"
+            data-target
+          >
+            <img
+              src={LOCAL_IMAGES.running2}
+              alt="Sock and boot planted on a floodlit wet pitch."
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent" />
+            <figcaption className="absolute left-4 right-4 bottom-4 flex items-end justify-between gap-3">
+              <span className="num text-bone/85">Fig. 01.A</span>
+              <span className="num text-signal">field</span>
+            </figcaption>
+          </figure>
+
+          <ol className="lg:col-span-4 divide-y divide-rule border-t border-b border-rule">
             {items.map((c, i) => (
-              <li key={c.num} className="reveal grid grid-cols-12 gap-6 py-10" data-delay={String(i + 1)} data-target>
+              <li key={c.num} className="reveal grid grid-cols-12 gap-4 py-7" data-delay={String(i + 1)} data-target>
                 <div className="col-span-2 num">{c.num}</div>
-                <div className="col-span-10 md:col-span-3">
-                  <h4 className="display text-2xl tracking-tightest">{c.title}</h4>
+                <div className="col-span-10">
+                  <h4 className="display text-xl md:text-2xl tracking-tightest">{c.title}</h4>
+                  <p className="text-bone/85 leading-[1.65] text-[14px] mt-2.5">{c.body}</p>
                 </div>
-                <p className="col-span-12 md:col-span-7 text-bone/90 leading-[1.7] text-[15px]">{c.body}</p>
               </li>
             ))}
           </ol>
